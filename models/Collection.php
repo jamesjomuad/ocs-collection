@@ -60,8 +60,20 @@ class Collection extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
-    public $hasMany = [];
+    public $hasOne = [
+        'client' => [
+            \Ocs\Collection\Models\Client::class,
+            'key'=>'client_id'
+        ]
+    ];
+    public $hasMany = [
+        'clienteles' => [
+            \Ocs\Collection\Models\Clientele::class,
+            'key' => 'client_id',
+            // 'otherKey'=>'client_id',
+            // 'delete' => true
+        ],
+    ];
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Clientele
+
+# Model Form Field configuration
+form: $/ocs/collection/models/clientele/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Clientele
+
+# Default redirect location
+defaultRedirect: ocs/collection/clientele
+
+# Create page
+create:
+    title: Create Clientele
+    redirect: ocs/collection/clientele/update/:id
+    redirectClose: ocs/collection/clientele
+
+# Update page
+update:
+    title: Edit Clientele
+    redirect: ocs/collection/clientele
+    redirectClose: ocs/collection/clientele
+
+# Preview page
+preview:
+    title: Preview Clientele

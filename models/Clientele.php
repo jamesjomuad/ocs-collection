@@ -62,7 +62,13 @@ class Clientele extends Model
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'client' => [
+            \Ocs\Collection\Models\Client::class,
+            'key' => 'client_id',
+            'delete' => true
+        ]
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];

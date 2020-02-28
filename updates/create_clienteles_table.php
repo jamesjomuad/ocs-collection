@@ -11,6 +11,7 @@ class CreateClientelesTable extends Migration
         Schema::create('ocs_collection_clienteles', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->integer('client_id')->unsigned()->index();
             $table->string('name')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

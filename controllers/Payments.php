@@ -1,12 +1,9 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
-use Backend\Classes\Controller;
 
-/**
- * Payments Back-end Controller
- */
-class Payments extends Controller
+
+class Payments extends \Ocs\Collection\Controllers\Main
 {
     public $implement = [
         'Backend.Behaviors.FormController',

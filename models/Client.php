@@ -61,7 +61,14 @@ class Client extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'clientele' => [
+            \Ocs\Collection\Models\Clientele::class,
+            'key'       => 'client_id',
+            'delete'    => true,
+            'count' => true
+        ],
+    ];
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
@@ -69,4 +76,11 @@ class Client extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+
+    public function getClienteleCountAttribute()
+    {
+        return $this->clientele()->count();
+    }
+
 }

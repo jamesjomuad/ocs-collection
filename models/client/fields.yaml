@@ -3,6 +3,19 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
-        disabled: true
+    name:
+        label: Clientele Name / Business Name
+        type: text
+        span: auto
+    address:
+        label: Address
+        type: text
+        span: auto
+    phone:
+        label: Phone
+        type: text
+        span: auto
+    email:
+        label: Email
+        type: text
+        span: auto

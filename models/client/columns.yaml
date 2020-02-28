@@ -6,3 +6,21 @@ columns:
     id:
         label: ID
         searchable: true
+    name:
+        label: Business Name
+        type: text
+        span: auto
+    address:
+        label: Address
+        type: text
+        span: auto
+    phone:
+        label: Phone
+        type: text
+        span: auto
+    email:
+        label: Email
+        type: text
+        span: auto
+    clientele_count:
+        label: Number of Clients

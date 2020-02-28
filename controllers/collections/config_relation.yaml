@@ -1,0 +1,9 @@
+clientele:
+    label: clienteles    
+    deferredBinding: true
+    view:
+        list: $/ocs/collection/models/clientele/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        form: $/ocs/collection/models/clientele/fields.yaml
+        recordsPerPage: 10

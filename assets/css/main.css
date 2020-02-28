@@ -1,0 +1,7 @@
+.layout-sidenav-container{width: 95px;}
+
+@media (max-width: 767px){
+    .layout-sidenav-container {
+        width: 80px!important;
+    }
+}

@@ -3,6 +3,18 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
+    number:
+        label: Collection Number
+        type: text
         disabled: true
+        span: full
+    client[name]:
+        label: Client Name / Business Name
+        type: text
+        span: full
+    clienteles:
+        span: full
+        path: clientele
+        type: partial
+        context:
+            - update
