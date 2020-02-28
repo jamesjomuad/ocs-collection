@@ -1,0 +1,13 @@
+1.0.1: First version of collection
+1.0.2: 
+ - 'Create Collection table'
+ - create_collections_table.php
+1.0.3: 
+ - 'Create Clients table'
+ - create_clients_table.php
+1.0.4: 
+ - 'Create Clienteles table'
+ - create_clienteles_table.php
+1.0.5:
+ - 'Create Payments table'
+ - create_payments_table.php

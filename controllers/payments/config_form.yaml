@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Payment
+
+# Model Form Field configuration
+form: $/ocs/collection/models/payment/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Payment
+
+# Default redirect location
+defaultRedirect: ocs/collection/payments
+
+# Create page
+create:
+    title: Create Payment
+    redirect: ocs/collection/payments/update/:id
+    redirectClose: ocs/collection/payments
+
+# Update page
+update:
+    title: Edit Payment
+    redirect: ocs/collection/payments
+    redirectClose: ocs/collection/payments
+
+# Preview page
+preview:
+    title: Preview Payment

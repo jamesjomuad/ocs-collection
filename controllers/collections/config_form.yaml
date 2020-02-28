@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Collection
+
+# Model Form Field configuration
+form: $/ocs/collection/models/collection/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Collection
+
+# Default redirect location
+defaultRedirect: ocs/collection/collections
+
+# Create page
+create:
+    title: Create Collection
+    redirect: ocs/collection/collections/update/:id
+    redirectClose: ocs/collection/collections
+
+# Update page
+update:
+    title: Edit Collection
+    redirect: ocs/collection/collections
+    redirectClose: ocs/collection/collections
+
+# Preview page
+preview:
+    title: Preview Collection
