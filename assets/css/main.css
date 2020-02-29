@@ -1,3 +1,9 @@
+.control-toolbar .toolbar-item .btn{
+    padding: 6.666px 10px;
+}
+.control-toolbar .toolbar-item .btn .icon{
+    font-size: 20px;
+}
 .layout-sidenav-container{width: 95px;}
 
 @media (max-width: 767px){

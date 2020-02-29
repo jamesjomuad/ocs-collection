@@ -65,7 +65,6 @@ class Clientele extends Model
     public $belongsTo = [
         'client' => [
             \Ocs\Collection\Models\Client::class,
-            'key' => 'client_id',
             'delete' => true
         ]
     ];

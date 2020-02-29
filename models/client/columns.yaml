@@ -9,18 +9,18 @@ columns:
     name:
         label: Business Name
         type: text
-        span: auto
+        searchable: true
     address:
         label: Address
         type: text
-        span: auto
+        searchable: true
     phone:
         label: Phone
         type: text
-        span: auto
+        searchable: true
     email:
         label: Email
         type: text
-        span: auto
+        searchable: true
     clientele_count:
         label: Number of Clients

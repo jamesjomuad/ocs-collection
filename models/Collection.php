@@ -62,16 +62,13 @@ class Collection extends Model
      */
     public $hasOne = [
         'client' => [
-            \Ocs\Collection\Models\Client::class,
-            'key'=>'client_id'
+            \Ocs\Collection\Models\Client::class
         ]
     ];
     public $hasMany = [
         'clienteles' => [
             \Ocs\Collection\Models\Clientele::class,
-            'key' => 'client_id',
-            // 'otherKey'=>'client_id',
-            // 'delete' => true
+            'key' => 'client_id'
         ],
     ];
     public $belongsTo = [];
@@ -81,4 +78,32 @@ class Collection extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+
+    public function getClienteleListAttribute($value) : STRING
+    {
+        if($this->clienteles)
+        {
+           return $this->clienteles->implode('name', ', '); 
+        }
+    }
+
+    /*
+    *   Generate number during create form
+    */
+    public function generateNumber() : STRING
+    {
+        $date = new \Carbon\Carbon;
+
+        if($this->all()->last()===null)
+        {
+            return "DC" . $date->format("Y-md-") . "0001";
+        }
+        else
+        {
+            return "DC" . $date->format("Y-md-") . str_pad($this->max('id') + 1, 5, '0', STR_PAD_LEFT);
+        }
+        
+    }
+
 }

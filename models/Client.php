@@ -64,12 +64,13 @@ class Client extends Model
     public $hasMany = [
         'clientele' => [
             \Ocs\Collection\Models\Clientele::class,
-            'key'       => 'client_id',
-            'delete'    => true,
+            'delete' => true,
             'count' => true
         ],
     ];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'collection' => '\Ocs\Collection\Models\Collection'
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];

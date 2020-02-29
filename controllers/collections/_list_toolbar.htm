@@ -2,11 +2,23 @@
     <a
         href="<?= Backend::url('ocs/collection/collections/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        New Collection
+        Collection
+    </a>
+
+    <a
+        href="<?= Backend::url('ocs/collection/client') ?>"
+        class="btn btn-primary oc-icon-user-circle">
+        Clients
+    </a>
+
+    <a
+        href="<?= Backend::url('ocs/collection/clientele') ?>"
+        class="btn btn-primary oc-icon-users">
+        Clienteles
     </a>
 
     <button
-        class="btn btn-danger oc-icon-trash-o"
+        class="btn btn-danger pull-right"
         disabled="disabled"
         onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
         data-request="onDelete"
@@ -16,6 +28,6 @@
         data-trigger-condition="checked"
         data-request-success="$(this).prop('disabled', 'disabled')"
         data-stripe-load-indicator>
-        Delete selected
+        <i class="icon icon-trash"></i>
     </button>
 </div>

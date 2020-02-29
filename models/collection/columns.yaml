@@ -6,3 +6,13 @@ columns:
     id:
         label: ID
         searchable: true
+    number:
+        label: Number
+        width: 150px
+        searchable: true
+    client[name]:
+        label: Business Name
+    clientele_list:
+        label: Clienteles
+        clickable: false
+        

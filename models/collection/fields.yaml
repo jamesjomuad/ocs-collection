@@ -7,11 +7,20 @@ fields:
         label: Collection Number
         type: text
         disabled: true
+        span: auto
+    client:
         span: full
+        path: client_create
+        type: partial
+        context:
+            - create
     client[name]:
-        label: Client Name / Business Name
+        label: Client
+        span: auto
         type: text
-        span: full
+        disabled: true
+        context:
+            - update
     clienteles:
         span: full
         path: clientele

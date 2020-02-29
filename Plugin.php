@@ -112,18 +112,6 @@ class Plugin extends PluginBase
                         'url'         => Backend::url('ocs/collection/payments'),
                         'icon'        => 'icon-dollar',
                         'permissions' => ['ocs.collection.*'],
-                    ],
-                    'client' => [
-                        'label'       => 'Clients',
-                        'url'         => Backend::url('ocs/collection/client'),
-                        'icon'        => 'icon-user',
-                        'permissions' => ['ocs.collection.*'],
-                    ],
-                    'clientele' => [
-                        'label'       => 'Clienteles',
-                        'url'         => Backend::url('ocs/collection/clientele'),
-                        'icon'        => 'icon-users',
-                        'permissions' => ['ocs.collection.*'],
                     ]
                 ]
             ],

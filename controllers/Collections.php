@@ -23,4 +23,19 @@ class Collections extends \Ocs\Collection\Controllers\Main
         BackendMenu::setContext('Ocs.Collection', 'collection', 'collections');
     }
 
+    public function formExtendModel($model)
+    {
+        if(empty($model->number))
+        {
+            $model->number = $model->generateNumber();
+        }
+    }
+
+    public function relationExtendManageWidget($widget, $field, $model)
+    {
+        // dump(
+        //     $widget
+        // );
+    }
+
 }
