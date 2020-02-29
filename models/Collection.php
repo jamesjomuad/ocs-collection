@@ -62,18 +62,18 @@ class Collection extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [
-        'client' => [
-            \Ocs\Collection\Models\Client::class
-        ]
-    ];
+    public $hasOne = [];
     public $hasMany = [
         'clienteles' => [
             \Ocs\Collection\Models\Clientele::class,
             'key' => 'client_id'
-        ],
+        ]
     ];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'client' => [
+            \Ocs\Collection\Models\Client::class
+        ]
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
@@ -82,24 +82,33 @@ class Collection extends Model
     public $attachMany = [];
 
 
-    public function getClienteleListAttribute($value) : STRING
+    public function getClienteleListAttribute($value)
     {
         if($this->clienteles)
         {
-           return $this->clienteles->implode('name', ', '); 
+           return $this->clienteles->pluck('name')->toArray(); 
         }
     }
 
-    /*
-    *   Generate number during create form
-    */
+    public function getDebtTotalAttribute()
+    {
+        $clienteles = $this->clienteles;
+
+        return $clienteles->sum(function($clientele){
+            return $clientele['debt_volume'];
+        });
+    }
+
+    #
+    #  Generate number during create form
+    #
     public function generateNumber() : STRING
     {
         $date = new \Carbon\Carbon;
 
         if($this->all()->last()===null)
         {
-            return "DC" . $date->format("Y-md-") . "0001";
+            return "DC" . $date->format("Y-md-") . "00001";
         }
         else
         {

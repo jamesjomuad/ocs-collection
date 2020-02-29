@@ -11,7 +11,7 @@ class CreateCollectionsTable extends Migration
         Schema::create('ocs_collections', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            // $table->string('client_id')->nullable();
+            $table->integer('client_id')->unsigned()->index();
             $table->string('number')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

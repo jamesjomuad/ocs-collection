@@ -1,3 +1,8 @@
+.form-group [disabled="disabled"] {
+    background-color: #ffffff!important;
+    color: #000!important;
+    font-weight: 600;
+}
 .control-toolbar .toolbar-item .btn{
     padding: 6.333px 10px;
 }

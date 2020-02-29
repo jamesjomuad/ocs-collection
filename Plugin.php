@@ -117,4 +117,39 @@ class Plugin extends PluginBase
             ],
         ];
     }
+
+    public function registerListColumnTypes()
+    {
+        return [
+            'tag' => [$this, 'tagListColumn'],
+            'currency' => [$this, 'currencyListColumn'],
+            'url' => [$this, 'urlListColumn'],
+        ];
+    }
+
+    public function tagListColumn($value, $column, $record)
+    {
+        if(is_array($value))
+        {
+            return implode(' ',
+                array_map(function($item){
+                    return implode("",[
+                        '<button type="button" class="btn btn-secondary btn-xs">',
+                        $item,
+                        '</button>'
+                    ]);
+                },$value)
+            );
+        }
+    }
+
+    public function currencyListColumn($value, $column, $record)
+    {
+        return "₱" . number_format($value, 2, '.', ',');
+    }
+
+    public function urlListColumn($value, $column, $record)
+    {
+        return '<a href="'.$value.'" target="_blank" rel="noopener noreferrer">'.$value.'</a>';
+    }
 }

@@ -29,7 +29,10 @@ class Client extends Model
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [];
+    public $rules = [
+        'name' => 'required|unique:ocs_collection_clients,name',
+        'email' => 'email|unique:ocs_collection_clients,email'
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -69,10 +72,9 @@ class Client extends Model
             'delete' => true,
             'count' => true
         ],
-    ];
-    public $belongsTo = [
         'collection' => '\Ocs\Collection\Models\Collection'
     ];
+    public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];

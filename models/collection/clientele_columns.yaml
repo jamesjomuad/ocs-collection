@@ -13,5 +13,7 @@ columns:
         label: Email
     debt_volume:
         label: Debt Volume
+        type: currency
     debt_computed:
         label: Debt Computed
+        type: currency

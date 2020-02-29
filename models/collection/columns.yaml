@@ -14,5 +14,11 @@ columns:
         label: Business Name
     clientele_list:
         label: Clienteles
+        type: tag
+        width: 560px
+    debt_total:
+        label: Debt Total
+        type: currency
         clickable: false
-        
+    status:
+        label: Status
