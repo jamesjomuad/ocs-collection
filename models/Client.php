@@ -9,6 +9,8 @@ class Client extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
+    use \October\Rain\Database\Traits\SoftDelete;
+
     /**
      * @var string The database table used by the model.
      */
@@ -62,7 +64,7 @@ class Client extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'clientele' => [
+        'clienteles' => [
             \Ocs\Collection\Models\Clientele::class,
             'delete' => true,
             'count' => true
@@ -79,9 +81,20 @@ class Client extends Model
     public $attachMany = [];
 
 
+    #
+    #   Events
+    #
+    public function afterDelete()
+    {
+        $this->clienteles()->delete();
+    }
+
+    #
+    #   Custom Functions
+    #
     public function getClienteleCountAttribute()
     {
-        return $this->clientele()->count();
+        return $this->clienteles()->count();
     }
 
 }

@@ -9,6 +9,8 @@ class Clientele extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
+    use \October\Rain\Database\Traits\SoftDelete;
+
     /**
      * @var string The database table used by the model.
      */
@@ -63,10 +65,7 @@ class Clientele extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [
-        'client' => [
-            \Ocs\Collection\Models\Client::class,
-            'delete' => true
-        ]
+        'client' => [\Ocs\Collection\Models\Client::class]
     ];
     public $belongsToMany = [];
     public $morphTo = [];

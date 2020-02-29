@@ -16,8 +16,8 @@ class CreateClientelesTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->decimal('debt_volume', 10, 2)->nullable();
-            $table->decimal('debt_computed', 10, 2)->nullable();
+            $table->decimal('debt_volume', 15, 2)->nullable();
+            $table->decimal('debt_computed', 15, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

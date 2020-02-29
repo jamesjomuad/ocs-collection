@@ -19,9 +19,11 @@ fields:
         label: Email
         type: text
         span: auto
-    clienteles:
-        span: full
-        path: clientele
-        type: partial
-        context:
-            - update
+    debt_volume:
+        label: Debt Volume
+        type: number
+        span: auto
+    # debt_computed:
+    #     label: Debt Computed
+    #     type: text
+    #     span: auto
