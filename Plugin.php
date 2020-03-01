@@ -112,6 +112,12 @@ class Plugin extends PluginBase
                         'url'         => Backend::url('ocs/collection/payments'),
                         'icon'        => 'icon-dollar',
                         'permissions' => ['ocs.collection.*'],
+                    ],
+                    'debt' => [
+                        'label'       => 'Debt',
+                        'url'         => Backend::url('ocs/collection/debt'),
+                        'icon'        => 'icon-snowflake-o',
+                        'permissions' => ['ocs.collection.*'],
                     ]
                 ]
             ],

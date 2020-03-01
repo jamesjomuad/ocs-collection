@@ -4,20 +4,19 @@ use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
-class CreateClientelesTable extends Migration
+class CreateDebtsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collection_clienteles', function (Blueprint $table) {
+        Schema::create('ocs_collection_debts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('client_id')->unsigned()->index();
+            $table->integer('collection_id')->unsigned()->index()->nullable();
+            $table->integer('client_id')->unsigned()->index()->nullable();
             $table->string('name')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('email')->nullable();
             $table->decimal('debt_volume', 15, 2)->nullable();
             $table->decimal('debt_computed', 15, 2)->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +24,6 @@ class CreateClientelesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collection_clienteles');
+        Schema::dropIfExists('ocs_collection_debts');
     }
 }

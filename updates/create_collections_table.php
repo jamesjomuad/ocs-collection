@@ -14,6 +14,7 @@ class CreateCollectionsTable extends Migration
             $table->integer('client_id')->unsigned()->index();
             $table->string('number')->nullable();
             $table->string('status')->nullable();
+            $table->string('paid')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

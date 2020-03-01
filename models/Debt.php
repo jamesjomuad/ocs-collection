@@ -3,9 +3,9 @@
 use Model;
 
 /**
- * Clientele Model
+ * Debt Model
  */
-class Clientele extends Model
+class Debt extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
@@ -14,7 +14,7 @@ class Clientele extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_clienteles';
+    public $table = 'ocs_collection_debts';
 
     /**
      * @var array Guarded fields
@@ -65,7 +65,12 @@ class Clientele extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [
-        'client' => [\Ocs\Collection\Models\Client::class]
+        'collection' => [
+            \Ocs\Collection\Models\Collection::class
+        ],
+        'client' => [
+            \Ocs\Collection\Models\Client::class
+        ]
     ];
     public $belongsToMany = [];
     public $morphTo = [];

@@ -1,0 +1,9 @@
+client:
+    label: Client
+    view:
+        toolbarButtons: create|add
+        list: $/ocs/collection/models/client/columns.yaml
+        form: $/ocs/collection/models/client/fields.yaml
+    manage:
+        showSearch: true
+        form: $/ocs/collection/models/client/fields.yaml

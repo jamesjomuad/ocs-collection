@@ -8,13 +8,13 @@ client:
         showSearch: true
         form: $/ocs/collection/models/client/fields.yaml
 
-clienteles:
-    label: clienteles    
+debt:
+    label: Debts    
     deferredBinding: true
     view:
-        list: $/ocs/collection/models/collection/clientele_columns.yaml
-        toolbarButtons: create|add|delete
+        list: $/ocs/collection/models/debt/columns.yaml
+        toolbarButtons: create|delete
     manage:
         showSearch: true
-        form: $/ocs/collection/models/collection/clientele_fields.yaml
+        form: $/ocs/collection/models/debt/fields.yaml
         recordsPerPage: 10

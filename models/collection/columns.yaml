@@ -11,14 +11,19 @@ columns:
         width: 150px
         searchable: true
     client[name]:
-        label: Business Name
-    clientele_list:
-        label: Clienteles
+        label: Client
+    debt_client:
+        label: Clients
         type: tag
         width: 560px
+        clickable: false
     debt_total:
-        label: Debt Total
+        label: Debt Volume Total
         type: currency
         clickable: false
     status:
         label: Status
+    _paid:
+        label: Paid
+        default: unpaid
+        sortable: false

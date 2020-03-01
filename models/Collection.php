@@ -67,7 +67,11 @@ class Collection extends Model
         'clienteles' => [
             \Ocs\Collection\Models\Clientele::class,
             'key' => 'client_id'
-        ]
+        ],
+        'debt' => [
+            \Ocs\Collection\Models\Debt::class,
+            'delete' => true
+        ],
     ];
     public $belongsTo = [
         'client' => [
@@ -90,12 +94,20 @@ class Collection extends Model
         }
     }
 
+    public function getDebtClientAttribute($value)
+    {
+        if($this->debt)
+        {
+           return $this->debt->pluck('name')->toArray(); 
+        }
+    }
+
     public function getDebtTotalAttribute()
     {
-        $clienteles = $this->clienteles;
+        $debt = $this->debt;
 
-        return $clienteles->sum(function($clientele){
-            return $clientele['debt_volume'];
+        return $debt->sum(function($amount){
+            return $amount['debt_volume'];
         });
     }
 

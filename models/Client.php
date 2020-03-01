@@ -77,7 +77,9 @@ class Client extends Model
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
-    public $morphOne = [];
+    public $morphOne = [
+        // 'debt' => ['\Ocs\Collection\Models\Debt', 'name' => 'debt']
+    ];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];

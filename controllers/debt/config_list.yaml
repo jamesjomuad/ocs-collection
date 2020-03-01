@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: $/ocs/collection/models/clientele/columns.yaml
+list: $/ocs/collection/models/debt/columns.yaml
 
 # Model Class name
-modelClass: Ocs\Collection\Models\Clientele
+modelClass: Ocs\Collection\Models\Debt
 
 # List Title
-title: Manage Clienteles
+title: Manage Debts
 
 # Link URL for each record
-recordUrl: ocs/collection/clientele/update/:id
+recordUrl: ocs/collection/debt/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
