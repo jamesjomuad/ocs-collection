@@ -67,11 +67,6 @@ class Client extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'clienteles' => [
-            \Ocs\Collection\Models\Clientele::class,
-            'delete' => true,
-            'count' => true
-        ],
         'collection' => '\Ocs\Collection\Models\Collection'
     ];
     public $belongsTo = [];
@@ -90,15 +85,15 @@ class Client extends Model
     #
     public function afterDelete()
     {
-        $this->clienteles()->delete();
+        $this->debt()->delete();
     }
 
     #
     #   Custom Functions
     #
-    public function getClienteleCountAttribute()
+    public function getDebtCountAttribute()
     {
-        return $this->clienteles()->count();
+        return $this->debt()->count();
     }
 
 }

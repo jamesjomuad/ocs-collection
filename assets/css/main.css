@@ -1,4 +1,4 @@
-.form-group [disabled="disabled"] {
+.form-group.font-1 .form-control{
     background-color: #ffffff!important;
     color: #000!important;
     font-weight: 600;

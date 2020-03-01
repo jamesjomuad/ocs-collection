@@ -3,14 +3,14 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-        searchable: true
+    # id:
+    #     label: ID
+    #     searchable: true
     name:
         label: Client
-    debt_volume:
+    volume:
         label: Debt Volume
         type: currency
-    debt_computed:
+    computed:
         label: Debt Computed
         type: currency

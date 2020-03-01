@@ -78,4 +78,19 @@ class Debt extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+
+    # Fixes issue: when decimal field is empty
+    public function beforeSave()
+    {
+        if(empty($this->volume))
+        {
+            $this->volume = 0;
+        }
+        if(empty($this->computed))
+        {
+            $this->computed = 0;
+        }
+    }
+
 }

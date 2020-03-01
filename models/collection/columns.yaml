@@ -10,17 +10,28 @@ columns:
         label: Number
         width: 150px
         searchable: true
-    client[name]:
-        label: Client
+    name:
+        label: 'client'
+        relation: client
+        valueFrom: name
+        select: name
+        searchable: true
     debt_client:
         label: Clients
         type: tag
         width: 560px
         clickable: false
-    debt_total:
+        sortable: false
+    volume_total:
         label: Debt Volume Total
         type: currency
         clickable: false
+        sortable: false
+    computed_total:
+        label: Debt Computed Total
+        type: currency
+        clickable: false
+        sortable: false
     status:
         label: Status
     _paid:

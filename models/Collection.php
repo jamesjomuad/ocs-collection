@@ -64,10 +64,6 @@ class Collection extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-        'clienteles' => [
-            \Ocs\Collection\Models\Clientele::class,
-            'key' => 'client_id'
-        ],
         'debt' => [
             \Ocs\Collection\Models\Debt::class,
             'delete' => true
@@ -85,29 +81,29 @@ class Collection extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-
-    public function getClienteleListAttribute($value)
-    {
-        if($this->clienteles)
-        {
-           return $this->clienteles->pluck('name')->toArray(); 
-        }
-    }
-
     public function getDebtClientAttribute($value)
     {
         if($this->debt)
         {
-           return $this->debt->pluck('name')->toArray(); 
+           return $this->debt->take(6)->pluck('name')->toArray(); 
         }
     }
 
-    public function getDebtTotalAttribute()
+    public function getVolumeTotalAttribute()
     {
         $debt = $this->debt;
 
         return $debt->sum(function($amount){
-            return $amount['debt_volume'];
+            return $amount['volume'];
+        });
+    }
+
+    public function getComputedTotalAttribute()
+    {
+        $debt = $this->debt;
+
+        return $debt->sum(function($amount){
+            return $amount['computed'];
         });
     }
 

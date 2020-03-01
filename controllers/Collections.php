@@ -31,11 +31,4 @@ class Collections extends \Ocs\Collection\Controllers\Main
         }
     }
 
-    public function relationExtendManageWidget($widget, $field, $model)
-    {
-        // dump(
-        //     $widget
-        // );
-    }
-
 }

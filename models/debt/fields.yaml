@@ -3,38 +3,18 @@
 # ===================================
 
 fields:
-    # client:
-    #     span: full
-    #     path: client_create
-    #     type: partial
-    #     context:
-    #         - create
-    # client[name]:
-    #     label: Client
-    #     span: auto
-    #     type: text
-    #     disabled: true
-    #     context:
-    #         - update
     name:
         label: Client Name
         type: text
         span: full
-    # status:
-    #     label: Status
-    #     type: text
-    #     span: auto
-    debt_volume:
+    volume:
         label: Debt Volume
         type: number
         span: auto
         default: 0
-    debt_computed:
+    computed:
         label: Debt Computed
         type: text
         span: auto
         default: 0
-    # status:
-    #     label: Status
-    #     type: text
-    #     span: auto
+        disabled: false

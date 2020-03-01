@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Report
+
+# Model Form Field configuration
+form: $/ocs/collection/models/report/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Report
+
+# Default redirect location
+defaultRedirect: ocs/collection/reports
+
+# Create page
+create:
+    title: Create Report
+    redirect: ocs/collection/reports/update/:id
+    redirectClose: ocs/collection/reports
+
+# Update page
+update:
+    title: Edit Report
+    redirect: ocs/collection/reports
+    redirectClose: ocs/collection/reports
+
+# Preview page
+preview:
+    title: Preview Report

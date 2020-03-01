@@ -7,6 +7,7 @@ fields:
         label: Collection Number
         type: text
         disabled: true
+        cssClass: 'font-1'
         span: auto
     client:
         span: full
@@ -19,14 +20,9 @@ fields:
         span: auto
         type: text
         disabled: true
+        cssClass: 'font-1'
         context:
             - update
-    # clienteles:
-    #     span: full
-    #     path: clientele
-    #     type: partial
-    #     context:
-    #         - update
     debt:
         span: full
         path: debt
