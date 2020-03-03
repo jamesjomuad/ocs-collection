@@ -98,12 +98,12 @@ class Collection extends Model
         });
     }
 
-    public function getComputedTotalAttribute()
+    public function getAuditTotalAttribute()
     {
         $debt = $this->debt;
 
         return $debt->sum(function($amount){
-            return $amount['computed'];
+            return $amount['audit'];
         });
     }
 

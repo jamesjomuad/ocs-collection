@@ -27,8 +27,8 @@ columns:
         type: currency
         clickable: false
         sortable: false
-    computed_total:
-        label: Debt Computed Total
+    audit_total:
+        label: Debt Audit Total
         type: currency
         clickable: false
         sortable: false

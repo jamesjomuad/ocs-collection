@@ -1,10 +1,11 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
-
+use October\Rain\Exception\ApplicationException;
 
 class Collections extends \Ocs\Collection\Controllers\Main
 {
+    public $requiredPermissions = ['ocs.collection.collection'];
     
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -21,6 +22,11 @@ class Collections extends \Ocs\Collection\Controllers\Main
         parent::__construct();
 
         BackendMenu::setContext('Ocs.Collection', 'collection', 'collections');
+
+        if(request()->header('x-october-request-handler') === 'onDelete' AND !$this->canDelete())
+        {
+            throw new ApplicationException('No Access permission!');
+        }
     }
 
     public function formExtendModel($model)

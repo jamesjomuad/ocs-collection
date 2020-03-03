@@ -15,7 +15,7 @@ class CreateDebtsTable extends Migration
             $table->integer('client_id')->unsigned()->index()->nullable();
             $table->string('name')->nullable();
             $table->decimal('volume', 15, 2)->nullable();
-            $table->decimal('computed', 15, 2)->nullable();
+            $table->decimal('audit', 15, 2)->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
             $table->softDeletes();

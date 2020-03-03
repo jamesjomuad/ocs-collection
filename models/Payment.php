@@ -3,9 +3,9 @@
 use Model;
 
 /**
- * Payments Model
+ * Payment Model
  */
-class Payments extends Model
+class Payment extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 

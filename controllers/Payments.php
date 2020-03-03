@@ -11,7 +11,10 @@ class Payments extends \Ocs\Collection\Controllers\Main
     ];
 
     public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
+    public $listConfig = [
+        'payments' => 'config_payment_list.yaml',
+        'bills' => 'config_bills_list.yaml'
+    ];
 
     public function __construct()
     {

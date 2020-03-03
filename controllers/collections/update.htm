@@ -33,6 +33,7 @@
                     class="btn btn-default">
                     Save and Close
                 </button>
+                <?php if($this->canDelete()) : ?>
                 <button
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
@@ -40,6 +41,7 @@
                     data-load-indicator="Deleting Collection..."
                     data-request-confirm="Delete this collection?">
                 </button>
+                <?php endif; ?>
                 <span class="btn-text">
                     or <a href="<?= Backend::url('ocs/collection/collections') ?>">Cancel</a>
                 </span>

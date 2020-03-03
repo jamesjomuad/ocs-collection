@@ -13,4 +13,25 @@ class Main extends Controller
 
         $this->addCss($this->assetPath . "css/main.css");
     }
+
+    public function canCreate()
+    {
+        return true;
+    }
+    
+    public function canRead()
+    {
+        return true;
+    }
+
+    public function canUpdate()
+    {
+        return true;
+    }
+
+    public function canDelete()
+    {
+        return $this->user->hasAccess('ocs.collection.collection.delete');
+    }
+    
 }

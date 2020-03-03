@@ -3,14 +3,17 @@
 # ===================================
 
 columns:
-    # id:
-    #     label: ID
+    # name:
+    #     label: 'client'
+    #     relation: client
+    #     valueFrom: name
+    #     select: name
     #     searchable: true
     name:
         label: Client
     volume:
         label: Debt Volume
         type: currency
-    computed:
+    audit:
         label: Debt Computed
         type: currency

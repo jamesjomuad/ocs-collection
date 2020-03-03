@@ -8,19 +8,15 @@ columns:
         searchable: true
     name:
         label: Business Name
-        type: text
         searchable: true
     address:
         label: Address
-        type: text
         searchable: true
     phone:
         label: Phone
-        type: text
         searchable: true
     email:
         label: Email
-        type: text
         searchable: true
-    clientele_count:
-        label: Number of Clients
+    payable:
+        label: Payable

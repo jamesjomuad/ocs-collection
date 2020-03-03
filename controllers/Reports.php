@@ -1,6 +1,8 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
+use Ocs\Collection\Models\Collection;
+use \Carbon\Carbon;
 
 /**
  * Reports Back-end Controller
@@ -26,6 +28,11 @@ class Reports extends \Ocs\Collection\Controllers\Main
     {
         $this->pageTitle = 'Reports';
 
+        $this->vars['collectionCount'] = Collection::all();
+
+        $this->vars['collectionToday'] = Collection::whereDate('created_at', Carbon::today())->get();
+
+        $this->vars['collectionYesterday'] = Collection::whereDate('created_at', Carbon::yesterday())->get();
     }
 
 }

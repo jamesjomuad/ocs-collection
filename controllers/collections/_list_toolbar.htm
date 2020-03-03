@@ -4,13 +4,7 @@
         class="btn btn-primary oc-icon-plus">
         Collection
     </a>
-
-    <a
-        href="<?= Backend::url('ocs/collection/client') ?>"
-        class="btn btn-primary oc-icon-user-circle">
-        Clients
-    </a>
-
+    <?php if($this->canDelete()) : ?>
     <button
         class="btn btn-danger pull-right"
         disabled="disabled"
@@ -24,4 +18,5 @@
         data-stripe-load-indicator>
         <i class="icon icon-trash"></i>
     </button>
+    <?php endif; ?>
 </div>

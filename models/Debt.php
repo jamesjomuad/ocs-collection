@@ -29,7 +29,9 @@ class Debt extends Model
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [];
+    public $rules = [
+        'name' => 'required',
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -87,10 +89,15 @@ class Debt extends Model
         {
             $this->volume = 0;
         }
-        if(empty($this->computed))
+        if(empty($this->audit))
         {
-            $this->computed = 0;
+            $this->audit = 0;
         }
+    }
+
+    public function afterSave()
+    {
+        $this->collection()->touch(); //Updated parent updated_at
     }
 
 }
