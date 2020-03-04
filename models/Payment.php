@@ -3,16 +3,16 @@
 use Model;
 
 /**
- * Clientele Model
+ * Payment Model
  */
-class Clientele extends Model
+class Payment extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_clienteles';
+    public $table = 'ocs_collection_payments';
 
     /**
      * @var array Guarded fields

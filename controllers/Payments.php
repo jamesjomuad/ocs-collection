@@ -1,12 +1,9 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
-use Backend\Classes\Controller;
 
-/**
- * Payments Back-end Controller
- */
-class Payments extends Controller
+
+class Payments extends \Ocs\Collection\Controllers\Main
 {
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -14,7 +11,10 @@ class Payments extends Controller
     ];
 
     public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
+    public $listConfig = [
+        'payments' => 'config_payment_list.yaml',
+        'bills' => 'config_bills_list.yaml'
+    ];
 
     public function __construct()
     {

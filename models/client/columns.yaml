@@ -6,3 +6,17 @@ columns:
     id:
         label: ID
         searchable: true
+    name:
+        label: Business Name
+        searchable: true
+    address:
+        label: Address
+        searchable: true
+    phone:
+        label: Phone
+        searchable: true
+    email:
+        label: Email
+        searchable: true
+    payable:
+        label: Payable

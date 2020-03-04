@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Debt
+
+# Model Form Field configuration
+form: $/ocs/collection/models/debt/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Debt
+
+# Default redirect location
+defaultRedirect: ocs/collection/debt
+
+# Create page
+create:
+    title: Create Debt
+    redirect: ocs/collection/debt/update/:id
+    redirectClose: ocs/collection/debt
+
+# Update page
+update:
+    title: Edit Debt
+    redirect: ocs/collection/debt
+    redirectClose: ocs/collection/debt
+
+# Preview page
+preview:
+    title: Preview Debt

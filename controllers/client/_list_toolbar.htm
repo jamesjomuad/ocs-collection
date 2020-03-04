@@ -1,10 +1,10 @@
 <div data-control="toolbar">
     <a
-        href="<?= Backend::url('ocs/collection/collections/create') ?>"
+        href="<?= Backend::url('ocs/collection/client/create') ?>"
         class="btn btn-primary oc-icon-plus">
-        Collection
+        New Client
     </a>
-    <?php if($this->canDelete()) : ?>
+    
     <button
         class="btn btn-danger pull-right"
         disabled="disabled"
@@ -18,5 +18,4 @@
         data-stripe-load-indicator>
         <i class="icon icon-trash"></i>
     </button>
-    <?php endif; ?>
 </div>

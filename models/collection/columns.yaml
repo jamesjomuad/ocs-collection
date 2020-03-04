@@ -6,3 +6,35 @@ columns:
     id:
         label: ID
         searchable: true
+    number:
+        label: Number
+        width: 150px
+        searchable: true
+    name:
+        label: 'client'
+        relation: client
+        valueFrom: name
+        select: name
+        searchable: true
+    debt_client:
+        label: Clients
+        type: tag
+        width: 560px
+        clickable: false
+        sortable: false
+    volume_total:
+        label: Debt Volume Total
+        type: currency
+        clickable: false
+        sortable: false
+    audit_total:
+        label: Debt Audit Total
+        type: currency
+        clickable: false
+        sortable: false
+    status:
+        label: Status
+    _paid:
+        label: Paid
+        default: unpaid
+        sortable: false

@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Client
+
+# Model Form Field configuration
+form: $/ocs/collection/models/client/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Client
+
+# Default redirect location
+defaultRedirect: ocs/collection/client
+
+# Create page
+create:
+    title: Create Client
+    redirect: ocs/collection/client/update/:id
+    redirectClose: ocs/collection/client
+
+# Update page
+update:
+    title: Edit Client
+    redirect: ocs/collection/client
+    redirectClose: ocs/collection/client
+
+# Preview page
+preview:
+    title: Preview Client

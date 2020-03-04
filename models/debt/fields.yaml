@@ -1,0 +1,28 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    # client:
+    #     label: Client
+    #     title: 'Add Client'
+    #     nameFrom: name
+    #     list: $/ocs/collection/models/client/columns.yaml
+    #     span: auto
+    #     type: recordfinder
+    name:
+        label: Client Name
+        type: text
+        span: full
+        
+    volume:
+        label: Debt Volume
+        type: number
+        span: auto
+        default: 0
+    audit:
+        label: Debt Computed
+        type: text
+        span: auto
+        default: 0
+        disabled: false

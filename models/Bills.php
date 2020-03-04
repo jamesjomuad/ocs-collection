@@ -3,18 +3,16 @@
 use Model;
 
 /**
- * Client Model
+ * Bills Model
  */
-class Client extends Model
+class Bills extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-
-    use \October\Rain\Database\Traits\SoftDelete;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_clients';
+    public $table = 'ocs_collection_bills';
 
     /**
      * @var array Guarded fields
@@ -29,10 +27,7 @@ class Client extends Model
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [
-        'name' => 'required|unique:ocs_collection_clients,name',
-        'email' => 'email|unique:ocs_collection_clients,email'
-    ];
+    public $rules = [];
 
     /**
      * @var array Attributes to be cast to native types
@@ -66,26 +61,12 @@ class Client extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [
-        'collection' => '\Ocs\Collection\Models\Collection'
-    ];
+    public $hasMany = [];
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
-    public $morphOne = [
-        // 'debt' => ['\Ocs\Collection\Models\Debt', 'name' => 'debt']
-    ];
+    public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
-
-
-    #
-    #   Events
-    #
-    public function afterDelete()
-    {
-        $this->debt()->delete();
-    }
-    
 }

@@ -3,16 +3,18 @@
 use Model;
 
 /**
- * Payments Model
+ * Debt Model
  */
-class Payments extends Model
+class Debt extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    use \October\Rain\Database\Traits\SoftDelete;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_payments';
+    public $table = 'ocs_collection_debts';
 
     /**
      * @var array Guarded fields
@@ -27,7 +29,9 @@ class Payments extends Model
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [];
+    public $rules = [
+        'name' => 'required',
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -62,11 +66,38 @@ class Payments extends Model
      */
     public $hasOne = [];
     public $hasMany = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'collection' => [
+            \Ocs\Collection\Models\Collection::class
+        ],
+        'client' => [
+            \Ocs\Collection\Models\Client::class
+        ]
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+
+    # Fixes issue: when decimal field is empty
+    public function beforeSave()
+    {
+        if(empty($this->volume))
+        {
+            $this->volume = 0;
+        }
+        if(empty($this->audit))
+        {
+            $this->audit = 0;
+        }
+    }
+
+    public function afterSave()
+    {
+        $this->collection()->touch(); //Updated parent updated_at
+    }
+
 }

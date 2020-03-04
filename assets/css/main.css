@@ -1,0 +1,18 @@
+.form-group.font-1 .form-control{
+    background-color: #ffffff!important;
+    color: #000!important;
+    font-weight: 600;
+}
+.control-toolbar .toolbar-item .btn{
+    padding: 6.333px 10px;
+}
+.control-toolbar .toolbar-item .btn .icon{
+    font-size: 20px;
+}
+.layout-sidenav-container{width: 95px;}
+
+@media (max-width: 767px){
+    .layout-sidenav-container {
+        width: 80px!important;
+    }
+}

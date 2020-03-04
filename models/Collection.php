@@ -9,6 +9,8 @@ class Collection extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
+    use \October\Rain\Database\Traits\SoftDelete;
+
     /**
      * @var string The database table used by the model.
      */
@@ -61,12 +63,68 @@ class Collection extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [];
+    public $hasMany = [
+        'debt' => [
+            \Ocs\Collection\Models\Debt::class,
+            'delete' => true
+        ],
+    ];
+    public $belongsTo = [
+        'client' => [
+            \Ocs\Collection\Models\Client::class
+        ]
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function getDebtClientAttribute($value)
+    {
+        if($this->debt)
+        {
+           return $this->debt->take(6)->pluck('name')->toArray(); 
+        }
+    }
+
+    public function getVolumeTotalAttribute()
+    {
+        $debt = $this->debt;
+
+        return $debt->sum(function($amount){
+            return $amount['volume'];
+        });
+    }
+
+    public function getAuditTotalAttribute()
+    {
+        $debt = $this->debt;
+
+        return $debt->sum(function($amount){
+            return $amount['audit'];
+        });
+    }
+
+    #
+    #  Generate number during create form
+    #
+    public function generateNumber() : STRING
+    {
+        $date = new \Carbon\Carbon;
+
+        $code = "D" . $date->format("Y-");
+
+        if($this->all()->last()===null)
+        {
+            return $code . "00001";
+        }
+        else
+        {
+            return $code . str_pad($this->withTrashed()->max('id') + 1, 5, '0', STR_PAD_LEFT);
+        }
+        
+    }
+
 }
