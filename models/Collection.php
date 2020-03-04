@@ -114,13 +114,15 @@ class Collection extends Model
     {
         $date = new \Carbon\Carbon;
 
+        $code = "D" . $date->format("Y-");
+
         if($this->all()->last()===null)
         {
-            return "DC" . $date->format("Y-md-") . "00001";
+            return $code . "00001";
         }
         else
         {
-            return "DC" . $date->format("Y-md-") . str_pad($this->max('id') + 1, 5, '0', STR_PAD_LEFT);
+            return $code . str_pad($this->withTrashed()->max('id') + 1, 5, '0', STR_PAD_LEFT);
         }
         
     }
