@@ -1,15 +1,17 @@
 
 <div class="control-tabs content-tabs" data-control="tab" style="overflow:hidden;">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#contentTabOne">Balance</a></li>
-        <li><a href="#contentTabTwo">History</a></li>
+        <li class="active"><a href="#tab_a">Payments</a></li>
+        <li><a href="#tab_b">Debt Balances</a></li>
     </ul>
     <div class="tab-content">
         <div class="tab-pane active">
             <?= $this->listRender('payments') ?>
         </div>
         <div class="tab-pane">
-            <?= $this->listRender('bills') ?>
+            <div class="container-fluid">
+                <h2>Balances</h2>
+            </div>
         </div>
     </div>
 </div>

@@ -22,4 +22,10 @@ class Payments extends \Ocs\Collection\Controllers\Main
 
         BackendMenu::setContext('Ocs.Collection', 'collection', 'payments');
     }
+
+    public function test()
+    {
+        
+    }
+
 }

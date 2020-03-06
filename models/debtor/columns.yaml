@@ -6,3 +6,15 @@ columns:
     id:
         label: ID
         searchable: true
+    name:
+        label: Debtor
+        searchable: true
+    contact_name:
+        label: Contact Person
+        searchable: true
+    phone:
+        label: Phone Number
+        searchable: true
+    email:
+        label: Email
+        searchable: true

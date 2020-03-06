@@ -3,6 +3,51 @@
 # ===================================
 
 fields:
-    id:
-        label: ID
+    # debtor:
+    #     label: Debtor
+    #     nameFrom: name
+    #     prompt: 'Click the %s to search a Debtor'
+    #     list: $/ocs/collection/models/debtor/columns.yaml
+    #     span: full
+    #     required: 1
+    #     type: recordfinder
+    #     context:
+    #         - create
+    debt:
+        label: Debt
+        title: Find Debt
+        nameFrom: volume
+        prompt: 'Click the %s to search a Debt'
+        list: $/ocs/collection/models/debt/columns.yaml
+        span: auto
+        required: 1
+        type: recordfinder
+        context:
+            - create
+    debtor:
+        label: Debtor
+        type: text
         disabled: true
+        cssClass: 'font-1'
+        span: auto
+        dependsOn: debt
+    payment_date:
+        label: Date Paid
+        type: datepicker
+        mode: date
+        span: full
+        default: now
+    receipt_number:
+        label: O.R. Number
+        type: text
+        span: full
+    particulars:
+        label: Particulars
+        type: text
+        span: full
+    amount:
+        label: Amount Paid
+        type: number
+        default: 0
+        required: 1
+        span: full

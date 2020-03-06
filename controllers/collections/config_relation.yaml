@@ -12,9 +12,9 @@ debt:
     label: Debts    
     deferredBinding: true
     view:
-        list: $/ocs/collection/models/debt/columns.yaml
+        list: $/ocs/collection/models/collection/columns_debt.yaml
         toolbarButtons: addDebt|delete
         recordsPerPage: 10
-    manage:
-        form: $/ocs/collection/models/debt/fields.yaml
-        recordsPerPage: 10
+    # manage:
+    #     form: $/ocs/collection/models/collection/fields_debt.yaml
+    #     recordsPerPage: 10

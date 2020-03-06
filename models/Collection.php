@@ -14,7 +14,7 @@ class Collection extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collections';
+    public $table = 'ocs_collection';
 
     /**
      * @var array Guarded fields
@@ -67,11 +67,11 @@ class Collection extends Model
         'debt' => [
             \Ocs\Collection\Models\Debt::class,
             'delete' => true
-        ],
+        ]
     ];
     public $belongsTo = [
         'client' => [
-            \Ocs\Collection\Models\Client::class
+            \Ocs\Collection\Models\Client::class,
         ]
     ];
     public $belongsToMany = [];
@@ -88,7 +88,12 @@ class Collection extends Model
             $mapped = $this->debt->take(4)->map(function($item, $key){
                 return $item->debtor->name;
             });
-            $mapped->put('name','...');
+            
+            if($this->debt->count()>4)
+            {
+                $mapped->put('name','...');
+            }
+            
             return $mapped->toArray();
         }
     }

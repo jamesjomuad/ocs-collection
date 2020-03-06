@@ -6,3 +6,16 @@ columns:
     id:
         label: ID
         searchable: true
+    debtor_name:
+        label: Debtor
+    payment_date:
+        label: Date
+        type: date
+    receipt_number:
+        label: O.R. NUMBER
+    particulars:
+        label: Particulars
+    amount:
+        label: Amount Paid
+    balance:
+        label: Balance

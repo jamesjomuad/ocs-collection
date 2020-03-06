@@ -14,7 +14,7 @@ class Debt extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_debts';
+    public $table = 'ocs_collection_debt';
 
     /**
      * @var array Guarded fields
@@ -63,7 +63,11 @@ class Debt extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'payments' => [
+            \Ocs\Collection\Models\Payment::class
+        ]
+    ];
     public $belongsTo = [
         'collection' => [
             \Ocs\Collection\Models\Collection::class

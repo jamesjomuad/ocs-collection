@@ -12,7 +12,7 @@ class Payment extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_debt_payments';
+    public $table = 'ocs_collection_payment';
 
     /**
      * @var array Guarded fields
@@ -61,12 +61,36 @@ class Payment extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
-    public $belongsTo = [];
+    public $hasMany = [
+        
+    ];
+    public $belongsTo = [
+        'debt' => [
+            \Ocs\Collection\Models\Debt::class
+        ],
+        'debtor' => [
+            \Ocs\Collection\Models\Debtor::class
+        ]
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+    public function filterFields($fields, $context = null)
+    {
+        if($fields->debt->value)
+        {
+            $debtorName = \Ocs\Collection\Models\Debtor::find($fields->debt->value)->name;
+            $fields->debtor->value = $debtorName;
+        }
+    }
+
+    public function getDebtorNameAttribute()
+    {
+        return $this->debt->debtor->name;
+    }
+
 }

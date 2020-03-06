@@ -20,3 +20,8 @@ columns:
         searchable: true
     payment_status:
         label: Payment Status
+        default: ongoing
+    action:
+        label: Action
+        type: partial
+        clickable: false

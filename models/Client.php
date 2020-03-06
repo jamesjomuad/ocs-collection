@@ -14,7 +14,7 @@ class Client extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_clients';
+    public $table = 'ocs_collection_client';
 
     /**
      * @var array Guarded fields
