@@ -1,9 +1,9 @@
-client:
+debtor:
     label: Client
     view:
         toolbarButtons: create|add
-        list: $/ocs/collection/models/client/columns.yaml
-        form: $/ocs/collection/models/client/fields.yaml
+        list: $/ocs/collection/models/debtor/columns.yaml
+        form: $/ocs/collection/models/debtor/fields.yaml
     manage:
         showSearch: true
-        form: $/ocs/collection/models/client/fields.yaml
+        form: $/ocs/collection/models/debtor/fields.yaml

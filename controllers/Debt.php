@@ -1,13 +1,12 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
-use Backend\Classes\Controller;
 
-/**
- * Debt Back-end Controller
- */
-class Debt extends Controller
+
+class Debt extends \Ocs\Collection\Controllers\Main
 {
+    private $collectionID;
+
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',
@@ -24,4 +23,46 @@ class Debt extends Controller
 
         BackendMenu::setContext('Ocs.Collection', 'collection', 'debt');
     }
+
+    public function create($collection_id = null)
+    {
+        $this->pageTitle = 'Users';
+
+        $this->collectionID = $collection_id;
+        
+        $this->asExtension('FormController')->create();
+    }
+
+    public function create_onSave($context = null)
+    {
+        parent::create_onSave($context);
+
+        if(input('close') AND post('Debt.collection.id'))
+        {
+            return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
+        }
+    }
+
+    public function update_onSave($context = null)
+    { 
+        parent::update_onSave($context);
+
+        if(input('close') AND post('Debt.collection.id'))
+        {
+            return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
+        }
+    }
+
+    public function formExtendModel($model)
+    {
+
+        if($this->action == 'create')
+        {
+            $model->collection = \Ocs\Collection\Models\Collection::find($this->collectionID | post('Debt.collection.id'));
+            $model->debtor = new \Ocs\Collection\Models\Debtor;
+        }
+
+        return $model;
+    }
+
 }

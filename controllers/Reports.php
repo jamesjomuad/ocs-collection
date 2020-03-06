@@ -4,9 +4,7 @@ use BackendMenu;
 use Ocs\Collection\Models\Collection;
 use \Carbon\Carbon;
 
-/**
- * Reports Back-end Controller
- */
+
 class Reports extends \Ocs\Collection\Controllers\Main
 {
     public $implement = [

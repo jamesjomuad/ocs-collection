@@ -3,16 +3,18 @@
 use Model;
 
 /**
- * Payment Model
+ * Debtor Model
  */
-class Payment extends Model
+class Debtor extends Model
 {
     use \October\Rain\Database\Traits\Validation;
+
+    use \October\Rain\Database\Traits\SoftDelete;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_debt_payments';
+    public $table = 'ocs_collection_debtor';
 
     /**
      * @var array Guarded fields
@@ -22,7 +24,14 @@ class Payment extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'number',
+        'name',
+        'contact_name',
+        'phone',
+        'email',
+        'address'
+    ];
 
     /**
      * @var array Validation rules for attributes
@@ -69,4 +78,6 @@ class Payment extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [];
+
+
 }

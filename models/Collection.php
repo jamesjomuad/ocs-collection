@@ -81,11 +81,15 @@ class Collection extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    public function getDebtClientAttribute($value)
+    public function getDebtorsAttribute($value)
     {
-        if($this->debt)
+        if($this->debt->isNotEmpty())
         {
-           return $this->debt->take(6)->pluck('name')->toArray(); 
+            $mapped = $this->debt->take(4)->map(function($item, $key){
+                return $item->debtor->name;
+            });
+            $mapped->put('name','...');
+            return $mapped->toArray();
         }
     }
 
@@ -93,19 +97,13 @@ class Collection extends Model
     {
         $debt = $this->debt;
 
-        return $debt->sum(function($amount){
+        $total = $debt->sum(function($amount){
             return $amount['volume'];
         });
+
+        return "₱" . number_format($total, 2, '.', ',');
     }
 
-    public function getAuditTotalAttribute()
-    {
-        $debt = $this->debt;
-
-        return $debt->sum(function($amount){
-            return $amount['audit'];
-        });
-    }
 
     #
     #  Generate number during create form

@@ -8,10 +8,10 @@ class CreatePaymentsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collection_payments', function (Blueprint $table) {
+        Schema::create('ocs_collection_debt_payments', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->integer('client_id')->unsigned()->index();
+            $table->integer('debt_id')->unsigned()->index();
             $table->decimal('amount', 10, 2);
             $table->text('notes')->nullable();
             $table->timestamps();
@@ -21,6 +21,6 @@ class CreatePaymentsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collection_payments');
+        Schema::dropIfExists('ocs_collection_debt_payments');
     }
 }

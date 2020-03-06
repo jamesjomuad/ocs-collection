@@ -8,6 +8,16 @@
 <?php if (!$this->fatalError): ?>
 
     <?= Form::open(['class' => 'layout']) ?>
+        <?php if(is_null($this->vars['formModel']->collection)): ?>
+        <div class="callout fade in callout-info no-subheader">
+            <div class="header">
+                <i class="icon-info"></i>
+                <h3>This debt doesn't belong to a Collection!</h3>
+            </div>
+        </div>
+        <?php else : ?>
+            <input type="hidden" name="Debt[collection][id]" value="<?= $this->vars['formModel']->collection->id ?>">
+        <?php endif; ?>
 
         <div class="layout-row">
             <?= $this->formRender() ?>
@@ -41,7 +51,12 @@
                     data-request-confirm="Delete this debt?">
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
+                    or 
+                    <?php if(!is_null($this->vars['formModel']->collection)): ?>
+                        <a href="<?= Backend::url('ocs/collection/collections/update/') ?><?= $this->vars['formModel']->collection->id ?>">Cancel</a>
+                    <?php else : ?>
+                        <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

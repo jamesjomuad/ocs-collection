@@ -3,6 +3,7 @@
 use BackendMenu;
 use October\Rain\Exception\ApplicationException;
 
+
 class Collections extends \Ocs\Collection\Controllers\Main
 {
     public $requiredPermissions = ['ocs.collection.collection'];
@@ -27,6 +28,8 @@ class Collections extends \Ocs\Collection\Controllers\Main
         {
             throw new ApplicationException('No Access permission!');
         }
+
+        $this->addJs($this->assetPath . "js/collection.js");
     }
 
     public function formExtendModel($model)
@@ -35,6 +38,7 @@ class Collections extends \Ocs\Collection\Controllers\Main
         {
             $model->number = $model->generateNumber();
         }
+        return $model;
     }
 
 }
