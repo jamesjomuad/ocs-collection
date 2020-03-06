@@ -29,9 +29,7 @@ class Debt extends Model
     /**
      * @var array Validation rules for attributes
      */
-    public $rules = [
-        'name' => 'required',
-    ];
+    public $rules = [];
 
     /**
      * @var array Attributes to be cast to native types
@@ -70,16 +68,11 @@ class Debt extends Model
         'collection' => [
             \Ocs\Collection\Models\Collection::class
         ],
-        'client' => [
-            \Ocs\Collection\Models\Client::class
+        'debtor' => [
+            \Ocs\Collection\Models\Debtor::class
         ]
     ];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+
 
 
     # Fixes issue: when decimal field is empty
@@ -89,15 +82,19 @@ class Debt extends Model
         {
             $this->volume = 0;
         }
-        if(empty($this->audit))
-        {
-            $this->audit = 0;
-        }
     }
 
     public function afterSave()
     {
         $this->collection()->touch(); //Updated parent updated_at
+    }
+
+    public function getClientAttribute()
+    {
+        if($this->collection)
+        {
+            return $this->collection->client->name;
+        }
     }
 
 }

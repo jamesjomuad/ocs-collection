@@ -9,11 +9,14 @@ columns:
     #     valueFrom: name
     #     select: name
     #     searchable: true
-    name:
-        label: Client
+    debtor[name]:
+        label: Account Number Name
+    placement:
+        label: Debt Placement
+        type: datetime
+        format: m/d/Y
+    duration:
+        label: Duration
     volume:
         label: Debt Volume
-        type: currency
-    audit:
-        label: Debt Computed
         type: currency

@@ -3,9 +3,9 @@
 use Model;
 
 /**
- * Collection Model
+ * Debtor Model
  */
-class Collection extends Model
+class Debtor extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
@@ -14,7 +14,7 @@ class Collection extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collections';
+    public $table = 'ocs_collection_debtor';
 
     /**
      * @var array Guarded fields
@@ -24,7 +24,14 @@ class Collection extends Model
     /**
      * @var array Fillable fields
      */
-    protected $fillable = [];
+    protected $fillable = [
+        'number',
+        'name',
+        'contact_name',
+        'phone',
+        'email',
+        'address'
+    ];
 
     /**
      * @var array Validation rules for attributes
@@ -63,17 +70,8 @@ class Collection extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [
-        'debt' => [
-            \Ocs\Collection\Models\Debt::class,
-            'delete' => true
-        ],
-    ];
-    public $belongsTo = [
-        'client' => [
-            \Ocs\Collection\Models\Client::class
-        ]
-    ];
+    public $hasMany = [];
+    public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
@@ -81,47 +79,5 @@ class Collection extends Model
     public $attachOne = [];
     public $attachMany = [];
 
-    public function getDebtorsAttribute($value)
-    {
-        if($this->debt->isNotEmpty())
-        {
-            $mapped = $this->debt->map(function($item, $key){
-                return $item->debtor->name;
-            });
-            return $mapped->toArray();
-        }
-    }
-
-    public function getVolumeTotalAttribute()
-    {
-        $debt = $this->debt;
-
-        $total = $debt->sum(function($amount){
-            return $amount['volume'];
-        });
-
-        return "₱" . number_format($total, 2, '.', ',');
-    }
-
-
-    #
-    #  Generate number during create form
-    #
-    public function generateNumber() : STRING
-    {
-        $date = new \Carbon\Carbon;
-
-        $code = "D" . $date->format("Y-");
-
-        if($this->all()->last()===null)
-        {
-            return $code . "00001";
-        }
-        else
-        {
-            return $code . str_pad($this->withTrashed()->max('id') + 1, 5, '0', STR_PAD_LEFT);
-        }
-        
-    }
 
 }

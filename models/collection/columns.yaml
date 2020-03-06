@@ -7,24 +7,24 @@ columns:
         label: ID
         searchable: true
     number:
-        label: Number
+        label: Customer Code
         width: 150px
         searchable: true
     name:
-        label: 'client'
+        label: Customer Name
         relation: client
         valueFrom: name
         select: name
         searchable: true
-    debt_client:
-        label: Clients
-        type: tag
+    debtors:
+        label: Account Number Name
+        type: ol
         width: 560px
-        clickable: false
         sortable: false
+        clickable: false
     volume_total:
         label: Debt Volume Total
-        type: currency
+        type: text
         clickable: false
         sortable: false
     audit_total:

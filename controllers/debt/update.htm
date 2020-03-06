@@ -8,6 +8,16 @@
 <?php if (!$this->fatalError): ?>
 
     <?= Form::open(['class' => 'layout']) ?>
+        <?php if(is_null($this->vars['formModel']->collection)): ?>
+        <div class="callout fade in callout-info no-subheader">
+            <div class="header">
+                <i class="icon-info"></i>
+                <h3>This debt doesn't belong to a Collection!</h3>
+            </div>
+        </div>
+        <?php else : ?>
+            <input type="hidden" name="Debt[collection][id]" value="<?= $this->vars['formModel']->collection->id ?>">
+        <?php endif; ?>
 
         <div class="layout-row">
             <?= $this->formRender() ?>

@@ -12,7 +12,7 @@ class Payment extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_payments';
+    public $table = 'ocs_collection_debt_payments';
 
     /**
      * @var array Guarded fields
