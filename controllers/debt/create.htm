@@ -34,7 +34,12 @@
                     Create and Close
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
+                    or
+                    <?php if(!is_null($this->vars['formModel']->collection)): ?>
+                        <a href="<?= Backend::url('ocs/collection/collections/update') ?>/<?= $this->vars['formModel']->collection->id ?>">Cancel</a>
+                    <?php else : ?>
+                        <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

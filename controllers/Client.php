@@ -2,9 +2,7 @@
 
 use BackendMenu;
 
-/**
- * Client Back-end Controller
- */
+
 class Client extends \Ocs\Collection\Controllers\Main
 {
     public $implement = [

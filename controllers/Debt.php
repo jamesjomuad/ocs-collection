@@ -2,9 +2,7 @@
 
 use BackendMenu;
 
-/**
- * Debt Back-end Controller
- */
+
 class Debt extends \Ocs\Collection\Controllers\Main
 {
     private $collectionID;

@@ -3,20 +3,18 @@
 # ===================================
 
 columns:
-    # name:
-    #     label: 'client'
-    #     relation: client
-    #     valueFrom: name
-    #     select: name
-    #     searchable: true
     debtor[name]:
         label: Account Number Name
+        searchable: true
     placement:
         label: Debt Placement
         type: datetime
         format: m/d/Y
+        searchable: true
     duration:
         label: Duration
+        searchable: true
     volume:
         label: Debt Volume
         type: currency
+        searchable: true

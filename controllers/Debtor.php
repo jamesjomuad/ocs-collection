@@ -1,12 +1,9 @@
 <?php namespace Ocs\Collection\Controllers;
 
 use BackendMenu;
-use Backend\Classes\Controller;
 
-/**
- * Debtor Back-end Controller
- */
-class Debtor extends Controller
+
+class Debtor extends \Ocs\Collection\Controllers\Main
 {
     public $implement = [
         'Backend.Behaviors.FormController',

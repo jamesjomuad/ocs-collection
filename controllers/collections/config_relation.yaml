@@ -13,9 +13,8 @@ debt:
     deferredBinding: true
     view:
         list: $/ocs/collection/models/debt/columns.yaml
-        toolbarPartial: relation_toolbar
+        toolbarButtons: addDebt|delete
         recordsPerPage: 10
-    # manage:
-    #     showSearch: true
-    #     form: $/ocs/collection/models/debt/fields.yaml
-    #     recordsPerPage: 10
+    manage:
+        form: $/ocs/collection/models/debt/fields.yaml
+        recordsPerPage: 10

@@ -85,9 +85,10 @@ class Collection extends Model
     {
         if($this->debt->isNotEmpty())
         {
-            $mapped = $this->debt->map(function($item, $key){
+            $mapped = $this->debt->take(4)->map(function($item, $key){
                 return $item->debtor->name;
             });
+            $mapped->put('name','...');
             return $mapped->toArray();
         }
     }
