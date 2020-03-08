@@ -101,4 +101,8 @@ class Debt extends Model
         }
     }
 
+    public function getVolumeAttribute($value)
+    {
+        return (float)$value;
+    }
 }

@@ -7,3 +7,12 @@ debtor:
     manage:
         showSearch: true
         form: $/ocs/collection/models/debtor/fields.yaml
+
+payments:
+    label: Payment
+    view:
+        toolbarButtons: print|delete
+        list: $/ocs/collection/models/debt/columns_payment.yaml
+    # manage:
+    #     showSearch: true
+    #     form: $/ocs/collection/models/payment/fields.yaml

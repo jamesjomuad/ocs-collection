@@ -131,18 +131,12 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-dollar',
                         'permissions' => ['ocs.collection.*'],
                     ],
-                    'activity' => [
-                        'label'       => 'Activity',
-                        'url'         => Backend::url('ocs/collection/activity'),
-                        'icon'        => 'icon-vcard',
-                        'permissions' => ['ocs.collection.*'],
-                    ],
-                    'debt' => [
-                        'label'       => 'Debt',
-                        'url'         => Backend::url('ocs/collection/debt'),
-                        'icon'        => 'icon-snowflake-o',
-                        'permissions' => ['ocs.collection.*'],
-                    ]
+                    // 'activity' => [
+                    //     'label'       => 'Activity',
+                    //     'url'         => Backend::url('ocs/collection/activity'),
+                    //     'icon'        => 'icon-vcard',
+                    //     'permissions' => ['ocs.collection.*'],
+                    // ]
                 ]
             ],
         ];

@@ -14,7 +14,6 @@ class CreateDebtsTable extends Migration
             $table->integer('debtor_id')->unsigned()->index()->nullable();
             $table->integer('collection_id')->unsigned()->index()->nullable();
             $table->string('number', 40)->nullable();
-            $table->string('name')->nullable();
             $table->timestamp('placement')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('volume', 15, 2)->nullable();

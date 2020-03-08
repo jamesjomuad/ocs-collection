@@ -5,9 +5,10 @@
 columns:
     id:
         label: ID
-        searchable: true
-    debtor_name:
-        label: Debtor
+        searchable: false
+        sortable: false
+    # debtor_name:
+    #     label: Debtor
     payment_date:
         label: Date
         type: date
@@ -20,3 +21,9 @@ columns:
         type: currency
     balance:
         label: Balance
+        type: currency
+        sortable: false
+    action:
+        label: Action
+        type: partial
+        clickable: false

@@ -33,6 +33,13 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $this->asExtension('FormController')->create();
     }
 
+    public function update($recordId, $context = null)
+    {
+        $this->pageTitle = 'Edit Debt';
+
+        $this->asExtension('FormController')->update($recordId, $context);
+    }
+
     public function create_onSave($context = null)
     {
         parent::create_onSave($context);
@@ -55,7 +62,6 @@ class Debt extends \Ocs\Collection\Controllers\Main
 
     public function formExtendModel($model)
     {
-
         if($this->action == 'create')
         {
             $model->collection = \Ocs\Collection\Models\Collection::find($this->collectionID | post('Debt.collection.id'));
@@ -63,6 +69,14 @@ class Debt extends \Ocs\Collection\Controllers\Main
         }
 
         return $model;
+    }
+
+    public function relationExtendConfig($config, $field, $model)
+    {
+        // Make sure the model and field matches those you want to manipulate
+        if (!$model instanceof $this->vars['formModel'])
+            return;
+        $model = $model->orderBy('created_at', 'desc');
     }
 
 }

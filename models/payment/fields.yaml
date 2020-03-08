@@ -3,16 +3,6 @@
 # ===================================
 
 fields:
-    # debtor:
-    #     label: Debtor
-    #     nameFrom: name
-    #     prompt: 'Click the %s to search a Debtor'
-    #     list: $/ocs/collection/models/debtor/columns.yaml
-    #     span: full
-    #     required: 1
-    #     type: recordfinder
-    #     context:
-    #         - create
     debt:
         label: Debt
         title: Find Debt
@@ -24,7 +14,7 @@ fields:
         type: recordfinder
         context:
             - create
-    debtor:
+    debtor[name]:
         label: Debtor
         type: text
         disabled: true
@@ -35,7 +25,7 @@ fields:
         label: Date Paid
         type: datepicker
         mode: date
-        span: full
+        span: auto
         default: now
     receipt_number:
         label: O.R. Number

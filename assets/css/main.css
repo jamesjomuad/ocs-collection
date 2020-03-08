@@ -1,7 +1,9 @@
 .form-group.font-1 .form-control{
-    background-color: #ffffff!important;
+    background-color: rgb(255, 255, 255)!important;
     color: #000!important;
     font-weight: 600;
+    border: 1px solid #eaeaea;
+    box-shadow: none;
 }
 .control-toolbar .toolbar-item .btn{
     padding: 6.333px 10px;

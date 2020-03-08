@@ -1,6 +1,11 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('ocs/collection/debt') ?>">Debt</a></li>
+        <?php if($this->getReferer('plugin')=='collections') : ?>
+            <li><a href="<?= Backend::url('ocs/collection/collections/update/') ?>/<?= $formModel->collection->id ?>">Collection</a></li>
+            <li>Debt</li>
+        <?php else : ?>
+            <li><a href="<?= Backend::url('ocs/collection/debt') ?>">Debt</a></li>
+        <?php endif; ?>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>

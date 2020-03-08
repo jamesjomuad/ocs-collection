@@ -9,6 +9,8 @@ class Payment extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
+    use \October\Rain\Database\Traits\SoftDelete;
+
     /**
      * @var string The database table used by the model.
      */
@@ -81,16 +83,47 @@ class Payment extends Model
 
     public function filterFields($fields, $context = null)
     {
-        if($fields->debt->value)
+        if(isset($fields->debt) AND $fields->debt->value)
         {
-            $debtorName = \Ocs\Collection\Models\Debtor::find($fields->debt->value)->name;
-            $fields->debtor->value = $debtorName;
+            $debtorName = \Ocs\Collection\Models\Debtor::find($fields->debt->value);
+            $fields->{'debtor[name]'}->value = $debtorName->name;
         }
     }
 
     public function getDebtorNameAttribute()
     {
         return $this->debt->debtor->name;
+    }
+
+    public function getBalanceAttribute($value)
+    {
+        $query = $this->previous()->get();
+
+        if($query->isEmpty())
+        {
+            $balance = $this->debt->volume - $this->amount;
+        }
+        else
+        {
+            $balance = $query->first()->balance - $this->amount;
+        }
+
+        return $balance;
+    }
+
+    public function scopeNext($query)
+    {
+        // get next model
+        $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
+
+        return $query;
+    }
+
+    public  function scopePrevious($query)
+    {
+        // get previous  model
+        $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
+        return $query;
     }
 
 }
