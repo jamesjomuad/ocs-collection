@@ -27,3 +27,4 @@ columns:
         label: Action
         type: partial
         clickable: false
+        width: 140px

@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    debtor:
+        label: Account Number Name
+        relation: debtor
+        select: name
+        searchable: true
+    collection:
+        label: Collection Number
+        relation: collection
+        select: number
+        searchable: true
+    placement:
+        label: Debt Placement
+        type: datetime
+        format: m/d/Y
+        searchable: true
+    duration:
+        label: Duration
+        searchable: true
+    volume:
+        label: Debt Volume
+        type: currency
+        searchable: true

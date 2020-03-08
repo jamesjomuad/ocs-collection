@@ -6,21 +6,23 @@ fields:
     debt:
         label: Debt
         title: Find Debt
-        nameFrom: volume
-        prompt: 'Click the %s to search a Debt'
-        list: $/ocs/collection/models/debt/columns.yaml
+        nameFrom: name
+        prompt: 'Click the %s to search'
+        list: $/ocs/collection/models/payment/columns_finder.yaml
         span: auto
         required: 1
         type: recordfinder
         context:
             - create
-    debtor[name]:
-        label: Debtor
+    debt[volume]:
+        label: Volume
         type: text
         disabled: true
         cssClass: 'font-1'
         span: auto
         dependsOn: debt
+        context:
+            - create
     payment_date:
         label: Date Paid
         type: datepicker
@@ -30,7 +32,7 @@ fields:
     receipt_number:
         label: O.R. Number
         type: text
-        span: full
+        span: auto
     particulars:
         label: Particulars
         type: text
@@ -40,4 +42,21 @@ fields:
         type: number
         default: 0
         required: 1
-        span: full
+        span: auto
+    _preview_balance:
+        label: Balance
+        type: text
+        default: 0
+        disabled: 1
+        cssClass: 'font-1'
+        span: auto
+        dependsOn: amount
+        context:
+            - create
+    balance:
+        label: Balance
+        readOnly: true
+        dependsOn: amount
+        span: auto
+        context:
+            - update

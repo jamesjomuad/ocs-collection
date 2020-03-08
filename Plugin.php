@@ -119,16 +119,16 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-user-circle-o',
                         'permissions' => ['ocs.collection.clients'],
                     ],
-                    'reports' => [
-                        'label'       => 'Reports',
-                        'url'         => Backend::url('ocs/collection/reports'),
-                        'icon'        => 'icon-bar-chart',
-                        'permissions' => ['ocs.collection.*'],
-                    ],
                     'payments' => [
                         'label'       => 'Payments',
                         'url'         => Backend::url('ocs/collection/payments'),
                         'icon'        => 'icon-dollar',
+                        'permissions' => ['ocs.collection.*'],
+                    ],
+                    'reports' => [
+                        'label'       => 'Reports',
+                        'url'         => Backend::url('ocs/collection/reports'),
+                        'icon'        => 'icon-bar-chart',
                         'permissions' => ['ocs.collection.*'],
                     ],
                     // 'activity' => [

@@ -101,8 +101,13 @@ class Debt extends Model
         }
     }
 
-    public function getVolumeAttribute($value)
+    public function getNameAttribute()
     {
-        return (float)$value;
+        return $this->debtor->name;
+    }
+
+    public function getVolumeCurrencyAttribute($value)
+    {
+        return "₱" . number_format((float)$this->volume, 2, '.', ',');
     }
 }

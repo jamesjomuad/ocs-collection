@@ -83,11 +83,18 @@ class Payment extends Model
 
     public function filterFields($fields, $context = null)
     {
-        if(isset($fields->debt) AND $fields->debt->value)
+
+        if(isset($fields->debt) AND $fields->debt->value AND $context=='create')
         {
-            $debtorName = \Ocs\Collection\Models\Debtor::find($fields->debt->value);
-            $fields->{'debtor[name]'}->value = $debtorName->name;
+            $debt = \Ocs\Collection\Models\Debt::find($fields->debt->value);
+            $fields->{'debt[volume]'}->value = $this->moneyFormat($debt->volume);
+
+            if(isset($fields->amount) AND isset($fields->{'_preview_balance'}))
+            {
+                $fields->{'_preview_balance'}->value = $this->moneyFormat($this->calcBalance());
+            }
         }
+
     }
 
     public function getDebtorNameAttribute()
@@ -95,27 +102,15 @@ class Payment extends Model
         return $this->debt->debtor->name;
     }
 
-    public function getBalanceAttribute($value)
+    public function setBalanceAttribute($value)
     {
-        $query = $this->previous()->get();
-
-        if($query->isEmpty())
-        {
-            $balance = $this->debt->volume - $this->amount;
-        }
-        else
-        {
-            $balance = $query->first()->balance - $this->amount;
-        }
-
-        return $balance;
+        $this->attributes['balance'] = (float)$value;
     }
 
     public function scopeNext($query)
     {
         // get next model
         $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
-
         return $query;
     }
 
@@ -124,6 +119,41 @@ class Payment extends Model
         // get previous  model
         $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
         return $query;
+    }
+
+    #
+    #   Helpers
+    #
+    public function moneyFormat($value)
+    {
+        return "₱" . number_format($value, 2, '.', ',');
+    }
+
+    public function calcBalance() : float
+    {
+        $balance = is_null($this->debt->payments) 
+            ? (float)$this->debt->volume - (float)$this->amount
+            : (float)$this->debt->payments->last()->balance - (float)$this->amount
+        ;
+
+        return $balance;
+    }
+
+    #
+    #   Events
+    #
+    public function beforeCreate()
+    {
+
+        /*
+        *   Compute Balance
+        */
+        if(empty($this->balance))
+        {
+            $this->balance = $this->calcBalance();
+        }
+
+        
     }
 
 }
