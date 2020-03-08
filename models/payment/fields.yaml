@@ -5,7 +5,7 @@
 fields:
     debt:
         label: Debt
-        title: Find Debt
+        title: Find Debt/Debtor/Collection
         nameFrom: name
         prompt: 'Click the %s to search'
         list: $/ocs/collection/models/payment/columns_finder.yaml

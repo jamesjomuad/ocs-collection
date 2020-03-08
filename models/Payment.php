@@ -89,9 +89,9 @@ class Payment extends Model
             $debt = \Ocs\Collection\Models\Debt::find($fields->debt->value);
             $fields->{'debt[volume]'}->value = $this->moneyFormat($debt->volume);
 
-            if(isset($fields->amount) AND isset($fields->{'_preview_balance'}))
+            if(($fields->amount->value > 0) AND isset($fields->{'_preview_balance'}))
             {
-                $fields->{'_last_balance'}->value = $this->moneyFormat($this->last_balance);
+                // $fields->{'_last_balance'}->value = $this->moneyFormat($this->last_balance);
                 $fields->{'_preview_balance'}->value = $this->moneyFormat($this->calcBalance());
             }
         }
@@ -103,11 +103,9 @@ class Payment extends Model
         return $this->debt->debtor->name;
     }
 
-    public function getLastBalanceAttribute() : float
+    public function getLastBalanceAttribute()
     {
-        if($this->debt)
-            return (float)$this->debt->payments->last()->balance;
-        return 0;
+        return $this->moneyFormat($this->prevBalance());
     }
 
     public function setBalanceAttribute($value)
@@ -139,12 +137,24 @@ class Payment extends Model
 
     public function calcBalance() : float
     {
-        $balance = is_null($this->debt->payments) 
+        $balance = $this->isEmptyPayments()
             ? (float)$this->debt->volume - (float)$this->amount
             : (float)$this->debt->payments->last()->balance - (float)$this->amount
         ;
 
         return $balance;
+    }
+
+    public function prevBalance()
+    {
+        if($this->debt AND $this->debt->payments->isNotEmpty())
+            return (float)$this->debt->payments->last()->balance;
+        return 0;
+    }
+
+    public function isEmptyPayments()
+    {
+        return ($this->debt AND $this->debt->payments->isEmpty());
     }
 
     #

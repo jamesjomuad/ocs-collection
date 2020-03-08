@@ -20,3 +20,4 @@ columns:
         type: currency
     balance:
         label: Balance
+        type: currency
