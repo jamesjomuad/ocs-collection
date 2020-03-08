@@ -43,20 +43,25 @@ fields:
         default: 0
         required: 1
         span: auto
+    _last_balance:
+        label: Last Balance
+        readOnly: true
+        span: right
+        dependsOn: debt
     _preview_balance:
         label: Balance
         type: text
         default: 0
         disabled: 1
         cssClass: 'font-1'
-        span: auto
+        span: right
         dependsOn: amount
         context:
             - create
     balance:
         label: Balance
         readOnly: true
-        dependsOn: amount
-        span: auto
+        span: right
         context:
             - update
+    

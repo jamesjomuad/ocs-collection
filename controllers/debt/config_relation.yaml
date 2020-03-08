@@ -11,7 +11,7 @@ debtor:
 payments:
     label: Payment
     view:
-        toolbarButtons: print|delete
+        toolbarButtons: custom|delete
         list: $/ocs/collection/models/debt/columns_payment.yaml
     # manage:
     #     showSearch: true
