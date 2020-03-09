@@ -25,3 +25,4 @@ columns:
         label: Action
         type: partial
         clickable: false
+        sortable: false

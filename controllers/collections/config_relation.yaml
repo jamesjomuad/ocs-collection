@@ -12,6 +12,7 @@ debt:
     label: Debts    
     deferredBinding: true
     view:
+        showSearch: true
         list: $/ocs/collection/models/collection/columns_debt.yaml
         toolbarButtons: addDebt|delete
         recordsPerPage: 10
