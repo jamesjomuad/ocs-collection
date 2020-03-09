@@ -21,14 +21,19 @@ class Debt extends \Ocs\Collection\Controllers\Main
     {
         parent::__construct();
 
-        BackendMenu::setContext('Ocs.Collection', 'collection', 'debt');
+        BackendMenu::setContext('Ocs.Collection', 'collection', 'collections');
+    }
+
+    public function index()
+    {
+        return \Backend::redirect("ocs/collection/collections#debts");
     }
 
     public function create($collection_id = null)
     {
         $this->pageTitle = 'Add Debtor';
 
-        $this->collectionID = $collection_id;
+        $this->collectionID = $collection_id ? : input('collection');
         
         $this->asExtension('FormController')->create();
     }

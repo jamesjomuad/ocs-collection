@@ -35,6 +35,13 @@ class Collections extends \Ocs\Collection\Controllers\Main
         $this->addJs($this->assetPath . "js/collection.js");
     }
 
+    public function index()
+    {
+        $this->pageTitle = 'Collections';
+
+        $this->asExtension('ListController')->index();
+    }
+
     public function formExtendModel($model)
     {
         if(empty($model->number))

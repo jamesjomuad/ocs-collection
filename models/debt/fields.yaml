@@ -30,7 +30,7 @@ tabs:
             context:
                 - create
         debtor[name]:
-            label: Account Name
+            label: Account Name/Debtor
             tab: Info
             type: text
             span: full
@@ -44,6 +44,7 @@ tabs:
             type: datepicker
             mode: date
             format: m/d/Y
+            default: now
             span: auto
         duration:
             label: Duration

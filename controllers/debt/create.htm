@@ -1,6 +1,7 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('ocs/collection/debt') ?>">Debt</a></li>
+        <li><a href="<?= Backend::url('ocs/collection/collections') ?>#debts">Collections</a></li>
+        <li>Debt</li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -8,7 +9,9 @@
 <?php if (!$this->fatalError): ?>
 
     <?= Form::open(['class' => 'layout']) ?>
-        <input type="hidden" name="Debt[collection][id]" value="<?= $this->vars['formModel']->collection->id ?>">
+        <?php if($this->vars['formModel']->collection) : ?>
+            <input type="hidden" name="Debt[collection][id]" value="<?= $this->vars['formModel']->collection->id ?>">
+        <?php endif; ?>
 
         <div class="layout-row">
             <?= $this->formRender() ?>
