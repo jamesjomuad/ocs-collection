@@ -62,7 +62,6 @@ class Collection extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
     public $hasMany = [
         'debt' => [
             \Ocs\Collection\Models\Debt::class,
@@ -74,29 +73,32 @@ class Collection extends Model
             \Ocs\Collection\Models\Client::class,
         ]
     ];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    public $hasManyThrough = [
+        'debtor' => [
+            '\Ocs\Collection\Models\Debtor',
+            'through'    => '\Ocs\Collection\Models\Debt',
+            'key'        => 'debtor_id',
+            'throughKey' => 'id'
+        ],
+    ];
 
-    public function getDebtorsAttribute($value)
-    {
-        if($this->debt->isNotEmpty())
-        {
-            $mapped = $this->debt->take(4)->map(function($item, $key){
-                return $item->debtor->name;
-            });
+
+    // public function getDebtorsAttribute($value)
+    // {
+    //     if($this->debt->isNotEmpty())
+    //     {
+    //         $mapped = $this->debt->take(4)->map(function($item, $key){
+    //             return $item->debtor->name;
+    //         });
             
-            if($this->debt->count()>4)
-            {
-                $mapped->put('name','...');
-            }
+    //         if($this->debt->count()>4)
+    //         {
+    //             $mapped->put('name','...');
+    //         }
             
-            return $mapped->toArray();
-        }
-    }
+    //         return $mapped->toArray();
+    //     }
+    // }
 
     public function getVolumeTotalAttribute()
     {
