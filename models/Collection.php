@@ -73,32 +73,33 @@ class Collection extends Model
             \Ocs\Collection\Models\Client::class,
         ]
     ];
-    public $hasManyThrough = [
-        'debtor' => [
-            '\Ocs\Collection\Models\Debtor',
-            'through'    => '\Ocs\Collection\Models\Debt',
-            'key'        => 'debtor_id',
-            'throughKey' => 'id'
-        ],
-    ];
+    // public $hasManyThrough = [
+    //     'debtors' => [
+    //         '\Ocs\Collection\Models\Debtor',
+    //         'through'    => '\Ocs\Collection\Models\Debt',
+    //         'key'        => 'debtor_id',
+    //         'throughKey' => 'id'
+    //     ],
+    // ];
 
 
-    // public function getDebtorsAttribute($value)
-    // {
-    //     if($this->debt->isNotEmpty())
-    //     {
-    //         $mapped = $this->debt->take(4)->map(function($item, $key){
-    //             return $item->debtor->name;
-    //         });
+
+    public function getDebtorsAttribute($value)
+    {
+        if($this->debt->isNotEmpty())
+        {
+            $mapped = $this->debt->take(4)->map(function($item, $key){
+                return $item->debtor->name;
+            });
             
-    //         if($this->debt->count()>4)
-    //         {
-    //             $mapped->put('name','...');
-    //         }
+            if($this->debt->count()>4)
+            {
+                $mapped->put('name','...');
+            }
             
-    //         return $mapped->toArray();
-    //     }
-    // }
+            return $mapped->toArray();
+        }
+    }
 
     public function getVolumeTotalAttribute()
     {

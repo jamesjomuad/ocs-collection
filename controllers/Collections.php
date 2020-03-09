@@ -38,6 +38,7 @@ class Collections extends \Ocs\Collection\Controllers\Main
         {
             $model->number = $model->generateNumber();
         }
+
         return $model;
     }
 

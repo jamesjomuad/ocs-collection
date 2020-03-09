@@ -15,12 +15,18 @@ fields:
         span: auto
         disabled: true
         cssClass: 'font-1'
-    debtor[name]:
-        label: Account Name
-        type: text
-        span: auto
-        disabled: true
-        cssClass: 'font-1'
+    # debtor[name]:
+    #     label: Account Name
+    #     type: text
+    #     span: auto
+    #     disabled: true
+    #     cssClass: 'font-1'
+    debtor:
+        span: full
+        path: debtor_create
+        type: partial
+        context:
+            - create
     placement:
         label: Placement
         type: datepicker

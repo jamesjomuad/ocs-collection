@@ -3,8 +3,11 @@
 # ===================================
 
 columns:
-    debtor[name]:
+    name:
         label: Account Number Name
+        relation: debtor
+        valueFrom: name
+        select: name
         searchable: true
     placement:
         label: Debt Placement

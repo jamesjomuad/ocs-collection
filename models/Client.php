@@ -30,8 +30,8 @@ class Client extends Model
      * @var array Validation rules for attributes
      */
     public $rules = [
-        'name' => 'required|unique:ocs_collection_clients,name',
-        'email' => 'email|unique:ocs_collection_clients,email'
+        'name' => 'required|unique:ocs_collection_client,name',
+        'email' => 'email|unique:ocs_collection_client,email'
     ];
 
     /**

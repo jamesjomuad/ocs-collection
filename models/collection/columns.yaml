@@ -16,15 +16,12 @@ columns:
         valueFrom: name
         select: name
         searchable: true
-    # debtors:
-    #     label: Account Number Name
-    #     type: ol
-    #     width: 560px
-    #     sortable: false
-    debtor:
+    debtors:
         label: Account Number Name
         width: 560px
         sortable: false
+        searchable: false
+        type: ol
     volume_total:
         label: Debt Volume Total
         type: text
