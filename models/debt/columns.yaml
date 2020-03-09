@@ -3,6 +3,9 @@
 # ===================================
 
 columns:
+    collection[number]:
+        label: Collection Number
+        searchable: true
     debtor[name]:
         label: Account Number Name
         searchable: true

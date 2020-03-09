@@ -1,57 +1,66 @@
 # ===================================
 #  Form Field Definitions
 # ===================================
-
-fields:
-    collection[number]:
-        label: Collection number
-        type: text
-        span: auto
-        disabled: true
-        cssClass: 'font-1'
-    client:
-        label: Client
-        type: text
-        span: auto
-        disabled: true
-        cssClass: 'font-1'
-    # debtor[name]:
-    #     label: Account Name
-    #     type: text
-    #     span: auto
-    #     disabled: true
-    #     cssClass: 'font-1'
-    debtor:
-        span: full
-        path: debtor_create
-        type: partial
-        context:
-            - create
-    placement:
-        label: Placement
-        type: datepicker
-        mode: date
-        format: m/d/Y
-        span: auto
-    duration:
-        label: Duration
-        type: text
-        default: '90 days'
-        span: auto
-    volume:
-        label: Debt Volume
-        type: number
-        span: auto
-        default: 0
-    payments_section:
-        label: Debt Payments
-        type: section
-        comment: This section contains a list of payment details.
-        context:
-            - update
-    payments:
-        span: full
-        path: payments
-        type: partial
-        context:
-            - update
+tabs:
+    icons:
+        Info: icon-info
+        Payments: icon-credit-card
+    lazy:
+        - Payments
+    fields:
+        collection[number]:
+            label: Collection number
+            tab: Info
+            type: text
+            span: auto
+            disabled: true
+            cssClass: 'font-1'
+        client:
+            label: Client
+            tab: Info
+            type: text
+            span: auto
+            disabled: true
+            cssClass: 'font-1'
+        debtor:
+            span: full
+            path: debtor_create
+            type: partial
+            tab: Info
+            context:
+                - create
+        debtor[name]:
+            label: Account Name
+            tab: Info
+            type: text
+            span: full
+            disabled: true
+            cssClass: 'font-1'
+            context:
+                - update
+        placement:
+            label: Placement
+            tab: Info
+            type: datepicker
+            mode: date
+            format: m/d/Y
+            span: auto
+        duration:
+            label: Duration
+            tab: Info
+            type: text
+            default: '90 days'
+            span: auto
+        volume:
+            label: Debt Volume
+            tab: Info
+            type: number
+            span: right
+            default: 0
+        payments:
+            tab: Payments
+            span: full
+            path: payments
+            type: partial
+            context:
+                - update
