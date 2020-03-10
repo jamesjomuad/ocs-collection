@@ -1,0 +1,140 @@
+fields:
+    'left/left':
+        label: 'left/left'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'left/right':
+        label: 'left/right'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'right/left':
+        label: 'right/left'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'right/right':
+        label: 'right/right'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'left/left/2':
+        label: 'left'
+        span: storm
+        type: text
+        comment: col-sm-6
+        cssClass: col-sm-6
+
+    'left/right/2':
+        label: 'left/right'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'right/left/2':
+        label: 'right/left'
+        span: storm
+        type: text
+        comment: col-sm-3
+        cssClass: col-sm-3
+
+    'offset/6':
+        label: 'offset left'
+        span: storm
+        type: text
+        comment: col-sm-offset-6 col-sm-6
+        cssClass: col-sm-offset-6 col-sm-6
+
+    'grid/3/1':
+        label: '1'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/2':
+        label: '2'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/3':
+        label: '3'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/4':
+        label: '4'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/5':
+        label: '5'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/6':
+        label: '6'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/7':
+        label: '7'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/8':
+        label: '8'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/9':
+        label: '9'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/10':
+        label: '10'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/11':
+        label: '11'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1
+
+    'grid/3/12':
+        label: '12'
+        span: storm
+        type: text
+        comment: col-sm-1
+        cssClass: col-sm-1

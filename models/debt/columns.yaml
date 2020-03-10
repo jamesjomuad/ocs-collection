@@ -3,11 +3,17 @@
 # ===================================
 
 columns:
-    collection[number]:
-        label: Collection Number
+    number:
+        label: 'Collection #'
+        relation: collection
+        valueFrom: number
+        select: number
         searchable: true
-    debtor[name]:
-        label: Account Number Name
+    name:
+        label: Account Name
+        relation: debtor
+        valueFrom: name
+        select: name
         searchable: true
     placement:
         label: Debt Placement

@@ -52,12 +52,26 @@ tabs:
             type: text
             default: '90 days'
             span: auto
-        volume:
+        volume_currency:
             label: Debt Volume
-            tab: Info
-            type: number
+            tab: Payments
+            type: text
             span: right
+            disabled: true
+            cssClass: 'font-1 text-right-input'
             default: 0
+            context:
+                - update
+        prev_balance:
+            label: Remaining Balance
+            tab: Payments
+            type: text
+            span: right
+            disabled: true
+            cssClass: 'font-1 text-right-input'
+            default: 0
+            context:
+                - update
         payments:
             tab: Payments
             span: full

@@ -108,6 +108,24 @@ class Debt extends Model
 
     public function getVolumeCurrencyAttribute($value)
     {
+        return $this->moneyFormat($this->volume);
+    }
+
+    public function getPrevBalanceAttribute()
+    {
+        if($this->payments->isEmpty())
+        {
+            return $this->moneyFormat($this->volume);
+        }
+
+        return $this
+            ->payments
+            ->last()
+            ->last_balance;
+    }
+
+    public function moneyFormat($value)
+    {
         return "₱" . number_format((float)$this->volume, 2, '.', ',');
     }
 }
