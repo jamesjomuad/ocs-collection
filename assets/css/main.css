@@ -23,6 +23,8 @@
     text-align: center;
 }
 
+.toolbar-item .loading-indicator-container.size-input-text{float: right;}
+
 @media (max-width: 767px){
     .layout-sidenav-container {
         width: 80px!important;

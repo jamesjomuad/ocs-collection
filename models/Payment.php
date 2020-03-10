@@ -76,12 +76,7 @@ class Payment extends Model
             \Ocs\Collection\Models\Debtor::class
         ]
     ];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+
 
     public function filterFields($fields, $context = null)
     {
@@ -98,6 +93,11 @@ class Payment extends Model
             }
         }
 
+    }
+
+    public function getCollectionNumberAttribute()
+    {
+        return $this->debt->collection->number;
     }
 
     public function getDebtorNameAttribute()

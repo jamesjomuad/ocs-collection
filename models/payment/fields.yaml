@@ -23,6 +23,24 @@ fields:
         dependsOn: debt
         context:
             - create
+    collection_number:
+        label: Collection Number
+        type: text
+        disabled: true
+        span: storm
+        cssClass: 'font-1 col-sm-4'
+    debt[client]:
+        label: Client
+        type: text
+        disabled: true
+        span: storm
+        cssClass: 'font-1 col-sm-4'
+    debtor_name:
+        label: Debtor
+        type: text
+        disabled: true
+        span: storm
+        cssClass: 'font-1 col-sm-4'
     payment_date:
         label: Date Paid
         type: datepicker

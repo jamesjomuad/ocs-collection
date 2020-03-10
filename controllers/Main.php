@@ -14,6 +14,7 @@ class Main extends Controller
         parent::__construct();
 
         $this->addCss($this->assetPath . "css/main.css");
+        $this->addJs($this->assetPath . "js/main.js");
     }
 
     public function canCreate()

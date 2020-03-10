@@ -32,7 +32,7 @@ class Payments extends \Ocs\Collection\Controllers\Main
         {
             $this->parentId = $parent_id;
         }
-        
+
         $this->asExtension('FormController')->update($id);
     }
 

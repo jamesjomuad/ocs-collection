@@ -76,12 +76,4 @@ class Debt extends \Ocs\Collection\Controllers\Main
         return $model;
     }
 
-    public function relationExtendConfig($config, $field, $model)
-    {
-        // Make sure the model and field matches those you want to manipulate
-        // if (!$model instanceof $this->vars['formModel'])
-        //     return;
-        // $model = $model->orderBy('created_at', 'desc');
-    }
-
 }
