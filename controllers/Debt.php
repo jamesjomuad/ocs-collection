@@ -47,12 +47,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
 
     public function create_onSave($context = null)
     {
-        parent::create_onSave($context);
-
-        if(input('close') AND post('Debt.collection.id'))
-        {
-            return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
-        }
+        return parent::create_onSave($context);
     }
 
     public function update_onSave($context = null)

@@ -52,6 +52,14 @@ tabs:
             type: text
             default: '90 days'
             span: auto
+        volume:
+            label: Debt Volume
+            type: number
+            default: 0
+            tab: Info
+            span: right
+            # context:
+                # - create
         volume_currency:
             label: Debt Volume
             tab: Payments

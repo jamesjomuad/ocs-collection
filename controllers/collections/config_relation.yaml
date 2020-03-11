@@ -16,6 +16,3 @@ debt:
         list: $/ocs/collection/models/collection/columns_debt.yaml
         toolbarButtons: addDebt|delete
         recordsPerPage: 10
-    # manage:
-    #     form: $/ocs/collection/models/collection/fields_debt.yaml
-    #     recordsPerPage: 10
