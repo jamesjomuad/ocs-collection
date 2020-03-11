@@ -12,7 +12,10 @@ class Client extends \Ocs\Collection\Controllers\Main
     ];
 
     public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
+    public $listConfig = [
+        'clients' => '$/ocs/collection/controllers/client/config_list.yaml',
+        'debtors' => '$/ocs/collection/controllers/debtor/config_list.yaml'
+    ];
     public $relationConfig = 'config_relation.yaml';
 
     public function __construct()

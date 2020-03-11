@@ -31,7 +31,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
 
     public function create($collection_id = null)
     {
-        $this->pageTitle = 'Add Debtor';
+        $this->pageTitle = 'Create';
 
         $this->collectionID = $collection_id ? : input('collection');
         

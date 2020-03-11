@@ -40,7 +40,7 @@ showCheckboxes: true
 # Toolbar widget configuration
 toolbar:
     # Partial for toolbar buttons
-    buttons: list_toolbar
+    buttons: $/ocs/collection/controllers/debtor/_list_toolbar.htm
 
     # Search widget configuration
     search:

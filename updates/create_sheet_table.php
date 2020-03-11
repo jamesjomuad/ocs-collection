@@ -4,19 +4,21 @@ use Schema;
 use October\Rain\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 
-class CreatePaymentTestsTable extends Migration
+class CreateSheetsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collection_payment_tests', function (Blueprint $table) {
+        Schema::create('ocs_collection_sheet', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->string('name',100)->nullable();
+            $table->longText('data')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collection_payment_tests');
+        Schema::dropIfExists('ocs_collection_sheet');
     }
 }
