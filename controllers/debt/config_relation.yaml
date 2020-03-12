@@ -12,9 +12,5 @@ payments:
     label: Payment
     view:
         showSearch: true
-        # toolbarButtons: custom|delete
-        toolbarButtons: false
+        toolbarButtons: addPayment
         list: $/ocs/collection/models/debt/columns_payment.yaml
-    # manage:
-    #     showSearch: true
-    #     form: $/ocs/collection/models/payment/fields.yaml

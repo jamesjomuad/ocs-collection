@@ -3,23 +3,25 @@
 # ===================================
 
 columns:
-    debtor:
+    name:
         label: Account Number Name
         relation: debtor
         select: name
+        searchable: true
+    phone:
+        label: 'Phone #'
+        relation: debtor
+        select: phone
+        searchable: true
+    email:
+        label: 'Email'
+        relation: debtor
+        select: email
         searchable: true
     collection:
         label: Collection Number
         relation: collection
         select: number
-        searchable: true
-    placement:
-        label: Debt Placement
-        type: datetime
-        format: m/d/Y
-        searchable: true
-    duration:
-        label: Duration
         searchable: true
     volume:
         label: Debt Volume

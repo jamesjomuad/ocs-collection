@@ -3,23 +3,9 @@
 # ===================================
 
 fields:
-    debt:
-        label: Debtor
-        title: Find Debt/Debtor/Collection
-        nameFrom: name
-        prompt: 'Click the %s to search'
-        list: $/ocs/collection/models/payment/columns_finder.yaml
-        span: auto
-        required: 1
-        type: recordfinder
-        context:
-            - create
     debt[name]:
         label: Debtor
         type: text
-        disabled: true
-        span: auto
-        cssClass: 'font-1'
     debt[volume]:
         label: Volume
         type: text

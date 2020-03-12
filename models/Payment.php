@@ -97,11 +97,13 @@ class Payment extends Model
 
     public function getCollectionNumberAttribute()
     {
+        if($this->debt)
         return $this->debt->collection->number;
     }
 
     public function getDebtorNameAttribute()
     {
+        if($this->debt)
         return $this->debt->debtor->name;
     }
 

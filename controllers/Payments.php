@@ -44,7 +44,25 @@ class Payments extends \Ocs\Collection\Controllers\Main
             $model->debtor = $model->debt->debtor;
         }
 
+        if(input('debt'))
+        {
+            $model->debt = \Ocs\Collection\Models\Debt::find(input('debt'));
+            $model->debtor = $model->debt->debtor;
+        }
+
         return $model;
+    }
+
+    public function formExtendFields($fields)
+    {
+        if(input('debt'))
+        {
+            $fields->removeField('debt');
+        }
+        else
+        {
+            $fields->removeField('debt[name]');
+        }
     }
 
 }

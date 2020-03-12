@@ -71,4 +71,19 @@ class Debt extends \Ocs\Collection\Controllers\Main
         return $model;
     }
 
+    public function relationExtendManageWidget($widget, $field, $model)
+    {
+        // Make sure the field is the expected one
+        if ($field != 'payments')
+            return; 
+
+        // dd([
+        //     $widget,
+        //     $model->debtor
+        // ]);
+
+        $widget->fields['debt[id]']['default'] = $model->debtor->id;
+        
+    }
+
 }
