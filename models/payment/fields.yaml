@@ -79,6 +79,8 @@ fields:
         readOnly: true
         span: right
         dependsOn: debt
+        context:
+            - create
     _preview_balance:
         label: Balance
         type: text

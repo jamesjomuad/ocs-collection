@@ -45,11 +45,6 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $this->asExtension('FormController')->update($recordId, $context);
     }
 
-    public function create_onSave($context = null)
-    {
-        return parent::create_onSave($context);
-    }
-
     public function update_onSave($context = null)
     { 
         parent::update_onSave($context);
@@ -76,14 +71,19 @@ class Debt extends \Ocs\Collection\Controllers\Main
         // Make sure the field is the expected one
         if ($field != 'payments')
             return; 
-
-        // dd([
-        //     $widget,
-        //     $model->debtor
-        // ]);
-
-        $widget->fields['debt[id]']['default'] = $model->debtor->id;
-        
+     
+        $widget->bindEvent('form.extendFields', function () use($widget,$model) {
+            $widget->addFields([
+                '_prev_balance' => [
+                    'label'     => 'Last Balance',
+                    'type'      => 'text',
+                    'span'      => 'right',
+                    'cssClass'  => 'font-1',
+                    'readOnly'  => true,
+                    'default'   => $model->prev_balance
+                ],
+            ]);
+        });  
     }
 
 }

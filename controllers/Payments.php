@@ -24,6 +24,11 @@ class Payments extends \Ocs\Collection\Controllers\Main
         BackendMenu::setContext('Ocs.Collection', 'collection', 'payments');
     }
 
+    public function create_onSave($context = null)
+    {
+        return parent::create_onSave($context);
+    }
+
     public function update($id, $parent=null, $parent_id=null)
     {
         $this->pageTitle = 'Payment';
@@ -47,7 +52,6 @@ class Payments extends \Ocs\Collection\Controllers\Main
         if(input('debt'))
         {
             $model->debt = \Ocs\Collection\Models\Debt::find(input('debt'));
-            $model->debtor = $model->debt->debtor;
         }
 
         return $model;

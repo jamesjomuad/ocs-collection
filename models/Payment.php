@@ -88,7 +88,6 @@ class Payment extends Model
 
             if(($fields->amount->value > 0) AND isset($fields->{'_preview_balance'}))
             {
-                // $fields->{'_last_balance'}->value = $this->moneyFormat($this->last_balance);
                 $fields->{'_preview_balance'}->value = $this->moneyFormat($this->calcBalance());
             }
         }
@@ -110,6 +109,11 @@ class Payment extends Model
     public function getLastBalanceAttribute()
     {
         return $this->moneyFormat($this->prevBalance());
+    }
+
+    public function getPreviewBalanceAttribute()
+    {
+        return $this->moneyFormat($this->calcBalance());
     }
 
     public function setBalanceAttribute($value)
@@ -141,12 +145,16 @@ class Payment extends Model
 
     public function calcBalance() : float
     {
-        $balance = $this->isEmptyPayments()
-            ? (float)$this->debt->volume - (float)$this->amount
-            : (float)$this->debt->payments->last()->balance - (float)$this->amount
-        ;
+        if($this->debt)
+        {
+            $balance = $this->isEmptyPayments()
+                ? (float)$this->debt->volume - (float)$this->amount
+                : (float)$this->debt->payments->last()->balance - (float)$this->amount
+            ;
 
-        return $balance;
+            return $balance;
+        }
+        return 0;
     }
 
     public function prevBalance()

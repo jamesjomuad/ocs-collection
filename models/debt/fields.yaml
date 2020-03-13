@@ -80,6 +80,11 @@ tabs:
             default: 0
             context:
                 - update
+        payment_details_section:
+            label: Payment details
+            type: section
+            comment: Debtor payment details and transaction history.
+            tab: Payments
         payments:
             tab: Payments
             span: full
