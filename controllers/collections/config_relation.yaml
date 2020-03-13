@@ -14,5 +14,5 @@ debt:
     view:
         showSearch: true
         list: $/ocs/collection/models/collection/columns_debt.yaml
-        toolbarButtons: addDebt|delete
+        toolbarButtons: add_debt|delete
         recordsPerPage: 10
