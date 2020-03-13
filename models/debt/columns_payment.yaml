@@ -3,12 +3,6 @@
 # ===================================
 
 columns:
-    # id:
-    #     label: ID
-    #     searchable: false
-    #     sortable: false
-    # debtor_name:
-    #     label: Debtor
     payment_date:
         label: Payment Date
         type: date

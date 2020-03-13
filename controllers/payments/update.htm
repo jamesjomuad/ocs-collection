@@ -9,8 +9,6 @@
 
     <?= Form::open([
         'class' => 'layout',
-        'data-change-monitor' => 'data-change-monitor',
-        'data-window-close-confirm'=>'There is unsaved data!'
     ]) ?>
         <input type="hidden" name="parentId" value="<?= $this->parentId | null ?>">
 
@@ -46,7 +44,12 @@
                     data-request-confirm="Delete this payment?">
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                    or 
+                    <?php if(input('debt')) : ?>
+                        <a href="<?= Backend::url('ocs/collection/debt/update') ?>/<?= input('debt') ?>#primarytab-2">Cancel</a>
+                    <?php else : ?>
+                        <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

@@ -85,6 +85,8 @@ tabs:
             type: section
             comment: Debtor payment details and transaction history.
             tab: Payments
+            context:
+                - update
         payments:
             tab: Payments
             span: full

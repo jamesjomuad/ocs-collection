@@ -29,6 +29,17 @@ class Payments extends \Ocs\Collection\Controllers\Main
         return parent::create_onSave($context);
     }
 
+    public function update_onSave($context = null)
+    {
+
+        if(input('debt') AND input('close'))
+        {
+            parent::update_onSave($context);
+            return \Backend::redirect("ocs/collection/debt/update/".input('debt')."#primarytab-2");
+        }
+        return parent::update_onSave($context);
+    }
+
     public function update($id, $parent=null, $parent_id=null)
     {
         $this->pageTitle = 'Payment';

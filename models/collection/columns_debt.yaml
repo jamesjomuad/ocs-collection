@@ -21,9 +21,13 @@ columns:
         label: Debt Volume
         type: currency
         searchable: true
-    payment_status:
-        label: Payment Status
-        default: ongoing
+    # payment_status:
+    #     label: Payment Status
+    #     default: ongoing
+    prev_balance:
+        label: Balance
+        sortable: false
+        searchable: false
     action:
         label: Action
         type: partial

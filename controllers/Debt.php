@@ -75,7 +75,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $widget->bindEvent('form.extendFields', function () use($widget,$model) {
             $widget->addFields([
                 '_prev_balance' => [
-                    'label'     => 'Last Balance',
+                    'label'     => 'Remaining Balance',
                     'type'      => 'text',
                     'span'      => 'right',
                     'cssClass'  => 'font-1',
