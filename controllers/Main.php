@@ -7,6 +7,8 @@ class Main extends Controller
 {
     public $parentId = null;
 
+    public $formRenderFieldResult = [];
+
     public $assetPath = "/plugins/ocs/collection/assets/";
 
     public function __construct()
@@ -56,6 +58,17 @@ class Main extends Controller
         }
 
         return $array;
+    }
+
+    public function _renderField(String $name)
+    {
+        $className = substr(strrchr(__CLASS__, "\\"), 1);
+        $this->formRenderFieldResult['#Form-field-Debt-'.$name.'-group'] = $this->formRenderField(
+            $name, 
+            ['useContainer' => false]
+        );
+
+        return $this->formRenderFieldResult;
     }
     
 }

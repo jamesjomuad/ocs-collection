@@ -38,6 +38,17 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $this->asExtension('FormController')->create();
     }
 
+    public function create_onSave($context = null)
+    { 
+        if(input('close') AND input('collection'))
+        {
+            parent::create_onSave($context);
+            return \Backend::redirect("ocs/collection/collections/update/".input('collection'));
+        }
+
+        return parent::create_onSave($context);
+    }
+
     public function update($recordId, $context = null)
     {
         $this->pageTitle = 'Edit Debt';
@@ -72,6 +83,8 @@ class Debt extends \Ocs\Collection\Controllers\Main
         if ($field != 'payments')
             return; 
      
+        
+        // Remaining Balance: Dynamically add field on Popup relation
         $widget->bindEvent('form.extendFields', function () use($widget,$model) {
             $widget->addFields([
                 '_prev_balance' => [
@@ -83,7 +96,16 @@ class Debt extends \Ocs\Collection\Controllers\Main
                     'default'   => $model->prev_balance
                 ],
             ]);
-        });  
+        });
+    }
+
+    public function relationExtendRefreshResults($field)
+    {
+        // Make sure the field is the expected one
+        if ($field != 'payments')
+        return;
+
+        return $this->_renderField('prev_balance');
     }
 
 }
