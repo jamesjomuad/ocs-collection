@@ -7,34 +7,26 @@ columns:
         label: ID
         searchable: true
     number:
-        label: Customer Code
+        label: Collection Code
         width: 150px
         searchable: true
     name:
-        label: Customer Name
+        label: Client Name
         relation: client
         valueFrom: name
         select: name
         searchable: true
     debtors:
         label: Account Number Name
-        type: ol
         width: 560px
         sortable: false
-        clickable: false
+        searchable: false
+        type: ol
     volume_total:
         label: Debt Volume Total
         type: text
         clickable: false
         sortable: false
-    audit_total:
-        label: Debt Audit Total
-        type: currency
-        clickable: false
-        sortable: false
-    status:
-        label: Status
-    _paid:
-        label: Paid
-        default: unpaid
-        sortable: false
+    created_at:
+        label: Date Created
+        type: datetime

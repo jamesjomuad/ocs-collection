@@ -1,5 +1,5 @@
 debtor:
-    label: Client
+    label: Debtor
     view:
         toolbarButtons: create|add
         list: $/ocs/collection/models/debtor/columns.yaml
@@ -7,3 +7,12 @@ debtor:
     manage:
         showSearch: true
         form: $/ocs/collection/models/debtor/fields.yaml
+
+payments:
+    label: Payment
+    view:
+        showSearch: true
+        toolbarButtons: add_payment | delete
+        list: $/ocs/collection/models/debt/columns_payment.yaml
+    manage:
+        form: ~/plugins/ocs/collection/models/debt/fields_payment.yaml

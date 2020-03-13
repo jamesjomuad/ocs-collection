@@ -1,0 +1,10 @@
+<a href="<?= Backend::url('ocs/collection/payments/update') ?>/<?= $record->id ?>?debt=<?= $this->vars['formModel']->id ?>" class="btn btn-primary btn-sm">
+    <i class="icon-pencil"></i>
+</a>
+
+<!-- <button class="btn btn-sm btn-danger" style="padding:5px 10px;"
+onclick="$(this).data('request-data', {checked:[<?= $record->id ?>]})"
+data-request="onRelationButtonDelete" 
+data-request-confirm="Are you sure?" 
+data-request-success="$.oc.relationBehavior.changed('payments', 'deleted')" 
+data-stripe-load-indicator=""><i class="icon-trash"></i></button> -->

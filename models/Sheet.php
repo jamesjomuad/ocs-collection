@@ -3,16 +3,16 @@
 use Model;
 
 /**
- * Bills Model
+ * Sheet Model
  */
-class Bills extends Model
+class Sheet extends Model
 {
     use \October\Rain\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_bills';
+    public $table = 'ocs_collection_sheets';
 
     /**
      * @var array Guarded fields

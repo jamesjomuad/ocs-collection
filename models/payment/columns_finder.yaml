@@ -1,0 +1,29 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Account Number Name
+        relation: debtor
+        select: name
+        searchable: true
+    phone:
+        label: 'Phone #'
+        relation: debtor
+        select: phone
+        searchable: true
+    email:
+        label: 'Email'
+        relation: debtor
+        select: email
+        searchable: true
+    collection:
+        label: Collection Number
+        relation: collection
+        select: number
+        searchable: true
+    volume:
+        label: Debt Volume
+        type: currency
+        searchable: true

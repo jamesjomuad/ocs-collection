@@ -1,0 +1,19 @@
+<?= Form::open() ?>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title text-center text-info">Create Payment</h3>
+    </div>
+    <div class="modal-body p-4">
+
+    </div>
+    <div class="modal-footer text-center p-5">
+        <button type="button" class="btn btn-primary" 
+            data-request-url="/backend/bookrr/stripe/cashier" 
+            data-handler="onStripe" 
+            data-size="medium" 
+            data-control="popup"
+            data-request-data="id:'<?= input('id') ?>'"
+        >Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="popup">Cancel</button>
+    </div>
+<?= Form::close() ?>

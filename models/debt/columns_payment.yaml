@@ -3,21 +3,26 @@
 # ===================================
 
 columns:
-    id:
-        label: ID
-        searchable: true
-    debtor_name:
-        label: Debtor
     payment_date:
-        label: Date
+        label: Payment Date
         type: date
+        searchable: true
     receipt_number:
         label: O.R. NUMBER
+        searchable: true
     particulars:
         label: Particulars
     amount:
         label: Amount Paid
         type: currency
+        searchable: true
     balance:
         label: Balance
         type: currency
+        sortable: false
+        searchable: false
+    action:
+        label: Action
+        type: partial
+        clickable: false
+        width: 140px

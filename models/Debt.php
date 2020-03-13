@@ -14,7 +14,7 @@ class Debt extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_debts';
+    public $table = 'ocs_collection_debt';
 
     /**
      * @var array Guarded fields
@@ -63,7 +63,11 @@ class Debt extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'payments' => [
+            \Ocs\Collection\Models\Payment::class
+        ]
+    ];
     public $belongsTo = [
         'collection' => [
             \Ocs\Collection\Models\Collection::class
@@ -97,4 +101,31 @@ class Debt extends Model
         }
     }
 
+    public function getNameAttribute()
+    {
+        return $this->debtor->name;
+    }
+
+    public function getVolumeCurrencyAttribute($value)
+    {
+        return $this->moneyFormat($this->volume);
+    }
+
+    public function getPrevBalanceAttribute()
+    {
+        if($this->payments->isEmpty())
+        {
+            return $this->moneyFormat($this->volume);
+        }
+
+        return $this
+            ->payments
+            ->last()
+            ->last_balance;
+    }
+
+    public function moneyFormat($value)
+    {
+        return "₱" . number_format((float)$this->volume, 2, '.', ',');
+    }
 }

@@ -3,14 +3,8 @@
 # ===================================
 
 columns:
-    number:
-        label: 'Collection #'
-        relation: collection
-        valueFrom: number
-        select: number
-        searchable: true
     name:
-        label: Account Name
+        label: Account Number Name
         relation: debtor
         valueFrom: name
         select: name
@@ -27,5 +21,15 @@ columns:
         label: Debt Volume
         type: currency
         searchable: true
-    payment_status:
-        label: Payment Status
+    # payment_status:
+    #     label: Payment Status
+    #     default: ongoing
+    prev_balance:
+        label: Balance
+        sortable: false
+        searchable: false
+    action:
+        label: Action
+        type: partial
+        clickable: false
+        sortable: false

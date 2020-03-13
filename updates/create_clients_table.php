@@ -8,7 +8,7 @@ class CreateClientsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collection_clients', function (Blueprint $table) {
+        Schema::create('ocs_collection_client', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name')->nullable();
@@ -23,6 +23,6 @@ class CreateClientsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collection_clients');
+        Schema::dropIfExists('ocs_collection_client');
     }
 }

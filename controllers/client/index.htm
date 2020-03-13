@@ -1,2 +1,14 @@
-
-<?= $this->listRender() ?>
+<div class="control-tabs content-tabs" data-control="tab" style="overflow:hidden;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#clients">Clients</a></li>
+        <li><a href="#debtors">Debtors/Clientele</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <?= $this->listRender('clients') ?>
+        </div>
+        <div class="tab-pane">
+            <?= $this->listRender('debtors') ?>
+        </div>
+    </div>
+</div>

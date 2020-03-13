@@ -1,7 +1,9 @@
 .form-group.font-1 .form-control{
-    background-color: #ffffff!important;
+    background-color: rgb(255, 255, 255)!important;
     color: #000!important;
     font-weight: 600;
+    border: 1px solid #eaeaea;
+    box-shadow: none;
 }
 .control-toolbar .toolbar-item .btn{
     padding: 6.333px 10px;
@@ -10,6 +12,18 @@
     font-size: 20px;
 }
 .layout-sidenav-container{width: 95px;}
+
+.text-right-input .form-control{
+    text-align: right;
+}
+.text-left-input .form-control{
+    text-align: left;
+}
+.text-center-input .form-control{
+    text-align: center;
+}
+
+.toolbar-item .loading-indicator-container.size-input-text{float: right;}
 
 @media (max-width: 767px){
     .layout-sidenav-container {

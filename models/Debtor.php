@@ -70,7 +70,11 @@ class Debtor extends Model
      * @var array Relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'payments' => [
+            \Ocs\Collection\Models\Payment::class
+        ]
+    ];
     public $belongsTo = [];
     public $belongsToMany = [];
     public $morphTo = [];

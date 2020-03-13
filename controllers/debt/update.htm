@@ -1,6 +1,12 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('ocs/collection/debt') ?>">Debt</a></li>
+        <?php if($this->getReferer('plugin')=='collections') : ?>
+            <li><a href="<?= Backend::url('ocs/collection/collections/update/') ?>/<?= $formModel->collection->id ?>">Collection</a></li>
+            <li>Debt</li>
+        <?php else : ?>
+            <li><a href="<?= Backend::url('ocs/collection/collections') ?>#debts">Collections</a></li>
+            <li>Debt</li>
+        <?php endif; ?>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -53,7 +59,7 @@
                 <span class="btn-text">
                     or 
                     <?php if(!is_null($this->vars['formModel']->collection)): ?>
-                        <a href="<?= Backend::url('ocs/collection/collections/update/') ?><?= $this->vars['formModel']->collection->id ?>">Cancel</a>
+                        <a href="<?= Backend::url('ocs/collection/collections/update') ?>/<?= $this->vars['formModel']->collection->id ?>">Cancel</a>
                     <?php else : ?>
                         <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
                     <?php endif; ?>

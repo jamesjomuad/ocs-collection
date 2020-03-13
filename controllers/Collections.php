@@ -15,7 +15,10 @@ class Collections extends \Ocs\Collection\Controllers\Main
     ];
 
     public $formConfig = 'config_form.yaml';
-    public $listConfig = 'config_list.yaml';
+    public $listConfig = [
+        'collections' => '$/ocs/collection/controllers/collections/config_list.yaml',
+        'debt' => '$/ocs/collection/controllers/debt/config_list.yaml'
+    ];
     public $relationConfig = 'config_relation.yaml';
 
     public function __construct()
@@ -32,12 +35,20 @@ class Collections extends \Ocs\Collection\Controllers\Main
         $this->addJs($this->assetPath . "js/collection.js");
     }
 
+    public function index()
+    {
+        $this->pageTitle = 'Collections';
+
+        $this->asExtension('ListController')->index();
+    }
+
     public function formExtendModel($model)
     {
         if(empty($model->number))
         {
             $model->number = $model->generateNumber();
         }
+
         return $model;
     }
 

@@ -8,7 +8,7 @@ class CreateCollectionsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collections', function (Blueprint $table) {
+        Schema::create('ocs_collection', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('client_id')->unsigned()->index();
@@ -22,6 +22,6 @@ class CreateCollectionsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collections');
+        Schema::dropIfExists('ocs_collection');
     }
 }

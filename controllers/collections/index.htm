@@ -1,5 +1,18 @@
+<div class="control-tabs content-tabs" data-control="tab" style="overflow:hidden;">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#collections">Collections</a></li>
+        <li><a href="#debts">Debts</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <?= $this->listRender('collections') ?>
+        </div>
+        <div class="tab-pane">
+            <?= $this->listRender('debt') ?>
+        </div>
+    </div>
+</div>
 
-<?= $this->listRender() ?>
 
 <!-- <div class="padded-container">
     <div class="callout callout-warning">
@@ -10,3 +23,4 @@
         </div>
     </div>
 </div> -->
+

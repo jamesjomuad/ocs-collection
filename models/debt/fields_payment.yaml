@@ -1,0 +1,26 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    payment_date:
+        label: Date Paid
+        type: datepicker
+        mode: date
+        span: auto
+        default: now
+    receipt_number:
+        label: O.R. Number
+        type: text
+        span: auto
+    particulars:
+        label: Particulars
+        type: text
+        span: full
+    amount:
+        label: Amount Paid
+        type: number
+        default: 0
+        required: 1
+        span: auto
+        cssClass: 'font-1'

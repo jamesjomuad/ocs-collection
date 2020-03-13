@@ -14,3 +14,9 @@
 1.0.6:
  - 'Create Payments table'
  - create_payments_table.php
+1.0.7:
+ - 'Create Sheet Table'
+ - create_sheet_table.php
+1.0.8:
+ - 'Update Debt Table: new column sheet_id'
+ - update_debt_table_3102020.php

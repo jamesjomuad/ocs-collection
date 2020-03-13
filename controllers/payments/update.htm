@@ -7,7 +7,10 @@
 
 <?php if (!$this->fatalError): ?>
 
-    <?= Form::open(['class' => 'layout']) ?>
+    <?= Form::open([
+        'class' => 'layout',
+    ]) ?>
+        <input type="hidden" name="parentId" value="<?= $this->parentId | null ?>">
 
         <div class="layout-row">
             <?= $this->formRender() ?>
@@ -41,7 +44,12 @@
                     data-request-confirm="Delete this payment?">
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                    or 
+                    <?php if(input('debt')) : ?>
+                        <a href="<?= Backend::url('ocs/collection/debt/update') ?>/<?= input('debt') ?>#primarytab-2">Cancel</a>
+                    <?php else : ?>
+                        <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                    <?php endif; ?>
                 </span>
             </div>
         </div>

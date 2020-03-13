@@ -8,13 +8,12 @@ class CreateDebtsTable extends Migration
 {
     public function up()
     {
-        Schema::create('ocs_collection_debts', function (Blueprint $table) {
+        Schema::create('ocs_collection_debt', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('debtor_id')->unsigned()->index()->nullable();
             $table->integer('collection_id')->unsigned()->index()->nullable();
-            $table->string('number')->nullable();
-            $table->string('name')->nullable();
+            $table->string('number', 40)->nullable();
             $table->timestamp('placement')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('volume', 15, 2)->nullable();
@@ -32,6 +31,6 @@ class CreateDebtsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('ocs_collection_debts');
+        Schema::dropIfExists('ocs_collection_debt');
     }
 }

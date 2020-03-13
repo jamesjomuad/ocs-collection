@@ -14,7 +14,7 @@ class Collection extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collections';
+    public $table = 'ocs_collection';
 
     /**
      * @var array Guarded fields
@@ -62,24 +62,27 @@ class Collection extends Model
     /**
      * @var array Relations
      */
-    public $hasOne = [];
     public $hasMany = [
         'debt' => [
             \Ocs\Collection\Models\Debt::class,
             'delete' => true
-        ],
+        ]
     ];
     public $belongsTo = [
         'client' => [
-            \Ocs\Collection\Models\Client::class
+            \Ocs\Collection\Models\Client::class,
         ]
     ];
-    public $belongsToMany = [];
-    public $morphTo = [];
-    public $morphOne = [];
-    public $morphMany = [];
-    public $attachOne = [];
-    public $attachMany = [];
+    // public $hasManyThrough = [
+    //     'debtors' => [
+    //         '\Ocs\Collection\Models\Debtor',
+    //         'through'    => '\Ocs\Collection\Models\Debt',
+    //         'key'        => 'debtor_id',
+    //         'throughKey' => 'id'
+    //     ],
+    // ];
+
+
 
     public function getDebtorsAttribute($value)
     {
@@ -88,7 +91,12 @@ class Collection extends Model
             $mapped = $this->debt->take(4)->map(function($item, $key){
                 return $item->debtor->name;
             });
-            $mapped->put('name','...');
+            
+            if($this->debt->count()>4)
+            {
+                $mapped->put('name','...');
+            }
+            
             return $mapped->toArray();
         }
     }

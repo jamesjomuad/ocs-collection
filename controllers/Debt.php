@@ -21,26 +21,39 @@ class Debt extends \Ocs\Collection\Controllers\Main
     {
         parent::__construct();
 
-        BackendMenu::setContext('Ocs.Collection', 'collection', 'debt');
+        BackendMenu::setContext('Ocs.Collection', 'collection', 'collections');
+    }
+
+    public function index()
+    {
+        return \Backend::redirect("ocs/collection/collections#debts");
     }
 
     public function create($collection_id = null)
     {
-        $this->pageTitle = 'Users';
+        $this->pageTitle = 'Create';
 
-        $this->collectionID = $collection_id;
+        $this->collectionID = $collection_id ? : input('collection');
         
         $this->asExtension('FormController')->create();
     }
 
     public function create_onSave($context = null)
-    {
-        parent::create_onSave($context);
-
-        if(input('close') AND post('Debt.collection.id'))
+    { 
+        if(input('close') AND input('collection'))
         {
-            return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
+            parent::create_onSave($context);
+            return \Backend::redirect("ocs/collection/collections/update/".input('collection'));
         }
+
+        return parent::create_onSave($context);
+    }
+
+    public function update($recordId, $context = null)
+    {
+        $this->pageTitle = 'Edit Debt';
+
+        $this->asExtension('FormController')->update($recordId, $context);
     }
 
     public function update_onSave($context = null)
@@ -55,7 +68,6 @@ class Debt extends \Ocs\Collection\Controllers\Main
 
     public function formExtendModel($model)
     {
-
         if($this->action == 'create')
         {
             $model->collection = \Ocs\Collection\Models\Collection::find($this->collectionID | post('Debt.collection.id'));
@@ -63,6 +75,37 @@ class Debt extends \Ocs\Collection\Controllers\Main
         }
 
         return $model;
+    }
+
+    public function relationExtendManageWidget($widget, $field, $model)
+    {
+        // Make sure the field is the expected one
+        if ($field != 'payments')
+            return; 
+     
+        
+        // Remaining Balance: Dynamically add field on Popup relation
+        $widget->bindEvent('form.extendFields', function () use($widget,$model) {
+            $widget->addFields([
+                '_prev_balance' => [
+                    'label'     => 'Remaining Balance',
+                    'type'      => 'text',
+                    'span'      => 'right',
+                    'cssClass'  => 'font-1',
+                    'readOnly'  => true,
+                    'default'   => $model->prev_balance
+                ],
+            ]);
+        });
+    }
+
+    public function relationExtendRefreshResults($field)
+    {
+        // Make sure the field is the expected one
+        if ($field != 'payments')
+        return;
+
+        return $this->_renderField('prev_balance');
     }
 
 }

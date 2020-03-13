@@ -14,7 +14,7 @@ class Client extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'ocs_collection_clients';
+    public $table = 'ocs_collection_client';
 
     /**
      * @var array Guarded fields
@@ -30,8 +30,8 @@ class Client extends Model
      * @var array Validation rules for attributes
      */
     public $rules = [
-        'name' => 'required|unique:ocs_collection_clients,name',
-        'email' => 'email|unique:ocs_collection_clients,email'
+        'name' => 'required|unique:ocs_collection_client,name',
+        'email' => 'email|unique:ocs_collection_client,email'
     ];
 
     /**
@@ -85,7 +85,7 @@ class Client extends Model
     #
     public function afterDelete()
     {
-        $this->debt()->delete();
+        // $this->debt()->delete();
     }
     
 }
