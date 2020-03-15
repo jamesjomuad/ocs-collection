@@ -105,7 +105,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
         if ($field != 'payments')
         return;
 
-        return $this->_renderField('prev_balance');
+        return ['#Form-field-Debt-prev_balance-group' => '<label for="Form-field-Debt-prev_balance">Remaining Balance</label><input type="text" name="Debt[prev_balance]" id="Form-field-Debt-prev_balance" value="'.$this->vars['formModel']->prev_balance.'" class="form-control" autocomplete="off" maxlength="255" disabled="disabled"/>'];
     }
 
 }

@@ -121,19 +121,34 @@ class Payment extends Model
         $this->attributes['balance'] = (float)$value;
     }
 
-    public function scopeNext($query)
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
     {
-        // get next model
-        $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
+        $query->orderBy('created_at','asc');
         return $query;
     }
 
-    public  function scopePrevious($query)
+    public function scopeDesc($query)
     {
-        // get previous  model
-        $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
+        $query->orderBy('created_at','desc');
         return $query;
     }
+
+    // public function scopeNext($query)
+    // {
+    //     // get next model
+    //     $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
+    //     return $query;
+    // }
+
+    // public  function scopePrevious($query)
+    // {
+    //     // get previous  model
+    //     $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
+    //     return $query;
+    // }
 
     #
     #   Helpers
