@@ -29,3 +29,8 @@ columns:
         searchable: true
     payment_status:
         label: Payment Status
+        searchable: false
+        sortable: false
+    created_at:
+        label: created
+        type: date

@@ -45,3 +45,5 @@ toolbar:
     # Search widget configuration
     search:
         prompt: backend::lang.list.search_prompt
+
+filter: $/ocs/collection/controllers/debt/config_filter.yaml
