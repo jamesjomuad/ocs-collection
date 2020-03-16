@@ -113,15 +113,20 @@ class Debt extends Model
 
     public function getPrevBalanceAttribute()
     {
+        $this->moneyFormat($this->balance);
+    }
+
+    public function getBalanceAttribute()
+    {
         if($this->payments->isEmpty())
         {
-            return $this->moneyFormat($this->volume);
+            return $this->volume;
         }
 
         return $this
             ->payments
             ->last()
-            ->last_balance;
+            ->balance;
     }
 
     public function moneyFormat($value)

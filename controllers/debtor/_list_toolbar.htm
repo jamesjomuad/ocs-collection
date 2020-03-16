@@ -8,7 +8,7 @@
     <button
         class="btn btn-danger pull-right"
         disabled="disabled"
-        onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+        onclick="$(this).data('request-data', { checked: $('#Lists-debtors .control-list').listWidget('getChecked') })"
         data-request="onDelete"
         data-request-url="<?= Backend::url('ocs/collection/debtor') ?>"
         data-request-confirm="Are you sure you want to delete the selected Debtor?"

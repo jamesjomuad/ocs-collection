@@ -56,13 +56,21 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $this->asExtension('FormController')->update($recordId, $context);
     }
 
-    public function update_onSave($context = null)
+    public function update_onSave($id, $context = null)
     { 
-        parent::update_onSave($context);
+        parent::update_onSave($id, $context);
 
         if(input('close') AND post('Debt.collection.id'))
         {
             return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
+        }
+    }
+
+    public function formAfterUpdate($model)
+    {
+        if((float)$model->balance == 0)
+        {
+            
         }
     }
 

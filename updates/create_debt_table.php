@@ -17,9 +17,8 @@ class CreateDebtsTable extends Migration
             $table->timestamp('placement')->nullable();
             $table->string('duration')->nullable();
             $table->decimal('volume', 15, 2)->nullable();
-            $table->decimal('audit_amount', 15, 2)->nullable();
-            $table->timestamp('audit_date')->nullable();
             $table->decimal('balance', 15, 2)->nullable();
+            $table->string('status', 20)->nullable();
             $table->string('payment_plan')->nullable();
             $table->string('terms')->nullable();
             $table->string('monthly_amortization')->nullable();
