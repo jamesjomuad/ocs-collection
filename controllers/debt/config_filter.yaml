@@ -13,6 +13,6 @@ scopes:
         type: group
         conditions: status in (:filtered)
         options:
-            pending: Pending
+            ongoing: Ongoing
             paid: Paid
             unsuccessful: Unsuccessful
