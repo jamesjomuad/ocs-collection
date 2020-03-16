@@ -70,7 +70,11 @@ class Debt extends \Ocs\Collection\Controllers\Main
     {
         if((float)$model->balance == 0)
         {
-            
+            $model->setStatus('paid');
+        }
+        else
+        {
+            $model->setStatus('ongoing');
         }
     }
 
@@ -95,13 +99,13 @@ class Debt extends \Ocs\Collection\Controllers\Main
         // Remaining Balance: Dynamically add field on Popup relation
         $widget->bindEvent('form.extendFields', function () use($widget,$model) {
             $widget->addFields([
-                '_prev_balance' => [
+                '_balance' => [
                     'label'     => 'Remaining Balance',
                     'type'      => 'text',
                     'span'      => 'right',
                     'cssClass'  => 'font-1',
                     'readOnly'  => true,
-                    'default'   => $model->prev_balance
+                    'default'   => $model->balance
                 ],
             ]);
         });
@@ -113,7 +117,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
         if ($field != 'payments')
         return;
 
-        return ['#Form-field-Debt-prev_balance-group' => '<label for="Form-field-Debt-prev_balance">Remaining Balance</label><input type="text" name="Debt[prev_balance]" id="Form-field-Debt-prev_balance" value="'.$this->vars['formModel']->prev_balance.'" class="form-control" autocomplete="off" maxlength="255" disabled="disabled"/>'];
+        return ['#Form-field-Debt-balance_format-group' => '<label for="Form-field-Debt-balance_format">Remaining Balance</label><input type="text" name="Debt[balance_format]" id="Form-field-Debt-balance_format" value="'.$this->vars['formModel']->balance_format.'" class="form-control" autocomplete="off" maxlength="255" disabled="disabled"/>'];
     }
 
 }

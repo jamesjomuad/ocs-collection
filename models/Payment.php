@@ -136,20 +136,6 @@ class Payment extends Model
         return $query;
     }
 
-    // public function scopeNext($query)
-    // {
-    //     // get next model
-    //     $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
-    //     return $query;
-    // }
-
-    // public  function scopePrevious($query)
-    // {
-    //     // get previous  model
-    //     $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
-    //     return $query;
-    // }
-
     #
     #   Helpers
     #
@@ -162,12 +148,11 @@ class Payment extends Model
     {
         if($this->debt)
         {
-            $balance = $this->isEmptyPayments()
+            $calc = $this->isEmptyPayments()
                 ? (float)$this->debt->volume - (float)$this->amount
                 : (float)$this->debt->payments->last()->balance - (float)$this->amount
             ;
-
-            return $balance;
+            return $calc;
         }
         return 0;
     }
@@ -189,15 +174,10 @@ class Payment extends Model
     #
     public function beforeCreate()
     {
-
         /*
         *   Compute Balance
         */
-        if(empty($this->balance))
-        {
-            $this->balance = $this->calcBalance();
-        }
-
+        $this->balance = $this->calcBalance();
         
     }
 

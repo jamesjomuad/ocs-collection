@@ -111,9 +111,9 @@ class Debt extends Model
         return $this->moneyFormat($this->volume);
     }
 
-    public function getPrevBalanceAttribute()
+    public function getBalanceFormatAttribute()
     {
-        $this->moneyFormat($this->balance);
+        return $this->moneyFormat($this->balance);
     }
 
     public function getBalanceAttribute()
@@ -131,6 +131,13 @@ class Debt extends Model
 
     public function moneyFormat($value)
     {
-        return "₱" . number_format((float)$this->volume, 2, '.', ',');
+        return "₱" . number_format((float)$value, 2, '.', ',');
     }
+
+    public function setStatus($status = null)
+    {
+        $this->status = $status;
+        $this->save();
+    }
+
 }
