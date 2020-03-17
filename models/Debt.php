@@ -129,6 +129,21 @@ class Debt extends Model
             ->balance;
     }
 
+    public function getStatusAttribute()
+    {
+        if( $this->payments )
+        {
+            return ($this->payments->pluck('amount')->sum() == $this->volume) ? 'Paid' : '';
+        }
+
+        return null;
+    }
+
+
+    #
+    #   Helpers
+    #
+
     public function moneyFormat($value)
     {
         return "₱" . number_format((float)$value, 2, '.', ',');

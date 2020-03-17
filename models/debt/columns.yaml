@@ -27,10 +27,11 @@ columns:
         label: Debt Volume
         type: currency
         searchable: true
-    payment_status:
-        label: Payment Status
+    status:
+        label: Status
         searchable: false
         sortable: false
+        clickable: false
     created_at:
         label: created
         type: date

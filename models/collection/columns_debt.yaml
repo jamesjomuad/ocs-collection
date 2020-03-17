@@ -21,10 +21,12 @@ columns:
         label: Debt Volume
         type: currency
         searchable: true
-    # payment_status:
-    #     label: Payment Status
-    #     default: ongoing
-    prev_balance:
+    status:
+        label: Payment Status
+        default: Ongoing
+        searchable: false
+        sortable: false
+    balanceFormat:
         label: Balance
         sortable: false
         searchable: false

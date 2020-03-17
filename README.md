@@ -4,9 +4,7 @@
 
 - Clients
 
-- Clientele
-
-- Debts
+- Debtors
 
 - Payments
 
