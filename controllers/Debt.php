@@ -68,6 +68,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
 
     public function formAfterUpdate($model)
     {
+        // Update status whenever update trigger
         if((float)$model->balance == 0)
         {
             $model->setStatus('paid');
@@ -109,6 +110,15 @@ class Debt extends \Ocs\Collection\Controllers\Main
                 ],
             ]);
         });
+    }
+
+    public function onRelationManageCreate($id)
+    {
+        $relation = parent::onRelationManageCreate();
+
+        parent::update_onSave($id,'update');
+
+        return $relation;
     }
 
     public function relationExtendRefreshResults($field)

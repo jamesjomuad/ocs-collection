@@ -73,6 +73,7 @@ class Payments extends \Ocs\Collection\Controllers\Main
         if(input('debt'))
         {
             $fields->removeField('debt');
+            $fields->removeField('debt[name]');
         }
         else
         {
