@@ -18,10 +18,14 @@ columns:
         searchable: true
     debtors:
         label: Account Number Name
-        width: 560px
+        width: 350px
         sortable: false
         searchable: false
         type: ol
+    payment_status:
+        label: Payment Status
+        sortable: false
+        searchable: false
     volume_total:
         label: Debt Volume Total
         type: text

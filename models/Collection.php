@@ -73,15 +73,6 @@ class Collection extends Model
             \Ocs\Collection\Models\Client::class,
         ]
     ];
-    // public $hasManyThrough = [
-    //     'debtors' => [
-    //         '\Ocs\Collection\Models\Debtor',
-    //         'through'    => '\Ocs\Collection\Models\Debt',
-    //         'key'        => 'debtor_id',
-    //         'throughKey' => 'id'
-    //     ],
-    // ];
-
 
 
     public function getDebtorsAttribute($value)
@@ -110,6 +101,26 @@ class Collection extends Model
         });
 
         return "₱" . number_format($total, 2, '.', ',');
+    }
+
+    public function getIsPaidAttribute() : bool
+    {
+        if($this->debt)
+        {
+            $balance = $this->debt->pluck('balance')
+                ->map(function($balance){
+                    return (float)$balance;
+                })
+                ->sum();
+            return ($balance==0);
+        }
+        
+        return null;
+    }
+
+    public function getPaymentStatusAttribute() : string
+    {
+        return ($this->isPaid) ? 'Complete' : 'Incomplete';
     }
 
 

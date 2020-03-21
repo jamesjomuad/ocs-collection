@@ -35,9 +35,23 @@ class Collections extends \Ocs\Collection\Controllers\Main
         $this->addJs($this->assetPath . "js/collection.js");
     }
 
+    public function test($id)
+    {
+        parent::update($id);
+
+        $collection = $this->vars['formModel'];
+
+        dd(
+            // $collection->debt->pluck('isFullPaid')
+            $collection->isPaid
+        );
+    }
+
     public function index()
     {
         $this->pageTitle = 'Collections';
+
+        // $this->addJs($this->assetPath . 'js/collection.js');
 
         $this->asExtension('ListController')->index();
     }

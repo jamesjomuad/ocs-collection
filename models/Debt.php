@@ -139,7 +139,6 @@ class Debt extends Model
         return null;
     }
 
-
     #
     #   Helpers
     #
