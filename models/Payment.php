@@ -94,6 +94,14 @@ class Payment extends Model
 
     }
 
+    #
+    #   Accessor & Mutator
+    #
+    public function setBalanceAttribute($value)
+    {
+        $this->attributes['balance'] = (float)$value;
+    }
+
     public function getCollectionNumberAttribute()
     {
         if($this->debt)
@@ -114,11 +122,6 @@ class Payment extends Model
     public function getPreviewBalanceAttribute()
     {
         return $this->moneyFormat($this->calcBalance());
-    }
-
-    public function setBalanceAttribute($value)
-    {
-        $this->attributes['balance'] = (float)$value;
     }
 
     #
@@ -167,6 +170,24 @@ class Payment extends Model
     public function isEmptyPayments()
     {
         return ($this->debt AND $this->debt->payments->isEmpty());
+    }
+
+    public function previous()
+    {
+        if($this->debt)
+        {
+            return $this->find(--$this->id);
+        }
+        return null;
+    }
+
+    public function next()
+    {
+        if($this->debt)
+        {
+            return $this->find(++$this->id);
+        }
+        return null;
     }
 
     #
