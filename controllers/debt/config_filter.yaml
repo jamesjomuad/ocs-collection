@@ -1,0 +1,18 @@
+scopes:
+    category:
+        label: Collection
+        modelClass: Ocs\Collection\Models\Collection
+        conditions: collection_id in (:filtered)
+        nameFrom: number
+    created_at:
+        label: Created At
+        type: daterange
+        conditions: created_at >= ':after' AND created_at <= ':before'
+    status:
+        label: Status
+        type: group
+        conditions: status in (:filtered)
+        options:
+            ongoing: Ongoing
+            paid: Paid
+            unsuccessful: Unsuccessful

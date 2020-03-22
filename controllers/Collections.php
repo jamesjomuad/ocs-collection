@@ -31,13 +31,13 @@ class Collections extends \Ocs\Collection\Controllers\Main
         {
             throw new ApplicationException('No Access permission!');
         }
-
-        $this->addJs($this->assetPath . "js/collection.js");
     }
 
     public function index()
     {
         $this->pageTitle = 'Collections';
+
+        // $this->addJs($this->assetPath . 'js/collection.js');
 
         $this->asExtension('ListController')->index();
     }

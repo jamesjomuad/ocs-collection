@@ -94,6 +94,14 @@ class Payment extends Model
 
     }
 
+    #
+    #   Accessor & Mutator
+    #
+    public function setBalanceAttribute($value)
+    {
+        $this->attributes['balance'] = (float)$this->new_balance;
+    }
+
     public function getCollectionNumberAttribute()
     {
         if($this->debt)
@@ -116,22 +124,40 @@ class Payment extends Model
         return $this->moneyFormat($this->calcBalance());
     }
 
-    public function setBalanceAttribute($value)
+    public function getPayableBalanceAttribute()
     {
-        $this->attributes['balance'] = (float)$value;
+        if($this->debt AND $this->previous())
+        {
+            return $this->previous()->balance;
+        }else
+        {
+            return $this->debt->volume;
+        }
+        return null;
     }
 
-    public function scopeNext($query)
+    public function getNewBalanceAttribute()
     {
-        // get next model
-        $query->where('id', '>', $this->id)->orderBy('id','asc')->first();
+        if( $this->payable_balance )
+        {
+            return (float)$this->payable_balance - $this->amount;
+        }
+    
+        return null;
+    }
+
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
+    {
+        $query->orderBy('created_at','asc');
         return $query;
     }
 
-    public  function scopePrevious($query)
+    public function scopeDesc($query)
     {
-        // get previous  model
-        $query->where('id', '<', $this->id)->orderBy('id','desc')->first();
+        $query->orderBy('created_at','desc');
         return $query;
     }
 
@@ -147,12 +173,11 @@ class Payment extends Model
     {
         if($this->debt)
         {
-            $balance = $this->isEmptyPayments()
+            $calc = $this->isEmptyPayments()
                 ? (float)$this->debt->volume - (float)$this->amount
                 : (float)$this->debt->payments->last()->balance - (float)$this->amount
             ;
-
-            return $balance;
+            return $calc;
         }
         return 0;
     }
@@ -169,21 +194,43 @@ class Payment extends Model
         return ($this->debt AND $this->debt->payments->isEmpty());
     }
 
+    public function previous()
+    {
+        if($this->debt AND $this->id)  // for update
+        {
+            return $this->find(($this->id)-1);
+        }
+        else  // for create
+        {
+            return $this->debt->payments->last();
+        }
+
+        return null;
+    }
+
+    public function next()
+    {
+        if($this->debt AND $this->id)
+        {
+            return $this->find(($this->id)+1);
+        }
+        return null;
+    }
+
     #
     #   Events
     #
     public function beforeCreate()
     {
-
         /*
         *   Compute Balance
         */
-        if(empty($this->balance))
-        {
-            $this->balance = $this->calcBalance();
-        }
+        $this->balance = $this->new_balance;
+    }
 
-        
+    public function beforeUpdate()
+    {
+        $this->balance = (float)$this->new_balance;
     }
 
 }

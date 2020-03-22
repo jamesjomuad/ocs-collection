@@ -111,21 +111,70 @@ class Debt extends Model
         return $this->moneyFormat($this->volume);
     }
 
-    public function getPrevBalanceAttribute()
+    public function getBalanceFormatAttribute()
+    {
+        return $this->moneyFormat($this->balance);
+    }
+
+    public function getBalanceAttribute()
     {
         if($this->payments->isEmpty())
         {
-            return $this->moneyFormat($this->volume);
+            return $this->volume;
         }
 
         return $this
             ->payments
             ->last()
-            ->last_balance;
+            ->balance;
     }
+
+    public function getStatusAttribute()
+    {
+        if( $this->payments )
+        {
+            if($this->payments->pluck('amount')->sum() == $this->volume AND (float)$this->volume!=0)
+            {
+                return 'Paid';
+            }
+            elseif((float)$this->volume==0)
+            {
+                return 'No Volume';
+            }
+        }
+
+        return null;
+    }
+
+    #
+    #   Helpers
+    #
 
     public function moneyFormat($value)
     {
-        return "₱" . number_format((float)$this->volume, 2, '.', ',');
+        return "₱" . number_format((float)$value, 2, '.', ',');
     }
+
+    public function setStatus($status = null)
+    {
+        $this->status = $status;
+        $this->save();
+    }
+
+
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
+    {
+        $query->orderBy('created_at','asc');
+        return $query;
+    }
+
+    public function scopeDesc($query)
+    {
+        $query->orderBy('created_at','desc');
+        return $query;
+    }
+
 }

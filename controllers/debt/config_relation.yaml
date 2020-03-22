@@ -12,7 +12,9 @@ payments:
     label: Payment
     view:
         showSearch: true
-        toolbarButtons: add_payment | delete
+        scope: asc
+        toolbarButtons: add_payment
+        showCheckboxes: false
         list: $/ocs/collection/models/debt/columns_payment.yaml
     manage:
         form: ~/plugins/ocs/collection/models/debt/fields_payment.yaml

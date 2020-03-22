@@ -56,13 +56,26 @@ class Debt extends \Ocs\Collection\Controllers\Main
         $this->asExtension('FormController')->update($recordId, $context);
     }
 
-    public function update_onSave($context = null)
+    public function update_onSave($id, $context = null)
     { 
-        parent::update_onSave($context);
+        parent::update_onSave($id, $context);
 
         if(input('close') AND post('Debt.collection.id'))
         {
             return \Backend::redirect("ocs/collection/collections/update/".post('Debt.collection.id'));
+        }
+    }
+
+    public function formAfterUpdate($model)
+    {
+        // Update status whenever update trigger
+        if((float)$model->balance == 0)
+        {
+            $model->setStatus('paid');
+        }
+        else
+        {
+            $model->setStatus('ongoing');
         }
     }
 
@@ -87,16 +100,25 @@ class Debt extends \Ocs\Collection\Controllers\Main
         // Remaining Balance: Dynamically add field on Popup relation
         $widget->bindEvent('form.extendFields', function () use($widget,$model) {
             $widget->addFields([
-                '_prev_balance' => [
+                '_balance' => [
                     'label'     => 'Remaining Balance',
                     'type'      => 'text',
                     'span'      => 'right',
                     'cssClass'  => 'font-1',
                     'readOnly'  => true,
-                    'default'   => $model->prev_balance
+                    'default'   => $model->balance
                 ],
             ]);
         });
+    }
+
+    public function onRelationManageUpdate($id=null)
+    {
+        $relation = parent::onRelationManageUpdate();
+
+        parent::update_onSave($id,'update');
+
+        return $relation;
     }
 
     public function relationExtendRefreshResults($field)
@@ -105,7 +127,7 @@ class Debt extends \Ocs\Collection\Controllers\Main
         if ($field != 'payments')
         return;
 
-        return $this->_renderField('prev_balance');
+        return ['#Form-field-Debt-balance_format-group' => '<label for="Form-field-Debt-balance_format">Remaining Balance</label><input type="text" name="Debt[balance_format]" id="Form-field-Debt-balance_format" value="'.$this->vars['formModel']->balance_format.'" class="form-control" autocomplete="off" maxlength="255" disabled="disabled"/>'];
     }
 
 }

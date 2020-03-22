@@ -7,20 +7,25 @@ columns:
         label: Payment Date
         type: date
         searchable: true
+        clickable: false
     receipt_number:
         label: O.R. NUMBER
         searchable: true
+        clickable: false
     particulars:
         label: Particulars
+        clickable: false
     amount:
         label: Amount Paid
         type: currency
         searchable: true
+        clickable: false
     balance:
         label: Balance
         type: currency
         sortable: false
         searchable: false
+        clickable: false
     action:
         label: Action
         type: partial
