@@ -1,11 +1,4 @@
-
-<!-- <a tabindex="-1" 
-href="#" 
-class="btn btn-xs btn-warning oc-icon-credit-card"
-data-handler="onPay"
-data-request-data="id:<?= $this->vars['formModel']->id ?>"
-data-control="popup">Pay</a> -->
-
+<?php if((float)$this->vars['formModel']->balance!=0) : ?>
 <a 
     data-control="popup" 
     data-size="huge" 
@@ -13,6 +6,7 @@ data-control="popup">Pay</a> -->
     href="javascript:;" 
     class="btn btn-xs btn-warning oc-icon-credit-card"
 >Pay</a>
+<?php endif; ?>
 
 <a href="#" class="btn btn-default oc-icon-print" style="padding-left:15px;">
     Print

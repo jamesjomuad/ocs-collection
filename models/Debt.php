@@ -131,10 +131,16 @@ class Debt extends Model
 
     public function getStatusAttribute()
     {
-   
         if( $this->payments )
         {
-            return ($this->payments->pluck('amount')->sum() == $this->volume AND $this->volume!=0) ? 'Paid' : 'No Volume';
+            if($this->payments->pluck('amount')->sum() == $this->volume AND (float)$this->volume!=0)
+            {
+                return 'Paid';
+            }
+            elseif((float)$this->volume==0)
+            {
+                return 'No Volume';
+            }
         }
 
         return null;
