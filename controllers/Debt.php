@@ -112,9 +112,18 @@ class Debt extends \Ocs\Collection\Controllers\Main
         });
     }
 
-    public function onRelationManageCreate($id)
+    // public function onRelationManageCreate($id=null)
+    // {
+    //     $relation = parent::onRelationManageCreate();
+
+    //     parent::update_onSave($id,'update');
+
+    //     return $relation;
+    // }
+
+    public function onRelationManageUpdate($id=null)
     {
-        $relation = parent::onRelationManageCreate();
+        $relation = parent::onRelationManageUpdate();
 
         parent::update_onSave($id,'update');
 

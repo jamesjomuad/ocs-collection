@@ -4,6 +4,7 @@ client:
         toolbarButtons: create|add
         list: $/ocs/collection/models/client/columns.yaml
         form: $/ocs/collection/models/client/fields.yaml
+        scope: 
     manage:
         showSearch: true
         form: $/ocs/collection/models/client/fields.yaml
@@ -13,6 +14,7 @@ debt:
     deferredBinding: true
     view:
         showSearch: true
+        scope: asc
         list: $/ocs/collection/models/collection/columns_debt.yaml
         toolbarButtons: add_debt|delete
         recordsPerPage: 10

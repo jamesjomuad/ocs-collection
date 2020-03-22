@@ -131,9 +131,10 @@ class Debt extends Model
 
     public function getStatusAttribute()
     {
+   
         if( $this->payments )
         {
-            return ($this->payments->pluck('amount')->sum() == $this->volume) ? 'Paid' : '';
+            return ($this->payments->pluck('amount')->sum() == $this->volume AND $this->volume!=0) ? 'Paid' : 'No Volume';
         }
 
         return null;
@@ -152,6 +153,22 @@ class Debt extends Model
     {
         $this->status = $status;
         $this->save();
+    }
+
+
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
+    {
+        $query->orderBy('created_at','asc');
+        return $query;
+    }
+
+    public function scopeDesc($query)
+    {
+        $query->orderBy('created_at','desc');
+        return $query;
     }
 
 }

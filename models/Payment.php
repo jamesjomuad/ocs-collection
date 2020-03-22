@@ -210,7 +210,7 @@ class Payment extends Model
 
     public function next()
     {
-        if($this->debt)
+        if($this->debt AND $this->id)
         {
             return $this->find(($this->id)+1);
         }
