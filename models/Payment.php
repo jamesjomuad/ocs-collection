@@ -99,7 +99,7 @@ class Payment extends Model
     #
     public function setBalanceAttribute($value)
     {
-        $this->attributes['balance'] = (float)$value;
+        $this->attributes['balance'] = (float)$this->new_balance;
     }
 
     public function getCollectionNumberAttribute()
@@ -122,6 +122,28 @@ class Payment extends Model
     public function getPreviewBalanceAttribute()
     {
         return $this->moneyFormat($this->calcBalance());
+    }
+
+    public function getPayableBalanceAttribute()
+    {
+        if($this->debt AND $this->previous())
+        {
+            return $this->previous()->balance;
+        }else
+        {
+            return $this->debt->volume;
+        }
+        return null;
+    }
+
+    public function getNewBalanceAttribute()
+    {
+        if( $this->payable_balance )
+        {
+            return (float)$this->payable_balance - $this->amount;
+        }
+    
+        return null;
     }
 
     #
@@ -174,10 +196,15 @@ class Payment extends Model
 
     public function previous()
     {
-        if($this->debt)
+        if($this->debt AND $this->id)  // for update
         {
-            return $this->find(--$this->id);
+            return $this->find(($this->id)-1);
         }
+        else  // for create
+        {
+            return $this->debt->payments->last();
+        }
+
         return null;
     }
 
@@ -185,7 +212,7 @@ class Payment extends Model
     {
         if($this->debt)
         {
-            return $this->find(++$this->id);
+            return $this->find(($this->id)+1);
         }
         return null;
     }
@@ -198,8 +225,12 @@ class Payment extends Model
         /*
         *   Compute Balance
         */
-        $this->balance = $this->calcBalance();
-        
+        $this->balance = $this->new_balance;
+    }
+
+    public function beforeUpdate()
+    {
+        $this->balance = (float)$this->new_balance;
     }
 
 }
