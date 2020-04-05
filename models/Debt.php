@@ -161,6 +161,24 @@ class Debt extends Model
         $this->save();
     }
 
+    public function getVolumeTotal()
+    {
+        return $this
+            ->all()
+            ->pluck('volume')
+            ->sum()
+        ;
+    }
+
+    public function getBalanceTotal()
+    {
+        return $this
+            ->all()
+            ->pluck('balance')
+            ->sum()
+        ;
+    }
+
 
     #
     #   Scopes

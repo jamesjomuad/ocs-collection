@@ -2,12 +2,17 @@
 
 use Backend;
 use System\Classes\PluginBase;
+use \Ocs\Users\Models\User as UserModel;
+
 
 /**
  * collection Plugin Information File
  */
 class Plugin extends PluginBase
 {
+
+    public $elevated = true;
+
     /**
      * Returns information about this plugin.
      *
@@ -24,23 +29,33 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Register method, called when the plugin is first registered.
-     *
-     * @return void
-     */
-    public function register()
-    {
-
-    }
-
-    /**
      * Boot method, called right before the request route.
      *
      * @return array
      */
     public function boot()
     {
+        // Avoid run on artisan or cron
+        if(!app()->runningInBackend()){
+            return;
+        }
+        
+        // Extend user 
+        UserModel::extend(function($model){
+            # Extend Relations
+            $model->hasOne['activity']  = [
+                \Ocs\Collection\Models\Activity::class
+            ];
 
+            # Extend Mehod
+            $model->addDynamicMethod('scopeCollector',function($query) use($model) {
+                return $query->whereHas('role',function($q) {
+                    $q->where('code','collector');
+                });
+            });
+
+            return $model;
+        });
     }
 
     /**
@@ -125,20 +140,30 @@ class Plugin extends PluginBase
                         'icon'        => 'icon-dollar',
                         'permissions' => ['ocs.collection.*'],
                     ],
+                    'activity' => [
+                        'label'       => 'Activity',
+                        'url'         => Backend::url('ocs/collection/activity'),
+                        'icon'        => 'icon-vcard',
+                        'permissions' => ['ocs.collection.*'],
+                    ],
                     'reports' => [
                         'label'       => 'Reports',
                         'url'         => Backend::url('ocs/collection/reports'),
                         'icon'        => 'icon-bar-chart',
                         'permissions' => ['ocs.collection.*'],
                     ],
-                    // 'activity' => [
-                    //     'label'       => 'Activity',
-                    //     'url'         => Backend::url('ocs/collection/activity'),
-                    //     'icon'        => 'icon-vcard',
-                    //     'permissions' => ['ocs.collection.*'],
-                    // ]
                 ]
             ],
+        ];
+    }
+
+    public function registerReportWidgets()
+    {
+        return [
+            'Ocs\Collection\ReportWidgets\OcsCollectionVolume' => [
+                'label'   => 'OCS Collection Volume',
+                'context' => 'dashboard'
+            ]
         ];
     }
 

@@ -20,3 +20,6 @@
 1.0.8:
  - 'Update Debt Table: new column sheet_id'
  - update_debt_table_3102020.php
+1.0.9:
+  - 'Create Activities Table'
+  - create_activities_table.php

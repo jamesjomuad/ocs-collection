@@ -1,0 +1,13 @@
+<?php if($record->activity==null) : ?>
+    <form action="<?= Backend::url('ocs/collection/activity/create') ?>" method="post">
+        <?= Form::token() ?>
+        <input type="hidden" name="user_id" value="<?= $record->id ?>">
+        <button class="btn btn-primary btn-sm">
+            <i class="icon-pencil"></i>
+        </button>
+    </form>
+<?php else : ?>
+    <a href="<?= Backend::url('ocs/collection/activity/update') ?>/<?= $record->activity->id ?>" class="btn btn-primary btn-sm">
+        <i class="icon-pencil"></i>
+    </a>
+<?php endif; ?>

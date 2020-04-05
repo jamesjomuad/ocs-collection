@@ -1,0 +1,32 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Activity
+
+# Model Form Field configuration
+form: $/ocs/collection/models/activity/fields.yaml
+
+# Model Class name
+modelClass: Ocs\Collection\Models\Activity
+# modelClass: \Jlab\Users\Models\User
+
+# Default redirect location
+defaultRedirect: ocs/collection/activity
+
+# Create page
+create:
+    title: Create Activity
+    redirect: ocs/collection/activity/update/:id
+    redirectClose: ocs/collection/activity
+
+# Update page
+update:
+    title: Edit Activity
+    redirect: ocs/collection/activity
+    redirectClose: ocs/collection/activity
+
+# Preview page
+preview:
+    title: Preview Activity

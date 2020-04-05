@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+        clickable: false
+    login:
+        label: User Name
+        clickable: false
+    first_name:
+        label: First Name
+        clickable: false
+    last_name:
+        label: Last Name
+        clickable: false
+    email:
+        label: Email
+        clickable: false
+    action:
+        label: Action
+        type: partial
+        clickable: false
