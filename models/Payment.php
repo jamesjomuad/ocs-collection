@@ -1,6 +1,7 @@
 <?php namespace Ocs\Collection\Models;
 
 use Model;
+use \Carbon\Carbon;
 
 /**
  * Payment Model
@@ -159,6 +160,11 @@ class Payment extends Model
     {
         $query->orderBy('created_at','desc');
         return $query;
+    }
+
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', Carbon::today());
     }
 
     #

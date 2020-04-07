@@ -1,6 +1,7 @@
 <?php namespace Ocs\Collection\Models;
 
 use Model;
+use \Carbon\Carbon;
 
 /**
  * Collection Model
@@ -121,6 +122,26 @@ class Collection extends Model
     public function getPaymentStatusAttribute() : string
     {
         return ($this->isPaid) ? 'Complete' : 'Incomplete';
+    }
+
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
+    {
+        $query->orderBy('created_at','asc');
+        return $query;
+    }
+
+    public function scopeDesc($query)
+    {
+        $query->orderBy('created_at','desc');
+        return $query;
+    }
+
+    public function scopeToday($query)
+    {
+        return $query->whereDate('created_at', Carbon::today());
     }
 
 

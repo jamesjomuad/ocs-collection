@@ -27,6 +27,11 @@ columns:
         label: Debt Volume
         type: currency
         searchable: true
+    balance:
+        label: Balance
+        type: currency
+        sortable: false
+        searchable: false
     status:
         label: Status
         searchable: false

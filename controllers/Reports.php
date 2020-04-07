@@ -2,13 +2,17 @@
 
 use BackendMenu;
 use \Carbon\Carbon;
+use \Carbon\CarbonImmutable;
 use Ocs\Collection\Models\Collection;
 use Ocs\Collection\Models\Debt;
+use Ocs\Collection\Models\Payment;
 
 
 class Reports extends \Ocs\Collection\Controllers\Main
 {
-    public $debt;
+    public $collection;
+    public $Debt;
+    public $Payment;
 
     public function __construct()
     {
@@ -16,7 +20,16 @@ class Reports extends \Ocs\Collection\Controllers\Main
 
         BackendMenu::setContext('Ocs.Collection', 'collection', 'reports');
 
-        $this->debt = new Debt;
+        $this->prepareModels();
+    }
+
+    public function prepareModels()
+    {
+        $this->Debt = new Debt;
+
+        $this->Payment = new Payment;
+
+        return $this;
     }
 
     public function index()
@@ -25,15 +38,59 @@ class Reports extends \Ocs\Collection\Controllers\Main
 
         $this->addCss($this->assetPath.'/css/tailwind.min.css');
 
-        $this->vars['debt_volume_total'] = $this->debt->getVolumeTotal();
+        $this->vars['debt'] = $this->Debt;
 
-        $this->vars['debt_balance_total'] = $this->debt->getBalanceTotal();
+        $this->vars['payments'] = $this->paymentChart();
 
-        $this->vars['collectionCount'] = Collection::all();
+        $this->vars['collection'] = [
+            'total'     => Collection::all()->count(),
+            'today'     => Collection::today()->get()->count(),
+            'yesterday' => Collection::today()->get()->count()
+        ];
 
-        $this->vars['collectionToday'] = Collection::whereDate('created_at', Carbon::today())->get();
+        // dd(
+        //     $this->paymentChart()
+        // );
 
-        $this->vars['collectionYesterday'] = Collection::whereDate('created_at', Carbon::yesterday())->get();
+    }
+
+    public function paymentChart()
+    {
+        $start_time = microtime(true); 
+
+        $weekNames = [
+            0 => 'SUN',
+            1 => 'MON',
+            2 => 'TUE',
+            3 => 'WED',
+            4 => 'THU',
+            5 => 'FRI',
+            6 => 'SAT',
+        ];
+
+        $data = [];
+
+        foreach($weekNames as $k=>$week)
+        {
+            $carbon = Carbon::today();
+
+            if($k==0)
+            {
+                $data[] = [
+                    'date' => $weekNames[$carbon->dayOfWeek],
+                    'value' => $this->Payment->whereDate('created_at', $carbon)->get()->count()
+                ];
+            }
+            else
+            {
+                $data[] = [
+                    'date' => $weekNames[$carbon->subDays($k)->dayOfWeek],
+                    'value' => $this->Payment->whereDate('created_at', $carbon->subDays($k))->get()->count()
+                ];
+            }
+        }
+
+        return array_reverse($data);
     }
 
 }
