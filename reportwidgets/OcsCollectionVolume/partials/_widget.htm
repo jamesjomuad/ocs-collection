@@ -1,0 +1,14 @@
+<div class="report-widget debt-volume">
+    <h3><?= $title ?></h3>
+
+    <div
+        class="control-chart"
+        data-control="chart-pie"
+        data-size="250"
+        data-center-text="Debts">
+        <ul>
+            <li>Payments <?= $this->moneyFormat($payment_total) ?> <span><?= $payment_total ?></span></li>
+            <li>Debt <?= $this->moneyFormat($volume_total) ?> <span><?= $volume_total ?></span></li>
+        </ul>
+    </div>
+</div>

@@ -3,16 +3,17 @@
 # ===================================
 
 # Model List Column configuration
-list: $/ocs/collection/models/report/columns.yaml
+list: $/ocs/collection/models/activity/columns.yaml
 
 # Model Class name
-modelClass: Ocs\Collection\Models\Report
+# modelClass: Ocs\Collection\Models\Activity
+modelClass: \Jlab\Users\Models\User
 
 # List Title
-title: Manage Reports
+title: Manage Activities
 
 # Link URL for each record
-recordUrl: ocs/collection/reports/update/:id
+recordUrl: ocs/collection/activity/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

@@ -1,6 +1,6 @@
 <?php Block::put('breadcrumb') ?>
     <ul>
-        <li><a href="<?= Backend::url('ocs/collection/reports') ?>">Reports</a></li>
+        <li><a href="<?= Backend::url('ocs/collection/activity') ?>">Activity</a></li>
         <li><?= e($this->pageTitle) ?></li>
     </ul>
 <?php Block::endPut() ?>
@@ -8,6 +8,7 @@
 <?php if (!$this->fatalError): ?>
 
     <?= Form::open(['class' => 'layout']) ?>
+        <input type="hidden" name="User[id]" value="<?= input('user_id') ?>">
 
         <div class="layout-row">
             <?= $this->formRender() ?>
@@ -18,30 +19,22 @@
                 <button
                     type="submit"
                     data-request="onSave"
-                    data-request-data="redirect:0"
                     data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving Report..."
+                    data-load-indicator="Creating Activity..."
                     class="btn btn-primary">
-                    <u>S</u>ave
+                    Create
                 </button>
                 <button
                     type="button"
                     data-request="onSave"
                     data-request-data="close:1"
                     data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving Report..."
+                    data-load-indicator="Creating Activity..."
                     class="btn btn-default">
-                    Save and Close
-                </button>
-                <button
-                    type="button"
-                    class="oc-icon-trash-o btn-icon danger pull-right"
-                    data-request="onDelete"
-                    data-load-indicator="Deleting Report..."
-                    data-request-confirm="Delete this report?">
+                    Create and Close
                 </button>
                 <span class="btn-text">
-                    or <a href="<?= Backend::url('ocs/collection/reports') ?>">Cancel</a>
+                    or <a href="<?= Backend::url('ocs/collection/activity') ?>">Cancel</a>
                 </span>
             </div>
         </div>
@@ -51,6 +44,6 @@
 <?php else: ?>
 
     <p class="flash-message static error"><?= e($this->fatalError) ?></p>
-    <p><a href="<?= Backend::url('ocs/collection/reports') ?>" class="btn btn-default">Return to reports list</a></p>
+    <p><a href="<?= Backend::url('ocs/collection/activity') ?>" class="btn btn-default">Return to activity list</a></p>
 
 <?php endif ?>

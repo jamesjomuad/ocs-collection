@@ -2,81 +2,67 @@
     <div class="row">
         <div class="col-md-12">
             <h1>Reports</h1>
+            <hr>
         </div>
+    </div>
+    
+    <div class="row">
         <div class="col-md-6">
-            <div class="p-a">
+            <h3>Debt vs Payments</h3>
+            <div class="p-a mt-10 shadow-lg bg-white border-t border-l border-r border-gray-400 flex justify-center rounded-lg" style=" min-height: 350px; ">
                 <div
                     class="control-chart centered wrap-legend"
                     data-control="chart-pie"
-                    data-size="200"
-                    data-center-text="100">
+                    data-size="250"
+                    data-start-angle="50"
+                    data-center-text="Debts">
                     <ul>
-                        <li>Label 1 <span>100</span></li>
-                        <li>Label 2 <span>100</span></li>
-                        <li>Label 3 <span>100</span></li>
+                        <li>Payments <span><?= $debt->getVolumeTotal() - $debt->getBalanceTotal() ?></span></li>
+                        <li>Debt <span><?= $debt->getVolumeTotal() ?></span></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
-            <div class="p-a">
+            <h3>Payments</h3>
+            <div class="p-a mt-10 shadow-lg bg-white border-t border-l border-r border-gray-400 flex justify-center rounded-lg" style=" min-height: 350px; ">
                 <div
                     class="control-chart wrap-legend"
                     data-control="chart-bar"
-                    data-height="200"
+                    data-height="250"
                     data-full-width="1">
                     <ul>
-                        <li>Monday<span>100</span></li>
-                        <li>Tuesday<span>75</span></li>
-                        <li>Wednesday<span>50</span></li>
-                        <li>Thursday<span>25</span></li>
-                        <li>Friday<span>10</span></li>
+                        <?php foreach($payments as $day) : ?>
+                            <li><?= $day['date'] ?><span><?= $day['value'] ?></span></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="col-md-12">
             <div class="scoreboard p-a m-a">
                 <div data-control="toolbar">
                     <div class="scoreboard-item title-value">
                         <h4>Collections</h4>
-                        <p class="positive"><?= $collectionToday->count() | 0 ?></p>
-                        <p class="description">yesterday: <?= $collectionYesterday->count() | 0 ?></p>
+                        <p class="positive"><?= $collection['today'] ?></p>
+                        <p class="description">yesterday: <?= $collection['yesterday'] ?></p>
                     </div>
-
+                    <div class="scoreboard-item title-value">
+                        <h4>Total Collections</h4>
+                        <p class="equal"><?= $collection['total'] ?></p>
+                        <p class="description">Since Start</p>
+                    </div>
                     <div class="scoreboard-item control-chart" data-control="chart-pie">
                         <ul>
                             <li data-color="#3366FF">Completed <span>84</span></li>
-                            <li data-color="#e5a91a">Ongoing <span>12</span></li>
+                            <li data-color="#e5a91a">Issue/s <span><?= $this->Debt->where('volume',false)->get()->count() ?></span></li>
                         </ul>
-                    </div>
-            
-                    <div class="scoreboard-item title-value">
-                        <h4>Total Collections</h4>
-                        <p class="equal"><?= $collectionCount->count() ?></p>
-                        <p class="description">Since Start</p>
-                    </div>
-            
-                    <div class="scoreboard-item title-value" data-control="goal-meter" data-value="88">
-                        <h4>goal meter</h4>
-                        <p>88%</p>
-                        <p class="description">37 posts remain</p>
-                    </div>
-            
-                    <div class="scoreboard-item title-value goal-meter-inverse" data-control="goal-meter" data-value="88">
-                        <h4>goal meter</h4>
-                        <p>88%</p>
-                        <p class="description">37 posts remain</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<?=
-    dump($collectionCount)
-?>

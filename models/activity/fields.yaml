@@ -1,0 +1,99 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    activity_section:
+        label: Activities Table
+        type: section
+        comment: This section contains details about the activities created from Collector.
+    activities:
+        type: datatable
+        adding: true
+        btnAddRowLabel: Add Row Above
+        btnAddRowBelowLabel: Add Row Below
+        btnDeleteRowLabel: Delete Row
+        columns:
+            week:
+                type: string
+                title: Week
+            activity:
+                type: string
+                title: Activities
+            30day1:
+                type: string
+                title: 30 Days
+            30day2:
+                type: string
+                title: 30 Days
+            30day3:
+                type: string
+                title: 30 Days
+            60day1:
+                type: string
+                title: 60 Days
+            60day2:
+                type: string
+                title: 60 Days
+            60day3:
+                type: string
+                title: 60 Days
+            90day1:
+                type: string
+                title: 90 Days
+            90day2:
+                type: string
+                title: 90 Days
+            90day3:
+                type: string
+                title: 90 Days
+        deleting: true
+        dynamicHeight: true
+        fieldName: null
+        height: false
+        keyFrom: id
+        postbackHandlerName: null
+        recordsPerPage: false
+        searching: false
+        # context:
+        #     - update
+    ledger_section:
+        label: Ledger Table
+        type: section
+        comment: Ledger of activities.
+    ledger:
+        type: datatable
+        adding: true
+        deleting: true
+        btnAddRowLabel: Add Row Above
+        btnAddRowBelowLabel: Add Row Below
+        btnDeleteRowLabel: Delete Row
+        columns:
+            date:
+                type: string
+                title: Date
+            frequency:
+                type: string
+                title: FREQUENCY OF VISIT
+            activity:
+                type: string
+                title: ACTIVITY
+            result:
+                type: string
+                title: Result
+            action:
+                type: string
+                title: ACTIONS TO BE TAKEN
+            payment:
+                type: string
+                title: Payment
+        deleting: true
+        dynamicHeight: true
+        fieldName: null
+        height: false
+        keyFrom: id
+        postbackHandlerName: null
+        recordsPerPage: false
+        searching: false
+        # context:
+        #     - update
