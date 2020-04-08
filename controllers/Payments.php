@@ -13,6 +13,7 @@ class Payments extends \Ocs\Collection\Controllers\Main
     ];
 
     public $formConfig = 'config_form.yaml';
+
     public $listConfig = [
         'payments' => 'config_payment_list.yaml',
     ];
@@ -38,6 +39,15 @@ class Payments extends \Ocs\Collection\Controllers\Main
             return \Backend::redirect("ocs/collection/debt/update/".input('debt')."#primarytab-2");
         }
         return parent::update_onSave($context);
+    }
+
+    public function update_onDelete($id)
+    {
+        parent::update_onDelete($id);
+        if(input('debt'))
+        {
+            return \Backend::redirect("ocs/collection/debt/update/".input('debt')."#primarytab-2");
+        }
     }
 
     public function update($id, $parent=null, $parent_id=null)
