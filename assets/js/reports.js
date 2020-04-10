@@ -178,14 +178,14 @@ $(document).on('ready',function(){
 					display: true,
 					scaleLabel: {
 						display: true,
-						labelString: 'Week'
+						labelString: 'Days'
 					}
 				}],
 				yAxes: [{
 					display: true,
 					scaleLabel: {
 						display: true,
-						labelString: 'Amounts'
+						labelString: 'Counts'
 					}
 				}]
 			}
@@ -194,13 +194,18 @@ $(document).on('ready',function(){
     var payCount = document.getElementById('payment-count').getContext('2d');
 	window.ctxPayCount = new Chart(payCount, config);
 	var request = function(mode){
-		$.request('onGetPaymentCount',{
-			data: { mode: mode }
-		})
+		$.request('onGetPaymentCount',{ data: { mode: mode } })
 		.success(function(res){
 			config.data.labels = res.label
 			config.data.datasets[0].data = res.value
 			config.data.datasets[0].label = mode
+			if(mode=='daily'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Days'
+			}else if(mode=='weekly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Weeks'
+			}else if(mode=='monthly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Months'
+			}
 			ctxPayCount.update()
 		});
 	}
@@ -214,4 +219,77 @@ $(document).on('ready',function(){
 })
 
 
+// Chart: Payment Amounts
+$(document).on('ready',function(){
+	var config = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [
+				{
+					label: 'Daily',
+					backgroundColor: window.chartColors.grey,
+					borderColor: window.chartColors.orange,
+					data: [],
+					fill: false,
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Payment Amounts'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Days'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Amounts'
+					}
+				}]
+			}
+		}
+	};
+    var payAmount = document.getElementById('payment-amount').getContext('2d');
+	window.ctxPayAmount = new Chart(payAmount, config);
+	var request = function(mode){
+		$.request('onGetPaymentAmount',{ data: { mode: mode } })
+		.success(function(res){
+			config.data.labels = res.label
+			config.data.datasets[0].data = res.value
+			config.data.datasets[0].label = mode
+			if(mode=='daily'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Days'
+			}else if(mode=='weekly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Weeks'
+			}else if(mode=='monthly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Months'
+			}
+			ctxPayAmount.update()
+		});
+	}
+	
+	request('daily');
 
+	$('#chart-payment-count .mode li a').on('click',function(){
+		var mode = $(this).data('mode')
+		request(mode);
+	});
+})
