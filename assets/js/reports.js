@@ -288,7 +288,7 @@ $(document).on('ready',function(){
 	
 	request('daily');
 
-	$('#chart-payment-count .mode li a').on('click',function(){
+	$('#chart-payment-amount .mode li a').on('click',function(){
 		var mode = $(this).data('mode')
 		request(mode);
 	});
