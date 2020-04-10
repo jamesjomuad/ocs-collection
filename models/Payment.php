@@ -167,6 +167,11 @@ class Payment extends Model
         return $query->whereDate('created_at', Carbon::today());
     }
 
+    public function scopeDateBetween($query,$fieldName,$fromDate,$todate)
+    {
+        return $query->whereDate($fieldName,'>=',$fromDate)->whereDate($fieldName,'<=',$todate);
+    }
+
     #
     #   Helpers
     #

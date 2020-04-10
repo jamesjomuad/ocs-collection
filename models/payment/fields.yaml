@@ -62,7 +62,7 @@ fields:
     receipt_number:
         label: O.R. Number
         type: text
-        span: auto
+        span: left
     particulars:
         label: Particulars
         type: text
