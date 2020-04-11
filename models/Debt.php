@@ -146,10 +146,31 @@ class Debt extends Model
         return null;
     }
 
+
+    #
+    #   Scopes
+    #
+    public function scopeAsc($query)
+    {
+        $query->orderBy('created_at','asc');
+        return $query;
+    }
+
+    public function scopeDesc($query)
+    {
+        $query->orderBy('created_at','desc');
+        return $query;
+    }
+
+    public function scopeDateBetween($query,$fieldName,$fromDate,$todate)
+    {
+        return $query->whereDate($fieldName,'>=',$fromDate)->whereDate($fieldName,'<=',$todate);
+    }
+
+
     #
     #   Helpers
     #
-
     public function moneyFormat($value)
     {
         return "₱" . number_format((float)$value, 2, '.', ',');
@@ -177,22 +198,6 @@ class Debt extends Model
             ->pluck('balance')
             ->sum()
         ;
-    }
-
-
-    #
-    #   Scopes
-    #
-    public function scopeAsc($query)
-    {
-        $query->orderBy('created_at','asc');
-        return $query;
-    }
-
-    public function scopeDesc($query)
-    {
-        $query->orderBy('created_at','desc');
-        return $query;
     }
 
 }

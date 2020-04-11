@@ -6,15 +6,16 @@
         </div>
     </div>
 
+    <!-- Payment Counts and Amounts -->
     <div class="row">
         <div class="col-md-6">
-            <div id="chart-payment-count" class="p-a mt-10 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
+            <div id="chart-payment-count" class="p-a mt-6 mb-6 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
                 <h4>Payment Counts</h4>
                 <canvas id="payment-count"></canvas>
                 <hr>
                 <div class="dropdown mode">
                     <a href="#" data-toggle="dropdown" class="btn btn-primary btn-sm oc-icon-pie-chart">Daily</a>
-                    <ul class="dropdown-menu" role="menu" data-dropdown-title="Add something small">
+                    <ul class="dropdown-menu" role="menu">
                         <li role="presentation">
                             <a tabindex="-1" href="#payment-chart" class="oc-icon-pie-chart" data-mode="daily">Daily</a>
                         </li>
@@ -29,13 +30,13 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div id="chart-payment-amount" class="p-a mt-10 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
+            <div id="chart-payment-amount" class="p-a mt-6 mb-6 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
                 <h4>Payment Amounts</h4>
                 <canvas id="payment-amount"></canvas>
                 <hr>
                 <div class="dropdown mode">
                     <a href="#" data-toggle="dropdown" class="btn btn-primary btn-sm oc-icon-pie-chart">Daily</a>
-                    <ul class="dropdown-menu" role="menu" data-dropdown-title="Add something small">
+                    <ul class="dropdown-menu" role="menu">
                         <li role="presentation">
                             <a tabindex="-1" href="#payment-chart" class="oc-icon-pie-chart" data-mode="daily">Daily</a>
                         </li>
@@ -50,9 +51,57 @@
             </div>
         </div>
     </div>
+
+    <!-- Debt Counts and Amounts -->
     <div class="row">
         <div class="col-md-6">
-            <div class="p-a mt-10 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
+            <div id="chart-debt-count" class="p-a mt-6 mb-6 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
+                <h4>Debt Counts</h4>
+                <canvas id="debt-count"></canvas>
+                <hr>
+                <div class="dropdown mode">
+                    <a href="#" data-toggle="dropdown" class="btn btn-primary btn-sm oc-icon-pie-chart">Daily</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="daily">Daily</a>
+                        </li>
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="weekly">Weekly</a>
+                        </li>
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="monthly">Monthly</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div id="chart-debt-amount" class="p-a mt-6 mb-6 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
+                <h4>Debt Amounts</h4>
+                <canvas id="debt-amount"></canvas>
+                <hr>
+                <div class="dropdown mode">
+                    <a href="#" data-toggle="dropdown" class="btn btn-primary btn-sm oc-icon-pie-chart">Daily</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="daily">Daily</a>
+                        </li>
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="weekly">Weekly</a>
+                        </li>
+                        <li role="presentation">
+                            <a tabindex="-1" href="#" class="oc-icon-pie-chart" data-mode="monthly">Monthly</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Debt and Payments -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="p-a mt-6 mb-6 shadow-lg bg-white border-t border-l border-r border-gray-400 flex flex-col justify-center rounded-lg" style=" min-height: 350px; ">
                 <h4>Debt vs Payments</h4>
                 <div
                     class="control-chart centered wrap-legend"
@@ -68,7 +117,7 @@
                 <hr>
                 <div class="dropdown">
                     <a href="#" data-toggle="dropdown" class="btn btn-primary btn-sm oc-icon-pie-chart">Week</a>
-                    <ul class="dropdown-menu" role="menu" data-dropdown-title="Add something small">
+                    <ul class="dropdown-menu" role="menu">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="oc-icon-pie-chart">Week</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="oc-icon-pie-chart">Month</a></li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="#" class="oc-icon-pie-chart">Year</a></li>
