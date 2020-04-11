@@ -134,7 +134,9 @@
 
 }(this));
 
-$(document).on('ready',function(){
+// Dropdown extra
+$(document).on('ready',function(e){
+	e.preventDefault()
     $('.dropdown-menu a').on('click',function(e){
         e.preventDefault();
         var $label = $(this).text()
@@ -218,7 +220,6 @@ $(document).on('ready',function(){
 	});
 })
 
-
 // Chart: Payment Amounts
 $(document).on('ready',function(){
 	var config = {
@@ -289,6 +290,156 @@ $(document).on('ready',function(){
 	request('daily');
 
 	$('#chart-payment-amount .mode li a').on('click',function(){
+		var mode = $(this).data('mode')
+		request(mode);
+	});
+})
+
+// Chart: Debt Counts
+$(document).on('ready',function(){
+	var config = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [
+				{
+					label: 'Daily',
+					backgroundColor: window.chartColors.grey,
+					borderColor: window.chartColors.orange,
+					data: [],
+					fill: false,
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Debt Counts'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Days'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Counts'
+					}
+				}]
+			}
+		}
+	};
+    var payCount = document.getElementById('debt-count').getContext('2d');
+	window.ctxDebtCount = new Chart(payCount, config);
+	var request = function(mode){
+		$.request('onGetDebtCount',{ data: { mode: mode } })
+		.success(function(res){
+			config.data.labels = res.label
+			config.data.datasets[0].data = res.value
+			config.data.datasets[0].label = mode
+			if(mode=='daily'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Days'
+			}else if(mode=='weekly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Weeks'
+			}else if(mode=='monthly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Months'
+			}
+			ctxDebtCount.update()
+		});
+	}
+	
+	request('daily');
+
+	$('#chart-debt-count .mode li a').on('click',function(){
+		var mode = $(this).data('mode')
+		request(mode);
+	});
+})
+
+// Chart: Debt Amounts
+$(document).on('ready',function(){
+	var config = {
+		type: 'line',
+		data: {
+			labels: [],
+			datasets: [
+				{
+					label: 'Daily',
+					backgroundColor: window.chartColors.grey,
+					borderColor: window.chartColors.orange,
+					data: [],
+					fill: false,
+				}
+			]
+		},
+		options: {
+			responsive: true,
+			title: {
+				display: true,
+				text: 'Debt Amounts'
+			},
+			tooltips: {
+				mode: 'index',
+				intersect: false,
+			},
+			hover: {
+				mode: 'nearest',
+				intersect: true
+			},
+			scales: {
+				xAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Days'
+					}
+				}],
+				yAxes: [{
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: 'Amounts'
+					}
+				}]
+			}
+		}
+	};
+    var payCount = document.getElementById('debt-amount').getContext('2d');
+	window.ctxDebtamount = new Chart(payCount, config);
+	var request = function(mode){
+		$.request('onGetDebtAmount',{ data: { mode: mode } })
+		.success(function(res){
+			config.data.labels = res.label
+			config.data.datasets[0].data = res.value
+			config.data.datasets[0].label = mode
+			if(mode=='daily'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Days'
+			}else if(mode=='weekly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Weeks'
+			}else if(mode=='monthly'){
+				config.options.scales.xAxes[0].scaleLabel.labelString = 'Months'
+			}
+			ctxDebtamount.update()
+		});
+	}
+	
+	request('daily');
+
+	$('#chart-debt-amount .mode li a').on('click',function(){
 		var mode = $(this).data('mode')
 		request(mode);
 	});
