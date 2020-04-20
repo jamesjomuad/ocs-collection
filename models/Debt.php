@@ -167,6 +167,11 @@ class Debt extends Model
         return $query->whereDate($fieldName,'>=',$fromDate)->whereDate($fieldName,'<=',$todate);
     }
 
+    public function scopeCreatedBetween($query,$from,$to)
+    {
+        return $query->dateBetween('created_at', $from, $to);
+    }
+
 
     #
     #   Helpers

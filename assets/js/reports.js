@@ -135,13 +135,19 @@
 }(this));
 
 // Dropdown extra
-$(document).on('ready',function(e){
-	e.preventDefault()
+$(document).on('ready',function(){
     $('.dropdown-menu a').on('click',function(e){
-        e.preventDefault();
-        var $label = $(this).text()
-        var $btn = $(this).parents('.dropdown').find('[data-toggle="dropdown"]')
-        $btn.text($label)
+		e.preventDefault();
+		var self = $(this);
+		var $dropdown = $(this).parents('.dropdown');
+		var $anchors = $dropdown.find('a');
+        var $label = $(this).text();
+        var $btn = $dropdown.find('[data-toggle="dropdown"]');
+		$btn.text($label);
+		setTimeout(function(){ 
+			$anchors.removeClass('active');
+			self.addClass('active');
+		}, 500);
     });
 });
 
@@ -214,7 +220,9 @@ $(document).on('ready',function(){
 	
 	request('daily');
 
-	$('#chart-payment-count .mode li a').on('click',function(){
+	$('#chart-payment-count .mode li a:not(".active")').on('click',function(e){
+		e.preventDefault()
+		if($(this).is('.active')){return;}
 		var mode = $(this).data('mode')
 		request(mode);
 	});
@@ -289,7 +297,9 @@ $(document).on('ready',function(){
 	
 	request('daily');
 
-	$('#chart-payment-amount .mode li a').on('click',function(){
+	$('#chart-payment-amount .mode li a:not(".active")').on('click',function(e){
+		e.preventDefault()
+		if($(this).is('.active')){return;}
 		var mode = $(this).data('mode')
 		request(mode);
 	});
@@ -364,7 +374,9 @@ $(document).on('ready',function(){
 	
 	request('daily');
 
-	$('#chart-debt-count .mode li a').on('click',function(){
+	$('#chart-debt-count .mode li a:not(".active")').on('click',function(e){
+		e.preventDefault()
+		if($(this).is('.active')){return;}
 		var mode = $(this).data('mode')
 		request(mode);
 	});
@@ -439,8 +451,24 @@ $(document).on('ready',function(){
 	
 	request('daily');
 
-	$('#chart-debt-amount .mode li a').on('click',function(){
+	$('#chart-debt-amount .mode li a:not(".active")').on('click',function(e){
+		e.preventDefault()
+		if($(this).is('.active')){return;}
+
 		var mode = $(this).data('mode')
 		request(mode);
 	});
 })
+
+// Pie Chart: Debt vs Payment
+$(document).on('click','#debt-payment .mode li a',function(e){
+	e.preventDefault()
+	if($(this).is('.active')){return;}
+
+	var mode = $(this).data('mode')
+	$.request('onDebtvsPayment',{ data: { mode: mode } })
+	// .success(function(res){
+		
+	// });
+	console.log($(this))
+});

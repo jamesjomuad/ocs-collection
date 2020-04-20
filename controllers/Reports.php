@@ -58,9 +58,10 @@ class Reports extends \Ocs\Collection\Controllers\Main
     public function test()
     {
         dd(
-            $this->debtCount('daily')
+            $this->debtvsCount()
         );
     }
+
 
     #
     #   Ajax Handlers
@@ -85,13 +86,19 @@ class Reports extends \Ocs\Collection\Controllers\Main
         return $this->paymentAmount(input('mode'));
     }
 
+    public function onDebtvsPayment()
+    {
+        return [
+            '#debt-payment-chart' => $this->makePartial('debt-payment-chart',['debt' => $this->Debt ]),
+            'mode' => input('mode')
+        ];
+    }
+
     #
     #   Data Structures
     #
     public function paymentCount($mode='daily')
     {
-        $carbon = Carbon::today();
-
         $data = [];
 
         switch($mode)
@@ -170,8 +177,6 @@ class Reports extends \Ocs\Collection\Controllers\Main
 
     public function paymentAmount($mode='daily')
     {
-        $carbon = Carbon::today();
-
         $data = [];
 
         switch($mode)
@@ -250,8 +255,6 @@ class Reports extends \Ocs\Collection\Controllers\Main
 
     public function debtCount($mode='daily')
     {
-        $carbon = Carbon::today();
-
         $data = [];
 
         switch($mode)
@@ -283,6 +286,75 @@ class Reports extends \Ocs\Collection\Controllers\Main
                 }
 
                 return $data;
+            break;
+
+            case 'weekly':
+                $results = Debt::select('id','volume','created_at')
+                ->whereDate('created_at', '>', Carbon::today()->subDays(30))
+                ->get()
+                ->groupBy(function($date) { return Carbon::parse($date->created_at)->format('W'); })
+                ->map(function($item){return $item->count();})
+                ->toArray();
+
+                ksort($results);
+
+                foreach($results as $k=>$week)
+                {
+                    $data['label'][] = "Week {$k}";
+                    $data['value'][] = $week;
+                }
+
+                return $data;
+            break;
+
+            case 'monthly':
+                $results = Debt::select('id','volume','created_at')
+                ->whereDate('created_at', '>', Carbon::today()->subMonths(12))
+                ->get()
+                ->groupBy(function($date) { return Carbon::parse($date->created_at)->format('m-M'); })
+                ->map(function($item){return $item->count();})
+                ->reverse()
+                ->toArray();
+
+                foreach($results as $k=>$month)
+                {
+                    $data['label'][] = explode('-',$k)[1];
+                    $data['value'][] = $month;
+                }
+
+                return $data;
+            break;
+
+            default:
+                $data = [];
+            break;
+        }
+    }
+
+    public function debtvsCount($mode='daily')
+    {
+        $data = [];
+
+        switch($mode)
+        {
+            case 'daily':
+                $result = $this->Debt
+                ->select('id','volume','balance')
+                ->createdBetween(Carbon::today()->subWeek(), Carbon::today())
+                ->get();
+
+                $volume = $result->sum(function($model){
+                    return $model->volume;
+                });
+
+                $balance = $result->sum(function($model){
+                    return $model->balance ?? $model->volume;
+                });
+
+                return [
+                    'volume'    => $volume,
+                    'balance'   => $balance
+                ];
             break;
 
             case 'weekly':
