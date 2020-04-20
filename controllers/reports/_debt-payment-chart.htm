@@ -3,9 +3,9 @@
     data-control="chart-pie"
     data-size="250"
     data-start-angle="50"
-    data-center-text="<?= ucwords(input('mode')) ?>">
+    data-center-text="<?= ucwords(input('mode')??'Daily') ?>">
     <ul>
-        <li>Payments <span><?= $debt->getVolumeTotal() - $debt->getBalanceTotal() ?></span></li>
-        <li>Debt <span><?= $debt->getVolumeTotal() ?></span></li>
+        <li>Payments <span><?= $debt['difference'] ?></span></li>
+        <li>Debt <span><?= $debt['volume'] ?></span></li>
     </ul>
 </div>

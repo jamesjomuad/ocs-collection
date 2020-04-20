@@ -58,7 +58,8 @@ class Reports extends \Ocs\Collection\Controllers\Main
     public function test()
     {
         dd(
-            $this->debtvsCount()
+            $this->debtvsCount('year')
+            // Carbon::today()->subWeek()
         );
     }
 
@@ -89,8 +90,7 @@ class Reports extends \Ocs\Collection\Controllers\Main
     public function onDebtvsPayment()
     {
         return [
-            '#debt-payment-chart' => $this->makePartial('debt-payment-chart',['debt' => $this->Debt ]),
-            'mode' => input('mode')
+            '#debt-payment-chart' => $this->makePartial('debt-payment-chart',['debt' => $this->debtvsCount(input('mode')) ])
         ];
     }
 
@@ -331,73 +331,56 @@ class Reports extends \Ocs\Collection\Controllers\Main
         }
     }
 
-    public function debtvsCount($mode='daily')
+    public function debtvsCount($mode='today')
     {
-        $data = [];
-
         switch($mode)
         {
-            case 'daily':
-                $result = $this->Debt
-                ->select('id','volume','balance')
-                ->createdBetween(Carbon::today()->subWeek(), Carbon::today())
+            case 'today':
+                $result = Debt::select('id','volume','balance')
+                ->whereDate('created_at', Carbon::today())
+                // ->createdBetween(Carbon::today()->subWeek(), Carbon::today())
                 ->get();
-
-                $volume = $result->sum(function($model){
-                    return $model->volume;
-                });
-
-                $balance = $result->sum(function($model){
-                    return $model->balance ?? $model->volume;
-                });
-
-                return [
-                    'volume'    => $volume,
-                    'balance'   => $balance
-                ];
             break;
 
-            case 'weekly':
-                $results = Debt::select('id','volume','created_at')
-                ->whereDate('created_at', '>', Carbon::today()->subDays(30))
-                ->get()
-                ->groupBy(function($date) { return Carbon::parse($date->created_at)->format('W'); })
-                ->map(function($item){return $item->count();})
-                ->toArray();
-
-                ksort($results);
-
-                foreach($results as $k=>$week)
-                {
-                    $data['label'][] = "Week {$k}";
-                    $data['value'][] = $week;
-                }
-
-                return $data;
+            case 'week':
+                $result = Debt::select('id','volume','balance')
+                ->whereDate('created_at', '>', Carbon::today()->subWeek())
+                ->get();
             break;
 
-            case 'monthly':
-                $results = Debt::select('id','volume','created_at')
+            case 'month':
+                $result = Debt::select('id','volume','balance')
+                ->whereDate('created_at', '>', Carbon::today()->subMonth())
+                ->get();
+            break;
+            
+            case 'year':
+                $result = Debt::select('id','volume','balance')
                 ->whereDate('created_at', '>', Carbon::today()->subMonths(12))
-                ->get()
-                ->groupBy(function($date) { return Carbon::parse($date->created_at)->format('m-M'); })
-                ->map(function($item){return $item->count();})
-                ->reverse()
-                ->toArray();
-
-                foreach($results as $k=>$month)
-                {
-                    $data['label'][] = explode('-',$k)[1];
-                    $data['value'][] = $month;
-                }
-
-                return $data;
+                ->get();
             break;
 
             default:
-                $data = [];
+                return [
+                    'volume'  => 0,
+                    'balance' => 0
+                ];
             break;
         }
+
+        $volume = $result->sum(function($model){
+            return $model->volume;
+        });
+
+        $balance = $result->sum(function($model){
+            return $model->balance ?? $model->volume;
+        });
+
+        return [
+            'volume'     => $volume,
+            'balance'    => $balance,
+            'difference' => $volume - $balance
+        ];
     }
 
 }
