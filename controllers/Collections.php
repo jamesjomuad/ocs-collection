@@ -6,7 +6,7 @@ use October\Rain\Exception\ApplicationException;
 
 class Collections extends \Ocs\Collection\Controllers\Main
 {
-    public $requiredPermissions = ['ocs.collection.collection'];
+    public $requiredPermissions = ['ocs.collection'];
     
     public $implement = [
         'Backend.Behaviors.FormController',
@@ -27,7 +27,7 @@ class Collections extends \Ocs\Collection\Controllers\Main
 
         BackendMenu::setContext('Ocs.Collection', 'collection', 'collections');
 
-        if(request()->header('x-october-request-handler') === 'onDelete' AND !$this->canDelete())
+        if(request()->header('x-october-request-handler') === 'onDelete' AND !$this->can('ocs.collection.delete'))
         {
             throw new ApplicationException('No Access permission!');
         }

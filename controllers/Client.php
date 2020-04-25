@@ -5,6 +5,8 @@ use BackendMenu;
 
 class Client extends \Ocs\Collection\Controllers\Main
 {
+    public $requiredPermissions = ['ocs.collection.clients'];
+
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',

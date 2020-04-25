@@ -31,24 +31,36 @@
 
         <div class="form-buttons">
             <div class="loading-indicator-container">
-                <button
-                    type="submit"
-                    data-request="onSave"
-                    data-request-data="redirect:0"
-                    data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving Debt..."
-                    class="btn btn-primary">
-                    <u>S</u>ave
-                </button>
-                <button
-                    type="button"
-                    data-request="onSave"
-                    data-request-data="close:1"
-                    data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving Debt..."
-                    class="btn btn-default">
-                    Save and Close
-                </button>
+                <?php if($this->can('ocs.collection.update')) : ?>
+                    <button
+                        type="submit"
+                        data-request="onSave"
+                        data-request-data="redirect:0"
+                        data-hotkey="ctrl+s, cmd+s"
+                        data-load-indicator="Saving Debt..."
+                        class="btn btn-primary">
+                        <u>S</u>ave
+                    </button>
+                    <button
+                        type="button"
+                        data-request="onSave"
+                        data-request-data="close:1"
+                        data-hotkey="ctrl+enter, cmd+enter"
+                        data-load-indicator="Saving Debt..."
+                        class="btn btn-default">
+                        Save and Close
+                    </button>
+                    <span class="btn-text">
+                        or 
+                        <?php if(!is_null($this->vars['formModel']->collection)): ?>
+                            <a href="<?= Backend::url('ocs/collection/collections/update') ?>/<?= $this->vars['formModel']->collection->id ?>">Cancel</a>
+                        <?php else : ?>
+                            <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
+                        <?php endif; ?>
+                    </span>
+                <?php else: ?>
+                    <a class="btn btn-default" href="<?= Backend::url('ocs/collection/collections') ?>">Close</a>
+                <?php endif; ?>
                 <button
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
@@ -56,14 +68,6 @@
                     data-load-indicator="Deleting Debt..."
                     data-request-confirm="Delete this debt?">
                 </button>
-                <span class="btn-text">
-                    or 
-                    <?php if(!is_null($this->vars['formModel']->collection)): ?>
-                        <a href="<?= Backend::url('ocs/collection/collections/update') ?>/<?= $this->vars['formModel']->collection->id ?>">Cancel</a>
-                    <?php else : ?>
-                        <a href="<?= Backend::url('ocs/collection/debt') ?>">Cancel</a>
-                    <?php endif; ?>
-                </span>
             </div>
         </div>
 

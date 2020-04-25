@@ -7,9 +7,7 @@
 
 <?php if (!$this->fatalError): ?>
 
-    <?= Form::open([
-        'class' => 'layout',
-    ]) ?>
+    <?= Form::open(['class' => 'layout']) ?>
         <input type="hidden" name="parentId" value="<?= $this->parentId | null ?>">
 
         <div class="layout-row">
@@ -18,24 +16,38 @@
 
         <div class="form-buttons">
             <div class="loading-indicator-container">
-                <button
-                    type="submit"
-                    data-request="onSave"
-                    data-request-data="redirect:0"
-                    data-hotkey="ctrl+s, cmd+s"
-                    data-load-indicator="Saving Payment..."
-                    class="btn btn-primary">
-                    <u>S</u>ave
-                </button>
-                <button
-                    type="button"
-                    data-request="onSave"
-                    data-request-data="close:1"
-                    data-hotkey="ctrl+enter, cmd+enter"
-                    data-load-indicator="Saving Payment..."
-                    class="btn btn-default">
-                    Save and Close
-                </button>
+                <?php if($this->can('ocs.collection.payment.update')) : ?>
+                    <button
+                        type="submit"
+                        data-request="onSave"
+                        data-request-data="redirect:0"
+                        data-hotkey="ctrl+s, cmd+s"
+                        data-load-indicator="Saving Payment..."
+                        class="btn btn-primary">
+                        <u>S</u>ave
+                    </button>
+                    <button
+                        type="button"
+                        data-request="onSave"
+                        data-request-data="close:1"
+                        data-hotkey="ctrl+enter, cmd+enter"
+                        data-load-indicator="Saving Payment..."
+                        class="btn btn-default">
+                        Save and Close
+                    </button>
+                    <span class="btn-text">
+                        or 
+                        <?php if(input('debt')) : ?>
+                            <a href="<?= Backend::url('ocs/collection/debt/update') ?>/<?= input('debt') ?>#primarytab-2">Cancel</a>
+                        <?php else : ?>
+                            <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                        <?php endif; ?>
+                    </span>
+                <?php else: ?>
+                    <a class="btn btn-default" href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
+                <?php endif; ?>
+
+                <?php if($this->can('ocs.collection.payment.delete')) : ?>
                 <button
                     type="button"
                     class="oc-icon-trash-o btn-icon danger pull-right"
@@ -43,14 +55,7 @@
                     data-load-indicator="Deleting Payment..."
                     data-request-confirm="Delete this payment?">
                 </button>
-                <span class="btn-text">
-                    or 
-                    <?php if(input('debt')) : ?>
-                        <a href="<?= Backend::url('ocs/collection/debt/update') ?>/<?= input('debt') ?>#primarytab-2">Cancel</a>
-                    <?php else : ?>
-                        <a href="<?= Backend::url('ocs/collection/payments') ?>">Cancel</a>
-                    <?php endif; ?>
-                </span>
+                <?php endif; ?>
             </div>
         </div>
 

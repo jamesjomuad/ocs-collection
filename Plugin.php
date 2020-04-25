@@ -80,29 +80,77 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'ocs.collection.collection' => [
+            'ocs.collection' => [
                 'tab' => 'Collections',
-                'label' => 'Manage Collections'
+                'label' => 'Manage Collections',
+                'order' => 200,
             ],
-            'ocs.collection.collection.delete' => [
+            'ocs.collection.create' => [
                 'tab' => 'Collections',
-                'label' => 'Delete Collections'
+                'label' => 'Manage Collections create',
+                'order' => 201,
             ],
+            'ocs.collection.update' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Collections update',
+                'order' => 202,
+            ],
+            'ocs.collection.delete' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Collections delete',
+                'order' => 203,
+            ],
+
+            // Clients
             'ocs.collection.clients' => [
                 'tab' => 'Collections',
-                'label' => 'Manage Client'
+                'label' => 'Manage Clients panel',
+                'order' => 211
+            ],
+            'ocs.collection.clients.create' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Client Create',
+                'order' => 212
+            ],
+            'ocs.collection.clients.delete' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Client delete',
+                'order' => 213
+            ],
+            
+
+            // Payments
+            'ocs.collection.payment' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Payments',
+                'order' => 221
+            ],
+            'ocs.collection.payment.create' => [
+                'tab' => 'Collections',
+                'label' => 'Can create Payments',
+                'order' => 222
+            ],
+            'ocs.collection.payment.update' => [
+                'tab' => 'Collections',
+                'label' => 'Can update Payments',
+                'order' => 223
+            ],
+            'ocs.collection.payment.delete' => [
+                'tab' => 'Collections',
+                'label' => 'Can delete Payments',
+                'order' => 224
+            ],
+
+            // Activity
+            'ocs.collection.activity' => [
+                'tab' => 'Collections',
+                'label' => 'Manage Activities',
+                'order' => 231
             ],
             'ocs.collection.reports' => [
                 'tab' => 'Collections',
-                'label' => 'Manage Report'
-            ],
-            'ocs.collection.payments' => [
-                'tab' => 'Collections',
-                'label' => 'Manage Payments'
-            ],
-            'ocs.collection.activity' => [
-                'tab' => 'Collections',
-                'label' => 'Manage Activities'
+                'label' => 'Manage Report',
+                'order' => 232
             ],
         ];
     }
@@ -138,7 +186,7 @@ class Plugin extends PluginBase
                         'label'       => 'Payments',
                         'url'         => Backend::url('ocs/collection/payments'),
                         'icon'        => 'icon-dollar',
-                        'permissions' => ['ocs.collection.*'],
+                        'permissions' => ['ocs.collection.payment'],
                     ],
                     'activity' => [
                         'label'       => 'Activity',

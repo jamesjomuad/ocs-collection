@@ -19,24 +19,9 @@ class Main extends Controller
         $this->addJs($this->assetPath . "js/main.js");
     }
 
-    public function canCreate()
+    public function can($perm)
     {
-        return true;
-    }
-    
-    public function canRead()
-    {
-        return true;
-    }
-
-    public function canUpdate()
-    {
-        return true;
-    }
-
-    public function canDelete()
-    {
-        return $this->user->hasAccess('ocs.collection.collection.delete');
+        return $this->user->hasAccess($perm);
     }
 
     public function getReferer($name = null)

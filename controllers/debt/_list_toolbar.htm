@@ -5,20 +5,20 @@
         New Debt
     </a> -->
 
-    <?php if($this->canDelete()) : ?>
-        <button
-            class="btn btn-danger pull-right"
-            disabled="disabled"
-            onclick="$(this).data('request-data', { checked: $('#Lists-debt .control-list').listWidget('getChecked') })"
-            data-request="onDelete"
-            data-request-url="<?= Backend::url('ocs/collection/debt') ?>"
-            data-request-confirm="Are you sure you want to delete the selected Debt?"
-            data-trigger-action="enable"
-            data-trigger=".control-list input[type=checkbox]"
-            data-trigger-condition="checked"
-            data-request-success="$(this).prop('disabled', 'disabled'); $.request('debt::onRefresh')"
-            data-stripe-load-indicator>
-            <i class="icon icon-trash"></i>
-        </button>
+    <?php if($this->can('ocs.collection.delete')) : ?>
+    <button
+        class="btn btn-danger pull-right"
+        disabled="disabled"
+        onclick="$(this).data('request-data', { checked: $('#Lists-debt .control-list').listWidget('getChecked') })"
+        data-request="onDelete"
+        data-request-url="<?= Backend::url('ocs/collection/debt') ?>"
+        data-request-confirm="Are you sure you want to delete the selected Debt?"
+        data-trigger-action="enable"
+        data-trigger=".control-list input[type=checkbox]"
+        data-trigger-condition="checked"
+        data-request-success="$(this).prop('disabled', 'disabled'); $.request('debt::onRefresh')"
+        data-stripe-load-indicator>
+        <i class="icon icon-trash"></i>
+    </button>
     <?php endif; ?>
 </div>

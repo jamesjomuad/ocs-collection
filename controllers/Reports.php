@@ -10,9 +10,14 @@ use Ocs\Collection\Models\Payment;
 
 class Reports extends \Ocs\Collection\Controllers\Main
 {
+    public $requiredPermissions = ['ocs.collection.reports'];
+
     public $collection;
+
     public $Debt;
+
     public $Payment;
+    
 
     public function __construct()
     {
@@ -53,14 +58,6 @@ class Reports extends \Ocs\Collection\Controllers\Main
             'today'     => Collection::today()->get()->count(),
             'yesterday' => Collection::today()->get()->count()
         ];
-    }
-
-    public function test()
-    {
-        dd(
-            $this->debtvsCount('year')
-            // Carbon::today()->subWeek()
-        );
     }
 
 

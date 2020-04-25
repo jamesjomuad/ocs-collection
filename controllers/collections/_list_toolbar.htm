@@ -1,10 +1,13 @@
 <div data-control="toolbar">
+    <?php if($this->can('ocs.collection.create')) : ?>
     <a
         href="<?= Backend::url('ocs/collection/collections/create') ?>"
         class="btn btn-primary oc-icon-plus">
         Collection
     </a>
-    <?php if($this->canDelete()) : ?>
+    <?php endif; ?>
+
+    <?php if($this->can('ocs.collection.delete')) : ?>
     <button
         class="btn btn-danger pull-right"
         disabled="disabled"
