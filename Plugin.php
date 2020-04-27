@@ -80,7 +80,7 @@ class Plugin extends PluginBase
     public function registerPermissions()
     {
         return [
-            'ocs.collection' => [
+            'ocs.collection.collections' => [
                 'tab' => 'Collections',
                 'label' => 'Manage Collections',
                 'order' => 200,
@@ -118,24 +118,23 @@ class Plugin extends PluginBase
                 'order' => 213
             ],
             
-
             // Payments
-            'ocs.collection.payment' => [
+            'ocs.collection.payments' => [
                 'tab' => 'Collections',
                 'label' => 'Manage Payments',
                 'order' => 221
             ],
-            'ocs.collection.payment.create' => [
+            'ocs.collection.payments.create' => [
                 'tab' => 'Collections',
                 'label' => 'Can create Payments',
                 'order' => 222
             ],
-            'ocs.collection.payment.update' => [
+            'ocs.collection.payments.update' => [
                 'tab' => 'Collections',
                 'label' => 'Can update Payments',
                 'order' => 223
             ],
-            'ocs.collection.payment.delete' => [
+            'ocs.collection.payments.delete' => [
                 'tab' => 'Collections',
                 'label' => 'Can delete Payments',
                 'order' => 224
@@ -147,6 +146,8 @@ class Plugin extends PluginBase
                 'label' => 'Manage Activities',
                 'order' => 231
             ],
+
+            // Reports
             'ocs.collection.reports' => [
                 'tab' => 'Collections',
                 'label' => 'Manage Report',
@@ -162,7 +163,7 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return [
+        $navs = [
             'collection' => [
                 'label'       => 'Collections',
                 'url'         => Backend::url('ocs/collection/collections'),
@@ -174,9 +175,9 @@ class Plugin extends PluginBase
                         'label'       => 'Collections',
                         'url'         => Backend::url('ocs/collection/collections'),
                         'icon'        => 'icon-list',
-                        'permissions' => ['ocs.collection.*'],
+                        'permissions' => ['ocs.collection.collections'],
                     ],
-                    'client' => [
+                    'clients' => [
                         'label'       => 'Clients',
                         'url'         => Backend::url('ocs/collection/client'),
                         'icon'        => 'icon-user-circle-o',
@@ -186,23 +187,27 @@ class Plugin extends PluginBase
                         'label'       => 'Payments',
                         'url'         => Backend::url('ocs/collection/payments'),
                         'icon'        => 'icon-dollar',
-                        'permissions' => ['ocs.collection.payment'],
+                        'permissions' => ['ocs.collection.payments'],
                     ],
                     'activity' => [
                         'label'       => 'Activity',
                         'url'         => Backend::url('ocs/collection/activity'),
                         'icon'        => 'icon-vcard',
-                        'permissions' => ['ocs.collection.*'],
+                        'permissions' => ['ocs.collection.activity'],
                     ],
                     'reports' => [
                         'label'       => 'Reports',
                         'url'         => Backend::url('ocs/collection/reports'),
                         'icon'        => 'icon-bar-chart',
-                        'permissions' => ['ocs.collection.*'],
+                        'permissions' => ['ocs.collection.reports'],
                     ],
                 ]
             ],
         ];
+
+        // return $navs;
+
+        return $this->setDefaultNav($navs,'ocs.collection');
     }
 
     public function registerReportWidgets()
@@ -267,5 +272,22 @@ class Plugin extends PluginBase
             $htm = "<ol>".$htm."</ol>";
             return $htm;
         }
+    }
+
+    /*
+    *   Helpers
+    */
+    private function setDefaultNav($navs)
+    {
+        foreach($navs as $k=>$nav){
+            foreach($navs[$k]['sideMenu'] as $key=>$val){
+                if(\BackendAuth::getUser()->hasPermission('ocs.collection'.'.'.$key)){
+                    $navs[$k]['url'] = $val['url'];
+                    break;
+                }
+            }
+        }
+
+        return $navs;
     }
 }

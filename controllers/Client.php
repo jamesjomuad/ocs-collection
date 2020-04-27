@@ -24,6 +24,6 @@ class Client extends \Ocs\Collection\Controllers\Main
     {
         parent::__construct();
 
-        BackendMenu::setContext('Ocs.Collection', 'collection', 'client');
+        BackendMenu::setContext('Ocs.Collection', 'collection', 'clients');
     }
 }

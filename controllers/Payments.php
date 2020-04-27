@@ -5,7 +5,7 @@ use BackendMenu;
 
 class Payments extends \Ocs\Collection\Controllers\Main
 {
-    public $requiredPermissions = ['ocs.collection.payment'];
+    public $requiredPermissions = ['ocs.collection.payments'];
 
     public $parentId = null;
 

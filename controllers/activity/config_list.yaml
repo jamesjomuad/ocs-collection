@@ -7,7 +7,7 @@ list: $/ocs/collection/models/activity/columns.yaml
 
 # Model Class name
 # modelClass: Ocs\Collection\Models\Activity
-modelClass: \Jlab\Users\Models\User
+modelClass: \Ocs\Users\Models\User
 
 # List Title
 title: Manage Activities

@@ -2,7 +2,7 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
-use \Jlab\Users\Models\User as UserModel;
+use \Ocs\Users\Models\User as UserModel;
 
 /**
  * Activity Back-end Controller

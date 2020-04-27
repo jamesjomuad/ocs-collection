@@ -6,7 +6,7 @@ use October\Rain\Exception\ApplicationException;
 
 class Collections extends \Ocs\Collection\Controllers\Main
 {
-    public $requiredPermissions = ['ocs.collection'];
+    public $requiredPermissions = ['ocs.collection.collections'];
     
     public $implement = [
         'Backend.Behaviors.FormController',
